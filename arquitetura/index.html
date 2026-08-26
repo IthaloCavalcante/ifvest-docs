@@ -1,0 +1,2858 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentação oficial da plataforma IFVest — IFSP Campus Jacareí">
+      
+      
+        <meta name="author" content="Ithalo Cavalcante Gomes">
+      
+      
+        <link rel="canonical" href="https://IthaloCavalcante.github.io/ifvest-docs/arquitetura/">
+      
+      
+        <link rel="prev" href="../descricao-do-sistema/">
+      
+      
+        <link rel="next" href="../c4/contexto/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Arquitetura do Sistema - IFVest - Documentação</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#arquitetura-do-sistema" class="md-skip">
+          Ir para o conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href=".." title="IFVest - Documentação" class="md-header__button md-logo" aria-label="IFVest - Documentação" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            IFVest - Documentação
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Arquitetura do Sistema
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando a pesquisa
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Início
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../planejamento/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Planejamento da Documentação
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../descricao-do-sistema/" class="md-tabs__link">
+          
+  
+  
+  O Sistema
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../requisitos/funcionais/" class="md-tabs__link">
+          
+  
+  
+  Requisitos
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../funcionalidades/" class="md-tabs__link">
+          
+  
+  
+  Funcionalidades
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../subprojetos/" class="md-tabs__link">
+          
+  
+  
+  Subprojetos Ativos
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../guias/" class="md-tabs__link">
+          
+  
+  
+  Guias de Uso
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="IFVest - Documentação" class="md-nav__button md-logo" aria-label="IFVest - Documentação" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    IFVest - Documentação
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Início
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../planejamento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Planejamento da Documentação
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    O Sistema
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    O Sistema
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../descricao-do-sistema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Descrição do Sistema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitetura do Sistema
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitetura do Sistema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#visao-geral" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Visão Geral
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diagramas-c4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagramas C4
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#camadas-do-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Camadas do Sistema
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Camadas do Sistema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banco-de-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Banco de Dados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#infraestrutura-de-hospedagem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Infraestrutura de Hospedagem
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tecnologias-utilizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tecnologias Utilizadas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tecnologias Utilizadas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backend_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontend_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banco-de-dados_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Banco de Dados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ferramentas-de-desenvolvimento-e-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ferramentas de Desenvolvimento e Testes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#endpoints-principais-da-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Endpoints Principais da API
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Endpoints Principais da API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#autenticacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Autenticação
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simulados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simulados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#questoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Questões
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#revisao-de-conteudo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Revisão de Conteúdo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ifquiz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IFQuiz
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flashcards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flashcards
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integracoes-externas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integrações Externas
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagramas C4
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Diagramas C4
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../c4/contexto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nível 1 — Contexto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../c4/containers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nível 2 — Contêineres
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../c4/componentes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nível 3 — Componentes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requisitos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Requisitos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../requisitos/funcionais/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requisitos Funcionais
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../requisitos/nao-funcionais/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requisitos Não-Funcionais
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Funcionalidades
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Funcionalidades
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../funcionalidades/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Descrição das Funcionalidades
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../versoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registro de Versões
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Subprojetos Ativos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Subprojetos Ativos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../subprojetos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visão Geral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../subprojetos/frontend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Eixo 1: Interface e Modernização (Frontend)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../subprojetos/qualidade-e-testes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Eixo 2: Qualidade, Testes e Acessibilidade
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../subprojetos/ia-e-recomendacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Eixo 3: Inteligência Artificial e Recomendação
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../subprojetos/infra-e-seguranca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Eixo 4: Infraestrutura, APIs e Segurança
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guias de Uso
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guias de Uso
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visão Geral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conta
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Conta
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/conta/acesso/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Acesso e Conta
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/conta/perfil/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Perfil e Seus Dados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guia do Aluno
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guia do Aluno
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/aluno/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visão Geral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/aluno/revisao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Revisão de Conteúdo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/aluno/flashcards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flashcards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/aluno/simulados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Simulados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/aluno/ifquiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IFQuiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guia do Professor
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guia do Professor
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/professor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visão Geral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/professor/banco-de-questoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Banco de Questões
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/professor/simulados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Simulados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/professor/flashcards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flashcards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/professor/materiais-de-revisao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Materiais de Revisão
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/glossario/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossário
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#visao-geral" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Visão Geral
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diagramas-c4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagramas C4
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#camadas-do-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Camadas do Sistema
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Camadas do Sistema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banco-de-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Banco de Dados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#infraestrutura-de-hospedagem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Infraestrutura de Hospedagem
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tecnologias-utilizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tecnologias Utilizadas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tecnologias Utilizadas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backend_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontend_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banco-de-dados_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Banco de Dados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ferramentas-de-desenvolvimento-e-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ferramentas de Desenvolvimento e Testes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#endpoints-principais-da-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Endpoints Principais da API
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Endpoints Principais da API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#autenticacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Autenticação
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simulados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simulados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#questoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Questões
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#revisao-de-conteudo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Revisão de Conteúdo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ifquiz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IFQuiz
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flashcards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flashcards
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integracoes-externas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integrações Externas
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="arquitetura-do-sistema">Arquitetura do Sistema</h1>
+<p>O IFVest é uma aplicação web full-stack construída sobre Node.js, com arquitetura baseada em domínios e padrão MVC (Model-View-Controller). Esta página descreve como o sistema está organizado internamente, quais tecnologias compõem cada camada e como as partes se comunicam.</p>
+<hr />
+<h2 id="visao-geral">Visão Geral</h2>
+<div class="highlight"><pre><span></span><code>┌─────────────────────────────────────────────┐
+│                  USUÁRIO                    │
+│         (Navegador Web / Dispositivo)       │
+└───────────────────┬─────────────────────────┘
+                    │ HTTP/HTTPS
+┌───────────────────▼─────────────────────────┐
+│               FRONTEND                      │
+│     Bootstrap 5 + JavaScript (ES6+)         │
+│            Templates EJS                    │
+└───────────────────┬─────────────────────────┘
+                    │
+┌───────────────────▼─────────────────────────┐
+│               BACKEND                       │
+│         Node.js + Express.js                │
+│     Arquitetura MVC por domínios            │
+│    Middleware: Helmet, CORS, Sessões        │
+└───────────────────┬─────────────────────────┘
+                    │ Sequelize ORM
+┌───────────────────▼─────────────────────────┐
+│            BANCO DE DADOS                   │
+│   MySQL (produção) / PostgreSQL (testes)    │
+└─────────────────────────────────────────────┘
+</code></pre></div>
+<hr />
+<h2 id="diagramas-c4">Diagramas C4</h2>
+<p>A arquitetura está documentada em diagramas C4 separados por nível:</p>
+<ul>
+<li><a href="../c4/contexto/">Nível 1 — Contexto</a></li>
+<li><a href="../c4/containers/">Nível 2 — Contêineres</a></li>
+</ul>
+<hr />
+<h2 id="camadas-do-sistema">Camadas do Sistema</h2>
+<h3 id="frontend">Frontend</h3>
+<p>O frontend adota uma <strong>arquitetura híbrida</strong>: a base da aplicação é renderizada no servidor via <strong>EJS</strong> (Embedded JavaScript Templates), enquanto o editor de conteúdo do módulo de revisão utiliza componentes <strong>React</strong> compilados e servidos como assets estáticos.</p>
+<p>Essa integração React é <strong>isolada na pasta <code>editor_markdown/</code></strong>, que possui seu próprio <code>package.json</code> com React e Vite. O processo de build (<code>npm run build:editor</code>) compila os componentes e deposita os arquivos otimizados em <code>public/</code>, onde o Express os serve normalmente. O <code>package.json</code> principal do projeto não contém React nem Vite — eles são dependências exclusivas do subprojeto <code>editor_markdown/</code>.</p>
+<p>A estilização global é feita com <strong>Bootstrap 5</strong>, complementada por folhas CSS personalizadas. A comunicação assíncrona entre frontend e backend é feita via <strong>Axios</strong> (v1.10.0).</p>
+<p>A renderização de conteúdo Markdown é feita com <strong>marked</strong> (v16.3.0), com suporte a equações matemáticas via extensão <strong>marked-katex-extension</strong> (v5.1.5). A geração de PDFs é feita no servidor via <strong>Puppeteer</strong> (v24.25.0), que controla uma instância headless do Chrome para renderizar e exportar páginas como PDF com fidelidade ao layout da aplicação.</p>
+<h3 id="backend">Backend</h3>
+<p>O backend é construído com <strong>Node.js</strong> (v22.5.0) e o framework web <strong>Express.js</strong> (v5.1.0). Ele é responsável por receber as requisições do usuário, processar a lógica de negócio e retornar as respostas.</p>
+<p>O sistema adota o padrão arquitetural <strong>MVC</strong>, organizado em domínios:</p>
+<div class="highlight"><pre><span></span><code>IFVest/
+├── .github/            # Configurações do GitHub (CI/CD workflows)
+├── config/             # Configurações do banco de dados
+├── domains/            # Módulos por domínio de negócio
+│   ├── simulados/      # Sistema de simulados e questões
+│   ├── revisao/        # Sistema de revisão de conteúdos
+│   ├── flashcards/     # Módulo de flashcards com repetição espaçada
+│   └── shared/         # Componentes compartilhados
+├── editor_markdown/    # Editor Markdown em React + Vite (build isolado, próprio package.json)
+├── logs/               # Logs de execução da aplicação
+├── middleware/         # Middlewares customizados (autenticação, segurança, validação)
+├── migrations/         # Migrações do banco de dados
+├── models/             # Modelos Sequelize (entidades do banco)
+├── modules/            # Módulos utilitários reutilizáveis
+├── public/             # Assets estáticos (CSS, JS, imagens, output do build React)
+├── routes/             # Rotas principais da aplicação
+├── seeders/            # Dados iniciais para o banco
+├── utils/              # Funções auxiliares gerais
+├── validations/        # Schemas de validação Zod por entidade
+├── views/              # Templates EJS
+├── ecosystem.config.js # Configuração do PM2 (gerenciador de processos)
+├── eslint.config.cjs   # Configuração do ESLint
+└── index.js            # Ponto de entrada da aplicação
+</code></pre></div>
+<p>A segurança é gerenciada por middlewares dedicados:</p>
+<ul>
+<li><strong>Helmet</strong> — define cabeçalhos HTTP de segurança</li>
+<li><strong>CORS</strong> — controla o acesso cross-origin</li>
+<li><strong>Express-session</strong> — gerencia sessões de usuário autenticado</li>
+<li><strong>Validação em duas camadas</strong> — client-side via JavaScript (feedback visual imediato, bloqueio de caracteres inválidos) e server-side via middleware <strong>Zod</strong> (<code>validateRequest</code>), que intercepta requisições antes dos controllers e aplica schemas tipados por entidade (Autenticação, Questões, Simulados, Tópicos, Conteúdos)</li>
+<li>Prevenção de <strong>SQL Injection</strong> via expressão regular no middleware Zod, rejeitando termos reservados SQL em todos os campos de texto</li>
+<li><strong>Criptografia de senhas</strong> com <code>bcrypt</code> e criptografia de URLs de recuperação</li>
+</ul>
+<h3 id="banco-de-dados">Banco de Dados</h3>
+<p>O banco de dados principal é o <strong>MySQL</strong>, utilizado em desenvolvimento e produção. Em ambiente de testes, é utilizado o <strong>PostgreSQL</strong>. O acesso ao banco é feito exclusivamente através do <strong>Sequelize</strong> (v6.37.3), um ORM (Object-Relational Mapper) que abstrai as queries SQL e gerencia as migrações e seeders.</p>
+<h3 id="infraestrutura-de-hospedagem">Infraestrutura de Hospedagem</h3>
+<p>A plataforma está disponível publicamente em <code>ifvest.jcr.ifsp.edu.br</code>, hospedada em servidor externo provido pelo serviço <a href="https://goinfinite.net">GoInfinite</a>. O gerenciamento de processos em produção é feito via <strong>PM2</strong> (v6.0.5), configurado no arquivo <code>ecosystem.config.js</code>.</p>
+<p>As principais entidades do sistema são:</p>
+<table>
+<thead>
+<tr>
+<th>Tabela</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>usuarios</code></td>
+<td>Dados de cadastro, autenticação e perfil do usuário</td>
+</tr>
+<tr>
+<td><code>areas</code></td>
+<td>Disciplinas/áreas de conhecimento disponíveis na plataforma</td>
+</tr>
+<tr>
+<td><code>areaprof</code></td>
+<td>Associação entre professores e áreas de atuação</td>
+</tr>
+<tr>
+<td><code>topicos</code></td>
+<td>Tópicos de estudo organizados por área</td>
+</tr>
+<tr>
+<td><code>perguntas</code></td>
+<td>Questões cadastradas na plataforma (objetivas e dissertativas)</td>
+</tr>
+<tr>
+<td><code>provas</code></td>
+<td>Simulados criados pelos usuários</td>
+</tr>
+<tr>
+<td><code>perguntas_provas</code></td>
+<td>Associação entre questões e simulados</td>
+</tr>
+<tr>
+<td><code>resposta</code></td>
+<td>Respostas submetidas pelos alunos em cada simulado</td>
+</tr>
+<tr>
+<td><code>favoritos</code></td>
+<td>Questões marcadas como favoritas por um usuário</td>
+</tr>
+<tr>
+<td><code>videos</code></td>
+<td>Videoaulas vinculadas a tópicos de estudo</td>
+</tr>
+<tr>
+<td><code>noticias</code></td>
+<td>Notícias exibidas na página inicial da plataforma</td>
+</tr>
+<tr>
+<td><code>comentarios</code></td>
+<td>Feedbacks enviados pelos usuários</td>
+</tr>
+<tr>
+<td><code>flashcards</code></td>
+<td>Cartões de estudo criados por professores e administradores, categorizados por área, tópico e nível de dificuldade</td>
+</tr>
+<tr>
+<td><code>dificuldade</code></td>
+<td>Níveis de dificuldade disponíveis para classificação dos flashcards</td>
+</tr>
+<tr>
+<td><code>flashcard_usuario</code></td>
+<td>Registro de histórico de revisão por usuário (relação N:N entre flashcard e usuário); armazena o campo <code>visto_por_ultimo</code> que sustenta a lógica de repetição espaçada</td>
+</tr>
+<tr>
+<td><code>placar</code></td>
+<td>Pontuações registradas pelos usuários no módulo IFQuiz (acertos, total de questões, porcentagem e data)</td>
+</tr>
+<tr>
+<td><code>SequelizeMeta</code></td>
+<td>Controle interno de migrações gerenciado pelo Sequelize</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="tecnologias-utilizadas">Tecnologias Utilizadas</h2>
+<h3 id="backend_1">Backend</h3>
+<table>
+<thead>
+<tr>
+<th>Tecnologia</th>
+<th>Versão</th>
+<th>Função</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Node.js</td>
+<td>22.5.0</td>
+<td>Runtime JavaScript</td>
+</tr>
+<tr>
+<td>Express.js</td>
+<td>5.1.0</td>
+<td>Framework web</td>
+</tr>
+<tr>
+<td>Sequelize</td>
+<td>6.37.3</td>
+<td>ORM para banco de dados</td>
+</tr>
+<tr>
+<td>EJS</td>
+<td>3.1.9</td>
+<td>Template engine (renderização server-side)</td>
+</tr>
+<tr>
+<td>Express-session</td>
+<td>1.17.3</td>
+<td>Gerenciamento de sessões de usuário</td>
+</tr>
+<tr>
+<td>connect-session-sequelize</td>
+<td>8.0.2</td>
+<td>Persistência de sessões no banco de dados</td>
+</tr>
+<tr>
+<td>Helmet</td>
+<td>8.1.0</td>
+<td>Cabeçalhos HTTP de segurança</td>
+</tr>
+<tr>
+<td>CORS</td>
+<td>2.8.5</td>
+<td>Cross-Origin Resource Sharing</td>
+</tr>
+<tr>
+<td>express-rate-limit</td>
+<td>7.5.0</td>
+<td>Limitação de taxa de requisições</td>
+</tr>
+<tr>
+<td>Zod</td>
+<td>3.25.64</td>
+<td>Validação de schemas server-side</td>
+</tr>
+<tr>
+<td>bcrypt</td>
+<td>5.1.1</td>
+<td>Criptografia de senhas</td>
+</tr>
+<tr>
+<td>Multer</td>
+<td>1.4.5-lts.1</td>
+<td>Upload de arquivos (imagens de perfil, materiais)</td>
+</tr>
+<tr>
+<td>Puppeteer</td>
+<td>24.25.0</td>
+<td>Geração de PDFs via Chrome headless (server-side)</td>
+</tr>
+<tr>
+<td>dotenv</td>
+<td>16.4.5</td>
+<td>Carregamento de variáveis de ambiente</td>
+</tr>
+<tr>
+<td>Nodemon</td>
+<td>3.0.1</td>
+<td>Auto-reload em desenvolvimento</td>
+</tr>
+<tr>
+<td>PM2</td>
+<td>6.0.5</td>
+<td>Gerenciador de processos em produção</td>
+</tr>
+</tbody>
+</table>
+<h3 id="frontend_1">Frontend</h3>
+<table>
+<thead>
+<tr>
+<th>Tecnologia</th>
+<th>Versão</th>
+<th>Função</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bootstrap</td>
+<td>5.3.8</td>
+<td>Framework CSS responsivo</td>
+</tr>
+<tr>
+<td>JavaScript</td>
+<td>ES6+</td>
+<td>Lógica no cliente</td>
+</tr>
+<tr>
+<td>CSS3</td>
+<td>—</td>
+<td>Estilização personalizada</td>
+</tr>
+<tr>
+<td>React + Vite</td>
+<td>—</td>
+<td>Editor Markdown interativo — isolados em <code>editor_markdown/</code> com build próprio; o output é servido como asset estático pelo Express</td>
+</tr>
+<tr>
+<td>Axios</td>
+<td>1.10.0</td>
+<td>Requisições HTTP assíncronas no cliente</td>
+</tr>
+<tr>
+<td>marked</td>
+<td>16.3.0</td>
+<td>Renderização de Markdown no servidor</td>
+</tr>
+<tr>
+<td>marked-katex-extension</td>
+<td>5.1.5</td>
+<td>Suporte a equações matemáticas LaTeX no Markdown</td>
+</tr>
+<tr>
+<td>markdown-it</td>
+<td>14.1.0</td>
+<td>Parser Markdown alternativo (uso interno)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="banco-de-dados_1">Banco de Dados</h3>
+<table>
+<thead>
+<tr>
+<th>Tecnologia</th>
+<th>Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MySQL</td>
+<td>Desenvolvimento e produção</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td>Ambiente de testes</td>
+</tr>
+<tr>
+<td>MariaDB</td>
+<td>Suporte adicional</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ferramentas-de-desenvolvimento-e-testes">Ferramentas de Desenvolvimento e Testes</h3>
+<table>
+<thead>
+<tr>
+<th>Tecnologia</th>
+<th>Versão</th>
+<th>Função</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Jest</td>
+<td>29.7.0</td>
+<td>Testes unitários</td>
+</tr>
+<tr>
+<td>Cypress</td>
+<td>15.0.0</td>
+<td>Testes end-to-end</td>
+</tr>
+<tr>
+<td>ESLint</td>
+<td>9.27.0</td>
+<td>Análise estática de código</td>
+</tr>
+<tr>
+<td>sequelize-cli</td>
+<td>6.6.0</td>
+<td>Gerenciamento de migrações e seeders via CLI</td>
+</tr>
+<tr>
+<td>supertest</td>
+<td>7.0.0</td>
+<td>Testes de integração de rotas HTTP</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="endpoints-principais-da-api">Endpoints Principais da API</h2>
+<p>A comunicação entre frontend e backend é feita via rotas HTTP. Os principais grupos de endpoints são:</p>
+<h3 id="autenticacao">Autenticação</h3>
+<div class="highlight"><pre><span></span><code>POST  /usuario/login      # Login do usuário
+POST  /usuario/cadastro   # Cadastro de novo usuário
+GET   /usuario/logout     # Logout
+</code></pre></div>
+<h3 id="simulados">Simulados</h3>
+<div class="highlight"><pre><span></span><code>GET   /simulados/                       # Lista simulados disponíveis
+POST  /simulados/criar-simulado         # Cria um novo simulado
+GET   /simulados/:id/fazer              # Executa um simulado
+POST  /simulados/responder-prova/:id    # Submete respostas
+GET   /simulados/:id/gabarito           # Visualiza gabarito
+</code></pre></div>
+<h3 id="questoes">Questões</h3>
+<div class="highlight"><pre><span></span><code>GET   /simulados/questoes                        # Lista questões
+POST  /simulados/registrar-questao/:tipo         # Cria questão
+</code></pre></div>
+<h3 id="revisao-de-conteudo">Revisão de Conteúdo</h3>
+<div class="highlight"><pre><span></span><code>GET   /revisao/                  # Lista materiais de revisão
+POST  /revisao/criar-material    # Cria novo material
+</code></pre></div>
+<h3 id="ifquiz">IFQuiz</h3>
+<div class="highlight"><pre><span></span><code>GET   /quiz/questoes             # Recupera questões do ENEM via API externa
+POST  /quiz/responder            # Submete resposta e armazena no placar
+GET   /quiz/placar               # Lista o ranking de desempenho dos usuários
+</code></pre></div>
+<h3 id="flashcards">Flashcards</h3>
+<div class="highlight"><pre><span></span><code>GET   /flashcards                # Lista flashcards (com filtros opcionais por área, tópico e dificuldade)
+POST  /flashcards                # Cria novo flashcard (professor/administrador)
+PUT   /flashcards/:id            # Edita flashcard existente
+DELETE /flashcards/:id           # Remove flashcard
+GET   /flashcards/grupos         # Retorna flashcards agrupados por tempo de revisão (repetição espaçada)
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Documentação completa da API</p>
+<p>A documentação detalhada dos endpoints, parâmetros e modelos de resposta será disponibilizada via Swagger/OpenAPI, a ser gerada pela equipe de backend.</p>
+</div>
+<hr />
+<h2 id="integracoes-externas">Integrações Externas</h2>
+<p>O sistema conta com uma integração externa em uso e outras em desenvolvimento ativo ou planejadas:</p>
+<table>
+<thead>
+<tr>
+<th>Integração</th>
+<th>Finalidade</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://enem.dev">enem.dev</a></td>
+<td>Importação de questões do ENEM para o módulo IFQuiz</td>
+<td>Em uso</td>
+</tr>
+<tr>
+<td>API da FUVEST</td>
+<td>Extração de questões da FUVEST para o banco de dados</td>
+<td>Em desenvolvimento</td>
+</tr>
+<tr>
+<td>API da UNICAMP</td>
+<td>Extração de questões da UNICAMP para o banco de dados</td>
+<td>Em desenvolvimento</td>
+</tr>
+<tr>
+<td>API de outro vestibular</td>
+<td>Extração de questões de vestibular adicional para o banco de dados</td>
+<td>Em desenvolvimento</td>
+</tr>
+<tr>
+<td>Firebase Authentication</td>
+<td>Login social via conta Google</td>
+<td>Planejado</td>
+</tr>
+<tr>
+<td>Elastic Search</td>
+<td>Busca avançada de materiais por palavra-chave</td>
+<td>Planejado</td>
+</tr>
+<tr>
+<td>Redis</td>
+<td>Cache para otimização de consultas frequentes</td>
+<td>Planejado</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition info">
+<p class="admonition-title">Subprojetos ativos</p>
+<p>As integrações com as APIs da FUVEST, UNICAMP e demais vestibulares são subprojetos de extensão em andamento no IFSP Campus Jacareí. A documentação detalhada de cada subprojeto está disponível na seção Subprojetos (Fase 2).</p>
+</div>
+<hr />
+<p>O sistema passou por uma migração significativa desde sua concepção:</p>
+<table>
+<thead>
+<tr>
+<th>Versão</th>
+<th>Stack</th>
+<th>Origem</th>
+<th>Período</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v1 (original)</td>
+<td>PHP + MariaDB + MVC nativo</td>
+<td>TCCs de Fonseca e Sousa</td>
+<td>2021</td>
+</tr>
+<tr>
+<td>v2 (atual)</td>
+<td>Node.js + Express + Sequelize + MySQL + EJS</td>
+<td>TCC de Cristian Zago Da Silva</td>
+<td>2024</td>
+</tr>
+<tr>
+<td>v2.x (em andamento)</td>
+<td>Integração híbrida de componentes React via Vite + Zod + Axios</td>
+<td>Projeto de extensão</td>
+<td>2025–2026</td>
+</tr>
+</tbody>
+</table>
+<p>A migração de PHP para Node.js foi realizada integralmente por Cristian Rodolfo Zago Da Silva como seu TCC (2024). A reconstrução manteve a arquitetura MVC e os conceitos de domínio da v1, modernizando a stack para o ecossistema JavaScript e unificando a linguagem entre frontend e backend. É essa versão que está em produção hoje e sobre a qual os subprojetos ativos de extensão operam.</p>
+<p>A evolução atual não consiste em uma reescrita completa para React, mas em uma <strong>estratégia de integração híbrida incremental</strong>: componentes React são compilados com Vite e injetados como assets estáticos nas páginas EJS existentes, permitindo modernizar partes críticas da interface sem substituir o backend ou reescrever o código legado.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar ao topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "Mais 1 nesta p\u00e1gina", "search.result.more.other": "Mais # nesta p\u00e1gina", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
