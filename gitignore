@@ -1,0 +1,13 @@
+# Site gerado pelo MkDocs — não versionar (é resultado de build)
+site/
+.cache/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Sistema operacional
+.DS_Store
+Thumbs.db

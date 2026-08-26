@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Como executar a documentação IFVest</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'IBM Plex Sans', sans-serif; background: #f5f4f0; color: #1a1a18; min-height: 100vh; padding: 2.5rem 1rem; }
+  .page { max-width: 680px; margin: 0 auto; }
+  .header { border-left: 4px solid #0f6e56; padding-left: 1.25rem; margin-bottom: 2rem; }
+  .badge { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #0f6e56; background: #e1f5ee; padding: 3px 10px; border-radius: 4px; margin-bottom: 0.6rem; }
+  h1 { font-size: 1.6rem; font-weight: 600; line-height: 1.25; color: #1a1a18; margin-bottom: 0.4rem; }
+  .subtitle { font-size: 0.95rem; color: #5f5e5a; line-height: 1.5; }
+
+  h2.section-title { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #888780; margin: 2rem 0 0.75rem; }
+
+  .prereqs { background: #fff; border: 0.5px solid #d3d1c7; border-radius: 10px; padding: 1.1rem 1.25rem; margin-bottom: 1.25rem; }
+  .prereqs-title { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #888780; margin-bottom: 0.75rem; }
+  .prereq-item { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.9rem; color: #1a1a18; padding: 0.3rem 0; line-height: 1.5; }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: #1d9e75; flex-shrink: 0; margin-top: 0.45rem; }
+
+  .fix { background: #fff; border: 0.5px solid #d3d1c7; border-left: 4px solid #b3401f; border-radius: 10px; padding: 1.15rem 1.35rem; margin-bottom: 1.25rem; }
+  .fix-eyebrow { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #b3401f; margin-bottom: 0.45rem; }
+  .fix-title { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; line-height: 1.4; }
+  .fix-text { font-size: 0.88rem; color: #5f5e5a; line-height: 1.6; }
+
+  .vscode-tip { background: #eef3fb; border: 0.5px solid #b5d4f4; border-radius: 10px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; display: flex; gap: 0.85rem; align-items: flex-start; }
+  .vscode-logo { width: 32px; height: 32px; flex-shrink: 0; margin-top: 1px; }
+  .vscode-tip-title { font-size: 0.88rem; font-weight: 600; color: #0c447c; margin-bottom: 0.3rem; }
+  .vscode-tip-text { font-size: 0.85rem; color: #185fa5; line-height: 1.55; }
+
+  .step { background: #fff; border: 0.5px solid #d3d1c7; border-radius: 10px; overflow: hidden; margin-bottom: 0.75rem; }
+  .step-header { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.25rem; border-bottom: 0.5px solid #f1efe8; }
+  .step-number { width: 28px; height: 28px; border-radius: 50%; background: #085041; color: #fff; font-size: 0.8rem; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .step-title { font-size: 0.95rem; font-weight: 600; color: #1a1a18; }
+  .step-body { padding: 1rem 1.25rem; }
+  .step-desc { font-size: 0.88rem; color: #5f5e5a; line-height: 1.6; margin-bottom: 0.75rem; }
+  .step-desc:last-child { margin-bottom: 0; }
+  .once { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: #0f6e56; background: #e1f5ee; padding: 2px 8px; border-radius: 4px; margin-left: auto; flex-shrink: 0; }
+
+  .method-label { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 0.4rem; }
+  .method-label.terminal { color: #5f5e5a; }
+  .method-label.vscode { color: #185fa5; }
+
+  .method-block { margin-bottom: 1rem; }
+  .method-block:last-child { margin-bottom: 0; }
+
+  .divider { height: 0.5px; background: #f1efe8; margin: 1rem 0; }
+
+  .code-block { background: #1a1a18; border-radius: 6px; padding: 0.75rem 1rem; margin: 0.4rem 0; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .code-block code { font-family: 'IBM Plex Mono', monospace; font-size: 0.83rem; color: #9fe1cb; word-break: break-all; }
+  .copy-btn { background: #2c2c2a; border: none; border-radius: 4px; padding: 4px 10px; font-family: 'IBM Plex Sans', sans-serif; font-size: 0.75rem; color: #b4b2a9; cursor: pointer; flex-shrink: 0; transition: background 0.15s; }
+  .copy-btn:hover { background: #444441; }
+  .copy-btn:focus-visible { outline: 2px solid #9fe1cb; outline-offset: 2px; }
+  .copy-btn.copied { color: #5dcaa5; }
+
+  .key-pill { display: inline-flex; align-items: center; background: #fff; border: 1.5px solid #d3d1c7; border-bottom-width: 3px; border-radius: 5px; padding: 1px 8px; font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; font-weight: 500; color: #1a1a18; margin: 0 1px; }
+
+  .inline-code { font-family: 'IBM Plex Mono', monospace; font-size: 0.83rem; background: #f1efe8; color: #3c3489; padding: 1px 6px; border-radius: 3px; }
+
+  .result-box { background: #f1efe8; border-left: 3px solid #1d9e75; border-radius: 4px; padding: 0.6rem 0.9rem; margin-top: 0.5rem; }
+  .result-label { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #0f6e56; margin-bottom: 0.25rem; }
+  .result-box code { font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; color: #5f5e5a; display: block; line-height: 1.6; }
+  .result-box p { font-size: 0.85rem; color: #5f5e5a; line-height: 1.55; }
+
+  .notice { background: #faeeda; border: 0.5px solid #fac775; border-radius: 10px; padding: 1rem 1.25rem; margin-top: 0.75rem; display: flex; gap: 0.75rem; align-items: flex-start; }
+  .notice-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+  .notice-title { font-size: 0.85rem; font-weight: 600; color: #633806; margin-bottom: 0.3rem; }
+  .notice-text { font-size: 0.85rem; color: #854f0b; line-height: 1.55; }
+  .notice-text code { font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; background: #f6e0bd; padding: 1px 5px; border-radius: 3px; }
+
+  .err { background: #fff; border: 0.5px solid #d3d1c7; border-radius: 10px; margin-bottom: 0.6rem; overflow: hidden; }
+  .err-msg { font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; color: #b3401f; background: #fdf1ee; padding: 0.7rem 1.1rem; border-bottom: 0.5px solid #f6dcd4; line-height: 1.5; }
+  .err-body { padding: 0.85rem 1.1rem; font-size: 0.86rem; color: #5f5e5a; line-height: 1.6; }
+  .err-body strong { color: #1a1a18; font-weight: 600; }
+
+  .footer { text-align: center; margin-top: 2.5rem; font-size: 0.8rem; color: #b4b2a9; line-height: 1.6; }
+
+  @media (max-width: 480px) {
+    body { padding: 1.5rem 0.75rem; }
+    .code-block { flex-direction: column; align-items: flex-start; gap: 0.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <span class="badge">IFVest · IFSP Campus Jacareí</span>
+    <h1>Como executar a documentação</h1>
+    <p class="subtitle">Siga os passos abaixo para rodar a documentação localmente no seu computador. Cada passo mostra como conferir se deu certo antes de seguir para o próximo.</p>
+  </div>
+
+  <div class="fix">
+    <div class="fix-eyebrow">Se você já tentou e deu erro</div>
+    <div class="fix-title">“O termo 'mkdocs' não é reconhecido…”</div>
+    <p class="fix-text">Isso não significa que a instalação falhou. O Windows não encontra o <span class="inline-code">mkdocs</span> porque a pasta onde o pip o instalou não está no PATH — situação comum em computador de laboratório, onde não dá para alterar as variáveis do sistema.</p>
+    <p class="fix-text" style="margin-top:0.55rem;">A solução é não depender do PATH: chame tudo pelo próprio Python, com <span class="inline-code">py -m</span>. É o que este tutorial faz em todos os comandos.</p>
+    <div class="code-block">
+      <code>py -m mkdocs serve</code>
+      <button class="copy-btn" onclick="copyCode(this, 'py -m mkdocs serve')">Copiar</button>
+    </div>
+  </div>
+
+  <div class="prereqs">
+    <div class="prereqs-title">O que você vai precisar</div>
+    <div class="prereq-item"><div class="dot"></div>Python 3.8 ou superior instalado</div>
+    <div class="prereq-item"><div class="dot"></div>Conexão com a internet (para instalar os pacotes e carregar os diagramas)</div>
+    <div class="prereq-item"><div class="dot"></div>A pasta do projeto — aquela que contém o arquivo <span class="inline-code">mkdocs.yml</span></div>
+  </div>
+
+  <div class="vscode-tip">
+    <svg class="vscode-logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logotipo do VS Code">
+      <rect width="100" height="100" rx="16" fill="#185fa5"/>
+      <path d="M70 15L36 47.5L18 35L10 41L30 55L10 69L18 75L36 62.5L70 95L90 85V25L70 15Z" fill="white"/>
+      <path d="M70 34L46 55L70 76V34Z" fill="#185fa5" opacity="0.5"/>
+    </svg>
+    <div>
+      <div class="vscode-tip-title">Recomendamos usar o VS Code</div>
+      <div class="vscode-tip-text">O VS Code tem terminal integrado e abre direto na pasta do projeto, facilitando os passos abaixo. Se não tiver, baixe em <strong>code.visualstudio.com</strong>.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-header">
+      <div class="step-number">1</div>
+      <div class="step-title">Verifique se o Python está instalado</div>
+    </div>
+    <div class="step-body">
+      <p class="step-desc">Abra qualquer terminal e digite o comando abaixo.</p>
+      <div class="code-block">
+        <code>py --version</code>
+        <button class="copy-btn" onclick="copyCode(this, 'py --version')">Copiar</button>
+      </div>
+      <div class="result-box">
+        <div class="result-label">Deu certo se aparecer</div>
+        <code>Python 3.12.4</code>
+      </div>
+      <p class="step-desc" style="margin-top:0.85rem;">Se o <span class="inline-code">py</span> não for reconhecido, tente <span class="inline-code">python --version</span>. Se nenhum dos dois funcionar, o Python não está instalado: em máquina sem permissão de administrador, instale pela <strong>Microsoft Store</strong> (procure por “Python 3.12”), que instala no seu usuário e não pede senha de admin.</p>
+      <p class="step-desc">Se for instalar pelo <strong>python.org</strong>, marque a opção <strong>“Add Python to PATH”</strong> na primeira tela do instalador.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-header">
+      <div class="step-number">2</div>
+      <div class="step-title">Instale os pacotes necessários</div>
+      <span class="once">uma vez por máquina</span>
+    </div>
+    <div class="step-body">
+      <p class="step-desc">Este comando instala o tema, as extensões de formatação e o suporte aos diagramas C4 — tudo de uma vez.</p>
+      <div class="code-block">
+        <code>py -m pip install --user mkdocs-material pymdown-extensions plantuml-markdown</code>
+        <button class="copy-btn" onclick="copyCode(this, 'py -m pip install --user mkdocs-material pymdown-extensions plantuml-markdown')">Copiar</button>
+      </div>
+      <div class="result-box">
+        <div class="result-label">Deu certo se aparecer, no final</div>
+        <code>Successfully installed mkdocs-material… plantuml-markdown…</code>
+      </div>
+      <p class="step-desc" style="margin-top:0.85rem;">O <span class="inline-code">--user</span> instala apenas para o seu usuário, sem exigir permissão de administrador.</p>
+      <div class="notice">
+        <span class="notice-icon" aria-hidden="true">⚠</span>
+        <div>
+          <div class="notice-title">Um aviso amarelo pode aparecer — e pode ser ignorado</div>
+          <div class="notice-text">Se o pip avisar que a pasta <code>Scripts</code> não está no PATH, não é erro. É exatamente por isso que os comandos deste tutorial usam <code>py -m</code>.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-header">
+      <div class="step-number">3</div>
+      <div class="step-title">Abra a pasta certa do projeto</div>
+    </div>
+    <div class="step-body">
+      <p class="step-desc">A pasta correta é a que contém o arquivo <span class="inline-code">mkdocs.yml</span> — e não a pasta que contém essa pasta. Ao descompactar o projeto é comum ficar uma pasta dentro da outra com o mesmo nome; nesse caso, entre na de dentro.</p>
+
+      <div class="method-block">
+        <div class="method-label vscode">▎ usando VS Code (recomendado)</div>
+        <p class="step-desc">Abra o VS Code, vá em <strong>Arquivo → Abrir Pasta</strong> e selecione a pasta que contém o <span class="inline-code">mkdocs.yml</span>. Você deve ver esse arquivo na barra lateral, junto com a pasta <span class="inline-code">docs</span>.</p>
+        <p class="step-desc">Em seguida abra o terminal integrado com <span class="key-pill">Ctrl</span> + <span class="key-pill">`</span> (acento grave — tecla abaixo do <span class="key-pill">Esc</span>). Ele já abre dentro da pasta correta, então você pode pular o <span class="inline-code">cd</span>.</p>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="method-block">
+        <div class="method-label terminal">▎ usando o terminal do sistema</div>
+        <p class="step-desc">Abra o PowerShell (Windows) ou o Terminal (Mac/Linux) e navegue até a pasta, ajustando o caminho para onde você salvou os arquivos.</p>
+        <div class="code-block">
+          <code>cd Downloads\ifvest-docs</code>
+          <button class="copy-btn" onclick="copyCode(this, 'cd Downloads\\ifvest-docs')">Copiar</button>
+        </div>
+      </div>
+
+      <p class="step-desc" style="margin-top:1rem;">Confirme que você está no lugar certo listando o arquivo de configuração:</p>
+      <div class="code-block">
+        <code>dir mkdocs.yml</code>
+        <button class="copy-btn" onclick="copyCode(this, 'dir mkdocs.yml')">Copiar</button>
+      </div>
+      <div class="result-box">
+        <div class="result-label">Deu certo se</div>
+        <p>o arquivo <strong>mkdocs.yml</strong> aparecer na listagem. Se disser que não foi encontrado, você está na pasta errada.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-header">
+      <div class="step-number">4</div>
+      <div class="step-title">Inicie a documentação</div>
+    </div>
+    <div class="step-body">
+      <p class="step-desc">Com o terminal aberto dentro da pasta do projeto, rode:</p>
+      <div class="code-block">
+        <code>py -m mkdocs serve</code>
+        <button class="copy-btn" onclick="copyCode(this, 'py -m mkdocs serve')">Copiar</button>
+      </div>
+      <div class="result-box">
+        <div class="result-label">Deu certo se aparecer</div>
+        <code>INFO - Serving on http://127.0.0.1:8000/</code>
+      </div>
+      <p class="step-desc" style="margin-top:0.85rem;">O terminal fica ocupado enquanto o site está no ar — isso é o esperado. Deixe essa janela aberta.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-header">
+      <div class="step-number">5</div>
+      <div class="step-title">Abra no navegador</div>
+    </div>
+    <div class="step-body">
+      <p class="step-desc">Acesse o endereço abaixo. A documentação vai carregar, e qualquer alteração que você salvar nos arquivos aparece automaticamente ao atualizar a página.</p>
+      <div class="code-block">
+        <code>http://127.0.0.1:8000</code>
+        <button class="copy-btn" onclick="copyCode(this, 'http://127.0.0.1:8000')">Copiar</button>
+      </div>
+      <p class="step-desc" style="margin-top:0.85rem;">Para encerrar, volte ao terminal e pressione <span class="key-pill">Ctrl</span> + <span class="key-pill">C</span>.</p>
+    </div>
+  </div>
+
+  <h2 class="section-title">Se algo der errado</h2>
+
+  <div class="err">
+    <div class="err-msg">O termo 'mkdocs' não é reconhecido…</div>
+    <div class="err-body">A pasta de scripts do Python não está no PATH. <strong>Use <span class="inline-code">py -m mkdocs serve</span></strong> em vez de <span class="inline-code">mkdocs serve</span>.</div>
+  </div>
+
+  <div class="err">
+    <div class="err-msg">O termo 'py' não é reconhecido…</div>
+    <div class="err-body">Troque <span class="inline-code">py</span> por <span class="inline-code">python</span> em todos os comandos. Se nenhum dos dois funcionar, o Python não está instalado — volte ao <strong>passo 1</strong>.</div>
+  </div>
+
+  <div class="err">
+    <div class="err-msg">No module named mkdocs</div>
+    <div class="err-body">Os pacotes não foram instalados, ou foram instalados em outra versão do Python. Repita o <strong>passo 2</strong> usando exatamente o mesmo comando (<span class="inline-code">py</span> ou <span class="inline-code">python</span>) que você usa para rodar.</div>
+  </div>
+
+  <div class="err">
+    <div class="err-msg">Config file 'mkdocs.yml' does not exist.</div>
+    <div class="err-body">Você está na pasta errada. Volte ao <strong>passo 3</strong> e confirme com <span class="inline-code">dir mkdocs.yml</span> antes de rodar.</div>
+  </div>
+
+  <div class="err">
+    <div class="err-msg">Unrecognised theme name: 'material'</div>
+    <div class="err-body">O tema não foi instalado. Rode novamente o comando do <strong>passo 2</strong> e confira se aparece <span class="inline-code">mkdocs-material</span> na lista de instalados.</div>
+  </div>
+
+  <div class="err">
+    <div class="err-msg">Failed to load extension 'plantuml_markdown'</div>
+    <div class="err-body">Falta o pacote dos diagramas. Instale com <span class="inline-code">py -m pip install --user plantuml-markdown</span>.</div>
+  </div>
+
+  <div class="err">
+    <div class="err-msg">[Errno 10048] … address already in use</div>
+    <div class="err-body">A porta 8000 já está ocupada, normalmente por outra execução que ficou aberta. Feche a outra janela do terminal, ou use outra porta: <span class="inline-code">py -m mkdocs serve -a 127.0.0.1:8001</span> (e acesse esse mesmo endereço no navegador).</div>
+  </div>
+
+  <div class="notice">
+    <span class="notice-icon" aria-hidden="true">⚠</span>
+    <div>
+      <div class="notice-title">Sobre os diagramas C4</div>
+      <div class="notice-text">Os diagramas de arquitetura consultam o servidor público do PlantUML durante o carregamento, então precisam de internet liberada. Em redes institucionais que bloqueiam esse endereço, o site funciona normalmente e apenas os diagramas aparecem em branco — não é erro de configuração.</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    IFVest · Documentação de Software · IFSP Campus Jacareí · ADS
+  </div>
+
+</div>
+
+<script>
+function copyCode(btn, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copiado!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copiar'; btn.classList.remove('copied'); }, 1500);
+  });
+}
+</script>
+</body>
+</html>

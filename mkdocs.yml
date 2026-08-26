@@ -1,0 +1,78 @@
+site_name: IFVest - Documentação
+site_description: Documentação oficial da plataforma IFVest — IFSP Campus Jacareí
+site_author: Ithalo Cavalcante Gomes
+site_url: https://IthaloCavalcante.github.io/ifvest-docs/
+
+theme:
+  name: material
+  language: pt
+  palette:
+    primary: blue
+    accent: light blue
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - attr_list
+  - md_in_html
+  - plantuml_markdown:
+      server: https://www.plantuml.com/plantuml
+      format: svg
+
+nav:
+  - Início: index.md
+  - Planejamento da Documentação: planejamento.md
+  - O Sistema:
+    - Descrição do Sistema: descricao-do-sistema.md
+    - Arquitetura do Sistema: arquitetura.md
+    - Diagramas C4:
+      - Nível 1 — Contexto: c4/contexto.md
+      - Nível 2 — Contêineres: c4/containers.md
+      - Nível 3 — Componentes: c4/componentes.md
+  - Requisitos:
+    - Requisitos Funcionais: requisitos/funcionais.md
+    - Requisitos Não-Funcionais: requisitos/nao-funcionais.md
+  - Funcionalidades:
+    - Descrição das Funcionalidades: funcionalidades.md
+    - Registro de Versões: versoes.md
+  - Subprojetos Ativos:
+    - Visão Geral: subprojetos/index.md
+    - "Eixo 1: Interface e Modernização (Frontend)": subprojetos/frontend.md
+    - "Eixo 2: Qualidade, Testes e Acessibilidade": subprojetos/qualidade-e-testes.md
+    - "Eixo 3: Inteligência Artificial e Recomendação": subprojetos/ia-e-recomendacao.md
+    - "Eixo 4: Infraestrutura, APIs e Segurança": subprojetos/infra-e-seguranca.md
+  - Guias de Uso:
+    - Visão Geral: guias/index.md
+    - Conta:
+      - Acesso e Conta: guias/conta/acesso.md
+      - Perfil e Seus Dados: guias/conta/perfil.md
+    - Guia do Aluno:
+      - Visão Geral: guias/aluno/index.md
+      - Revisão de Conteúdo: guias/aluno/revisao.md
+      - Flashcards: guias/aluno/flashcards.md
+      - Simulados: guias/aluno/simulados.md
+      - IFQuiz: guias/aluno/ifquiz.md
+    - Guia do Professor:
+      - Visão Geral: guias/professor/index.md
+      - Banco de Questões: guias/professor/banco-de-questoes.md
+      - Simulados: guias/professor/simulados.md
+      - Flashcards: guias/professor/flashcards.md
+      - Materiais de Revisão: guias/professor/materiais-de-revisao.md
+    - Glossário: guias/glossario.md
