@@ -29,7 +29,7 @@
     
     
       
-        <title>Arquitetura do Sistema - IFVest - Documentação</title>
+        <title>Arquitetura do Sistema - IFVest — Documentação</title>
       
     
     
@@ -50,10 +50,12 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
     
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -66,10 +68,12 @@
   
     
     
+      
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="light-blue">
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -90,12 +94,14 @@
     
       
 
-<header class="md-header" data-md-component="header">
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
-    <a href=".." title="IFVest - Documentação" class="md-header__button md-logo" aria-label="IFVest - Documentação" data-md-component="logo">
+    <a href=".." title="IFVest — Documentação" class="md-header__button md-logo" aria-label="IFVest — Documentação" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -106,7 +112,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            IFVest - Documentação
+            IFVest — Documentação
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -120,7 +126,33 @@
     </div>
     
       
+        <form class="md-header__option" data-md-component="palette">
+  
     
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Mudar para o tema escuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Mudar para o tema escuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Mudar para o tema claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Mudar para o tema claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
     
@@ -142,6 +174,11 @@
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Pesquisar">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartilhar" aria-label="Compartilhar" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
         
         <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
           
@@ -167,16 +204,22 @@
       
     
     
+      <div class="md-header__source">
+        <a href="https://github.com/IthaloCavalcante/ifvest-docs" title="Ir ao repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ifvest-docs
+  </div>
+</a>
+      </div>
+    
   </nav>
   
-</header>
     
-    <div class="md-container" data-md-component="container">
       
-      
-        
-          
-            
 <nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
   <div class="md-grid">
     <ul class="md-tabs__list">
@@ -233,6 +276,8 @@
           
   
   
+    
+  
   O Sistema
 
         </a>
@@ -252,6 +297,8 @@
         <a href="../requisitos/funcionais/" class="md-tabs__link">
           
   
+  
+    
   
   Requisitos
 
@@ -273,6 +320,8 @@
           
   
   
+    
+  
   Funcionalidades
 
         </a>
@@ -292,6 +341,8 @@
         <a href="../subprojetos/" class="md-tabs__link">
           
   
+  
+    
   
   Subprojetos Ativos
 
@@ -313,6 +364,8 @@
           
   
   
+    
+  
   Guias de Uso
 
         </a>
@@ -324,7 +377,13 @@
     </ul>
   </div>
 </nav>
-          
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
         
       
       <main class="md-main" data-md-component="main">
@@ -343,14 +402,26 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegação" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="IFVest - Documentação" class="md-nav__button md-logo" aria-label="IFVest - Documentação" data-md-component="logo">
+    <a href=".." title="IFVest — Documentação" class="md-nav__button md-logo" aria-label="IFVest — Documentação" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
 
     </a>
-    IFVest - Documentação
+    IFVest — Documentação
   </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/IthaloCavalcante/ifvest-docs" title="Ir ao repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ifvest-docs
+  </div>
+</a>
+    </div>
   
   <ul class="md-nav__list" data-md-scrollfix>
     
@@ -417,6 +488,14 @@
   
   
     
+    
+      
+        
+      
+        
+      
+        
+      
     
     
     
@@ -704,85 +783,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#endpoints-principais-da-api" class="md-nav__link">
+  <a href="#interface-de-programacao-api" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Endpoints Principais da API
+        Interface de Programação (API)
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Endpoints Principais da API">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#autenticacao" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Autenticação
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#simulados" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Simulados
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#questoes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Questões
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#revisao-de-conteudo" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Revisão de Conteúdo
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ifquiz" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        IFQuiz
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#flashcards" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Flashcards
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -791,6 +798,17 @@
     <span class="md-ellipsis">
       
         Integrações Externas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evolucao-da-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evolução da Stack
       
     </span>
   </a>
@@ -813,6 +831,14 @@
   
   
     
+    
+      
+        
+      
+        
+      
+        
+      
     
     
     
@@ -968,6 +994,12 @@
   
     
     
+      
+        
+      
+        
+      
+    
     
     
       
@@ -1082,6 +1114,12 @@
   
   
     
+    
+      
+        
+      
+        
+      
     
     
     
@@ -1198,6 +1236,22 @@
   
     
     
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
     
     
       
@@ -1213,8 +1267,9 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
         
           
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="../subprojetos/" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -1228,8 +1283,14 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
@@ -1242,32 +1303,6 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../subprojetos/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Visão Geral
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
               
             
               
@@ -1382,6 +1417,98 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aplicações Derivadas
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Aplicações Derivadas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../subprojetos/ifvest-reader/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IFVest Reader
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1396,6 +1523,20 @@
   
   
     
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
     
     
     
@@ -1412,8 +1553,9 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
         
           
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="../guias/" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -1427,8 +1569,14 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7">
@@ -1442,32 +1590,6 @@
           <ul class="md-nav__list" data-md-scrollfix>
             
               
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../guias/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Visão Geral
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -1476,6 +1598,12 @@
   
   
     
+    
+      
+        
+      
+        
+      
     
     
     
@@ -1593,6 +1721,20 @@
   
     
     
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
     
     
       
@@ -1608,8 +1750,9 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
         
           
-          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="../guias/aluno/" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -1623,8 +1766,14 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7_3">
@@ -1637,32 +1786,6 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../guias/aluno/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Visão Geral
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
               
             
               
@@ -1793,6 +1916,20 @@
   
     
     
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
     
     
       
@@ -1808,8 +1945,9 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
         
           
-          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="../guias/professor/" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -1823,8 +1961,14 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7_4">
@@ -1837,32 +1981,6 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../guias/professor/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Visão Geral
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
               
             
               
@@ -2191,85 +2309,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#endpoints-principais-da-api" class="md-nav__link">
+  <a href="#interface-de-programacao-api" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Endpoints Principais da API
+        Interface de Programação (API)
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Endpoints Principais da API">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#autenticacao" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Autenticação
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#simulados" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Simulados
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#questoes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Questões
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#revisao-de-conteudo" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Revisão de Conteúdo
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ifquiz" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        IFQuiz
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#flashcards" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Flashcards
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2278,6 +2324,17 @@
     <span class="md-ellipsis">
       
         Integrações Externas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evolucao-da-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evolução da Stack
       
     </span>
   </a>
@@ -2295,16 +2352,67 @@
           
             <div class="md-content" data-md-component="content">
               
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navegação" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href=".." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Início
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../descricao-do-sistema/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    O Sistema
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
               <article class="md-content__inner md-typeset">
                 
                   
 
 
+  
+  
 
-<h1 id="arquitetura-do-sistema">Arquitetura do Sistema</h1>
+
+<h1 id="arquitetura-do-sistema">Arquitetura do Sistema<a class="headerlink" href="#arquitetura-do-sistema" title="Link para esta seção">&para;</a></h1>
 <p>O IFVest é uma aplicação web full-stack construída sobre Node.js, com arquitetura baseada em domínios e padrão MVC (Model-View-Controller). Esta página descreve como o sistema está organizado internamente, quais tecnologias compõem cada camada e como as partes se comunicam.</p>
 <hr />
-<h2 id="visao-geral">Visão Geral</h2>
+<h2 id="visao-geral">Visão Geral<a class="headerlink" href="#visao-geral" title="Link para esta seção">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>┌─────────────────────────────────────────────┐
 │                  USUÁRIO                    │
 │         (Navegador Web / Dispositivo)       │
@@ -2329,20 +2437,21 @@
 └─────────────────────────────────────────────┘
 </code></pre></div>
 <hr />
-<h2 id="diagramas-c4">Diagramas C4</h2>
+<h2 id="diagramas-c4">Diagramas C4<a class="headerlink" href="#diagramas-c4" title="Link para esta seção">&para;</a></h2>
 <p>A arquitetura está documentada em diagramas C4 separados por nível:</p>
 <ul>
 <li><a href="../c4/contexto/">Nível 1 — Contexto</a></li>
 <li><a href="../c4/containers/">Nível 2 — Contêineres</a></li>
+<li><a href="../c4/componentes/">Nível 3 — Componentes</a></li>
 </ul>
 <hr />
-<h2 id="camadas-do-sistema">Camadas do Sistema</h2>
-<h3 id="frontend">Frontend</h3>
+<h2 id="camadas-do-sistema">Camadas do Sistema<a class="headerlink" href="#camadas-do-sistema" title="Link para esta seção">&para;</a></h2>
+<h3 id="frontend">Frontend<a class="headerlink" href="#frontend" title="Link para esta seção">&para;</a></h3>
 <p>O frontend adota uma <strong>arquitetura híbrida</strong>: a base da aplicação é renderizada no servidor via <strong>EJS</strong> (Embedded JavaScript Templates), enquanto o editor de conteúdo do módulo de revisão utiliza componentes <strong>React</strong> compilados e servidos como assets estáticos.</p>
 <p>Essa integração React é <strong>isolada na pasta <code>editor_markdown/</code></strong>, que possui seu próprio <code>package.json</code> com React e Vite. O processo de build (<code>npm run build:editor</code>) compila os componentes e deposita os arquivos otimizados em <code>public/</code>, onde o Express os serve normalmente. O <code>package.json</code> principal do projeto não contém React nem Vite — eles são dependências exclusivas do subprojeto <code>editor_markdown/</code>.</p>
 <p>A estilização global é feita com <strong>Bootstrap 5</strong>, complementada por folhas CSS personalizadas. A comunicação assíncrona entre frontend e backend é feita via <strong>Axios</strong> (v1.10.0).</p>
 <p>A renderização de conteúdo Markdown é feita com <strong>marked</strong> (v16.3.0), com suporte a equações matemáticas via extensão <strong>marked-katex-extension</strong> (v5.1.5). A geração de PDFs é feita no servidor via <strong>Puppeteer</strong> (v24.25.0), que controla uma instância headless do Chrome para renderizar e exportar páginas como PDF com fidelidade ao layout da aplicação.</p>
-<h3 id="backend">Backend</h3>
+<h3 id="backend">Backend<a class="headerlink" href="#backend" title="Link para esta seção">&para;</a></h3>
 <p>O backend é construído com <strong>Node.js</strong> (v22.5.0) e o framework web <strong>Express.js</strong> (v5.1.0). Ele é responsável por receber as requisições do usuário, processar a lógica de negócio e retornar as respostas.</p>
 <p>O sistema adota o padrão arquitetural <strong>MVC</strong>, organizado em domínios:</p>
 <div class="highlight"><pre><span></span><code>IFVest/
@@ -2378,11 +2487,12 @@
 <li>Prevenção de <strong>SQL Injection</strong> via expressão regular no middleware Zod, rejeitando termos reservados SQL em todos os campos de texto</li>
 <li><strong>Criptografia de senhas</strong> com <code>bcrypt</code> e criptografia de URLs de recuperação</li>
 </ul>
-<h3 id="banco-de-dados">Banco de Dados</h3>
+<h3 id="banco-de-dados">Banco de Dados<a class="headerlink" href="#banco-de-dados" title="Link para esta seção">&para;</a></h3>
 <p>O banco de dados principal é o <strong>MySQL</strong>, utilizado em desenvolvimento e produção. Em ambiente de testes, é utilizado o <strong>PostgreSQL</strong>. O acesso ao banco é feito exclusivamente através do <strong>Sequelize</strong> (v6.37.3), um ORM (Object-Relational Mapper) que abstrai as queries SQL e gerencia as migrações e seeders.</p>
-<h3 id="infraestrutura-de-hospedagem">Infraestrutura de Hospedagem</h3>
+<h3 id="infraestrutura-de-hospedagem">Infraestrutura de Hospedagem<a class="headerlink" href="#infraestrutura-de-hospedagem" title="Link para esta seção">&para;</a></h3>
 <p>A plataforma está disponível publicamente em <code>ifvest.jcr.ifsp.edu.br</code>, hospedada em servidor externo provido pelo serviço <a href="https://goinfinite.net">GoInfinite</a>. O gerenciamento de processos em produção é feito via <strong>PM2</strong> (v6.0.5), configurado no arquivo <code>ecosystem.config.js</code>.</p>
 <p>As principais entidades do sistema são:</p>
+<p><strong>Cadastro e acesso</strong></p>
 <table>
 <thead>
 <tr>
@@ -2396,74 +2506,137 @@
 <td>Dados de cadastro, autenticação e perfil do usuário</td>
 </tr>
 <tr>
+<td><code>sessions</code></td>
+<td>Sessões ativas, persistidas em banco pelo <code>connect-session-sequelize</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Organização de conteúdo</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tabela</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
 <td><code>areas</code></td>
 <td>Disciplinas/áreas de conhecimento disponíveis na plataforma</td>
-</tr>
-<tr>
-<td><code>areaprof</code></td>
-<td>Associação entre professores e áreas de atuação</td>
 </tr>
 <tr>
 <td><code>topicos</code></td>
 <td>Tópicos de estudo organizados por área</td>
 </tr>
 <tr>
-<td><code>perguntas</code></td>
+<td><code>assuntos</code></td>
+<td>Assuntos em estrutura hierárquica, com autorreferência que permite subassuntos</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Banco de questões e simulados</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tabela</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>questoes</code></td>
 <td>Questões cadastradas na plataforma (objetivas e dissertativas)</td>
 </tr>
 <tr>
-<td><code>provas</code></td>
-<td>Simulados criados pelos usuários</td>
+<td><code>opcoes</code></td>
+<td>Alternativas de resposta de cada questão objetiva, com indicação da correta</td>
+</tr>
+<tr>
+<td><code>questoes_topicos</code></td>
+<td>Associação entre questões e tópicos (relação N:N)</td>
+</tr>
+<tr>
+<td><code>simulados</code></td>
+<td>Simulados criados pelos professores</td>
 </tr>
 <tr>
 <td><code>perguntas_provas</code></td>
-<td>Associação entre questões e simulados</td>
+<td>Associação entre questões e simulados (relação N:N)</td>
 </tr>
 <tr>
-<td><code>resposta</code></td>
+<td><code>respostas</code></td>
 <td>Respostas submetidas pelos alunos em cada simulado</td>
 </tr>
+</tbody>
+</table>
+<p><strong>Materiais de revisão</strong></p>
+<table>
+<thead>
 <tr>
-<td><code>favoritos</code></td>
-<td>Questões marcadas como favoritas por um usuário</td>
+<th>Tabela</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>conteudos</code></td>
+<td>Materiais de estudo em Markdown, com título, links externos e contador de leituras</td>
 </tr>
 <tr>
-<td><code>videos</code></td>
-<td>Videoaulas vinculadas a tópicos de estudo</td>
+<td><code>palavras_chave</code></td>
+<td>Palavras-chave utilizadas na busca de materiais</td>
 </tr>
 <tr>
-<td><code>noticias</code></td>
-<td>Notícias exibidas na página inicial da plataforma</td>
+<td><code>tag_conteudo</code></td>
+<td>Associação entre materiais e palavras-chave (relação N:N)</td>
 </tr>
+</tbody>
+</table>
+<p><strong>Flashcards e gamificação</strong></p>
+<table>
+<thead>
 <tr>
-<td><code>comentarios</code></td>
-<td>Feedbacks enviados pelos usuários</td>
+<th>Tabela</th>
+<th>Descrição</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td><code>flashcards</code></td>
-<td>Cartões de estudo criados por professores e administradores, categorizados por área, tópico e nível de dificuldade</td>
+<td>Cartões de estudo categorizados por área, tópico e nível de dificuldade</td>
 </tr>
 <tr>
-<td><code>dificuldade</code></td>
-<td>Níveis de dificuldade disponíveis para classificação dos flashcards</td>
+<td><code>dificuldades</code></td>
+<td>Níveis de dificuldade disponíveis para classificação</td>
 </tr>
 <tr>
 <td><code>flashcard_usuario</code></td>
-<td>Registro de histórico de revisão por usuário (relação N:N entre flashcard e usuário); armazena o campo <code>visto_por_ultimo</code> que sustenta a lógica de repetição espaçada</td>
+<td>Histórico de revisão por usuário (relação N:N); sustenta a lógica de repetição espaçada</td>
 </tr>
 <tr>
 <td><code>placar</code></td>
-<td>Pontuações registradas pelos usuários no módulo IFQuiz (acertos, total de questões, porcentagem e data)</td>
+<td>Pontuações registradas no módulo IFQuiz (acertos, total de questões, porcentagem e data)</td>
 </tr>
+</tbody>
+</table>
+<p><strong>Controle interno</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tabela</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td><code>SequelizeMeta</code></td>
-<td>Controle interno de migrações gerenciado pelo Sequelize</td>
+<td>Controle de migrações gerenciado pelo Sequelize</td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2 id="tecnologias-utilizadas">Tecnologias Utilizadas</h2>
-<h3 id="backend_1">Backend</h3>
+<h2 id="tecnologias-utilizadas">Tecnologias Utilizadas<a class="headerlink" href="#tecnologias-utilizadas" title="Link para esta seção">&para;</a></h2>
+<h3 id="backend_1">Backend<a class="headerlink" href="#backend_1" title="Link para esta seção">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -2524,6 +2697,21 @@
 <td>Validação de schemas server-side</td>
 </tr>
 <tr>
+<td>body-parser</td>
+<td>2.2.0</td>
+<td>Interpretação do corpo das requisições</td>
+</tr>
+<tr>
+<td>express-ejs-layouts</td>
+<td>2.5.1</td>
+<td>Layouts reutilizáveis nas views EJS</td>
+</tr>
+<tr>
+<td>method-override</td>
+<td>3.0.0</td>
+<td>Suporte a PUT e DELETE a partir de formulários HTML</td>
+</tr>
+<tr>
 <td>bcrypt</td>
 <td>5.1.1</td>
 <td>Criptografia de senhas</td>
@@ -2555,7 +2743,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="frontend_1">Frontend</h3>
+<h3 id="frontend_1">Frontend<a class="headerlink" href="#frontend_1" title="Link para esta seção">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -2607,7 +2795,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="banco-de-dados_1">Banco de Dados</h3>
+<h3 id="banco-de-dados_1">Banco de Dados<a class="headerlink" href="#banco-de-dados_1" title="Link para esta seção">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -2630,7 +2818,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="ferramentas-de-desenvolvimento-e-testes">Ferramentas de Desenvolvimento e Testes</h3>
+<h3 id="ferramentas-de-desenvolvimento-e-testes">Ferramentas de Desenvolvimento e Testes<a class="headerlink" href="#ferramentas-de-desenvolvimento-e-testes" title="Link para esta seção">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -2668,46 +2856,11 @@
 </tbody>
 </table>
 <hr />
-<h2 id="endpoints-principais-da-api">Endpoints Principais da API</h2>
-<p>A comunicação entre frontend e backend é feita via rotas HTTP. Os principais grupos de endpoints são:</p>
-<h3 id="autenticacao">Autenticação</h3>
-<div class="highlight"><pre><span></span><code>POST  /usuario/login      # Login do usuário
-POST  /usuario/cadastro   # Cadastro de novo usuário
-GET   /usuario/logout     # Logout
-</code></pre></div>
-<h3 id="simulados">Simulados</h3>
-<div class="highlight"><pre><span></span><code>GET   /simulados/                       # Lista simulados disponíveis
-POST  /simulados/criar-simulado         # Cria um novo simulado
-GET   /simulados/:id/fazer              # Executa um simulado
-POST  /simulados/responder-prova/:id    # Submete respostas
-GET   /simulados/:id/gabarito           # Visualiza gabarito
-</code></pre></div>
-<h3 id="questoes">Questões</h3>
-<div class="highlight"><pre><span></span><code>GET   /simulados/questoes                        # Lista questões
-POST  /simulados/registrar-questao/:tipo         # Cria questão
-</code></pre></div>
-<h3 id="revisao-de-conteudo">Revisão de Conteúdo</h3>
-<div class="highlight"><pre><span></span><code>GET   /revisao/                  # Lista materiais de revisão
-POST  /revisao/criar-material    # Cria novo material
-</code></pre></div>
-<h3 id="ifquiz">IFQuiz</h3>
-<div class="highlight"><pre><span></span><code>GET   /quiz/questoes             # Recupera questões do ENEM via API externa
-POST  /quiz/responder            # Submete resposta e armazena no placar
-GET   /quiz/placar               # Lista o ranking de desempenho dos usuários
-</code></pre></div>
-<h3 id="flashcards">Flashcards</h3>
-<div class="highlight"><pre><span></span><code>GET   /flashcards                # Lista flashcards (com filtros opcionais por área, tópico e dificuldade)
-POST  /flashcards                # Cria novo flashcard (professor/administrador)
-PUT   /flashcards/:id            # Edita flashcard existente
-DELETE /flashcards/:id           # Remove flashcard
-GET   /flashcards/grupos         # Retorna flashcards agrupados por tempo de revisão (repetição espaçada)
-</code></pre></div>
-<div class="admonition info">
-<p class="admonition-title">Documentação completa da API</p>
-<p>A documentação detalhada dos endpoints, parâmetros e modelos de resposta será disponibilizada via Swagger/OpenAPI, a ser gerada pela equipe de backend.</p>
-</div>
-<hr />
-<h2 id="integracoes-externas">Integrações Externas</h2>
+<h2 id="interface-de-programacao-api">Interface de Programação (API)<a class="headerlink" href="#interface-de-programacao-api" title="Link para esta seção">&para;</a></h2>
+<p>A plataforma expõe rotas REST que retornam dados em JSON, utilizadas pelos componentes de interface — como o placar do IFQuiz e a consulta de áreas e tópicos. As demais rotas seguem o modelo tradicional de renderização no servidor.</p>
+<p>A relação completa das rotas, com seus métodos, parâmetros e respostas, é mantida na <strong>especificação da API</strong> produzida pelos subprojetos responsáveis, em formato OpenAPI (Swagger). ⬜ <em>A referência será incluída aqui quando a especificação estiver publicada.</em></p>
+<p>O comportamento de cada módulo, do ponto de vista funcional, está descrito em <a href="../funcionalidades/">Descrição das Funcionalidades</a>.</p>
+<h2 id="integracoes-externas">Integrações Externas<a class="headerlink" href="#integracoes-externas" title="Link para esta seção">&para;</a></h2>
 <p>O sistema conta com uma integração externa em uso e outras em desenvolvimento ativo ou planejadas:</p>
 <table>
 <thead>
@@ -2757,9 +2910,10 @@ GET   /flashcards/grupos         # Retorna flashcards agrupados por tempo de rev
 </table>
 <div class="admonition info">
 <p class="admonition-title">Subprojetos ativos</p>
-<p>As integrações com as APIs da FUVEST, UNICAMP e demais vestibulares são subprojetos de extensão em andamento no IFSP Campus Jacareí. A documentação detalhada de cada subprojeto está disponível na seção Subprojetos (Fase 2).</p>
+<p>As integrações com as APIs da FUVEST, UNICAMP e demais vestibulares são subprojetos de extensão em andamento no IFSP Campus Jacareí. A documentação detalhada de cada subprojeto está disponível na seção <a href="../subprojetos/">Subprojetos Ativos</a>.</p>
 </div>
 <hr />
+<h2 id="evolucao-da-stack">Evolução da Stack<a class="headerlink" href="#evolucao-da-stack" title="Link para esta seção">&para;</a></h2>
 <p>O sistema passou por uma migração significativa desde sua concepção:</p>
 <table>
 <thead>
@@ -2784,15 +2938,26 @@ GET   /flashcards/grupos         # Retorna flashcards agrupados por tempo de rev
 <td>2024</td>
 </tr>
 <tr>
-<td>v2.x (em andamento)</td>
+<td>v2.x (atual)</td>
 <td>Integração híbrida de componentes React via Vite + Zod + Axios</td>
 <td>Projeto de extensão</td>
 <td>2025–2026</td>
 </tr>
+<tr>
+<td>v3 (em desenvolvimento)</td>
+<td>Reescrita do frontend em React, com redesign completo da interface</td>
+<td>Projeto de extensão</td>
+<td>2026–</td>
+</tr>
 </tbody>
 </table>
 <p>A migração de PHP para Node.js foi realizada integralmente por Cristian Rodolfo Zago Da Silva como seu TCC (2024). A reconstrução manteve a arquitetura MVC e os conceitos de domínio da v1, modernizando a stack para o ecossistema JavaScript e unificando a linguagem entre frontend e backend. É essa versão que está em produção hoje e sobre a qual os subprojetos ativos de extensão operam.</p>
-<p>A evolução atual não consiste em uma reescrita completa para React, mas em uma <strong>estratégia de integração híbrida incremental</strong>: componentes React são compilados com Vite e injetados como assets estáticos nas páginas EJS existentes, permitindo modernizar partes críticas da interface sem substituir o backend ou reescrever o código legado.</p>
+<p>A versão em produção adota uma <strong>estratégia de integração híbrida incremental</strong>: componentes React são compilados com Vite e injetados como assets estáticos nas páginas EJS existentes, permitindo modernizar partes críticas da interface — como o editor de materiais — sem substituir o backend ou reescrever o código legado.</p>
+<div class="admonition info">
+<p class="admonition-title">Reescrita do frontend em andamento</p>
+<p>Desde 2026, um subprojeto de extensão conduz a <strong>reescrita completa do frontend em React</strong>, acompanhada de redesign de toda a interface. Diferente da integração híbrida descrita acima, trata-se da substituição das telas construídas em EJS.</p>
+<p>Enquanto essa entrega não é concluída, esta documentação descreve a plataforma em produção, e a documentação de usuário é produzida tendo a versão refatorada como referência. Ver <a href="../planejamento/">Planejamento da Documentação</a> e <a href="../subprojetos/">Subprojetos Ativos</a>.</p>
+</div>
 
 
 
@@ -2823,14 +2988,79 @@ GET   /flashcards/grupos         # Retorna flashcards agrupados por tempo de rev
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Rodapé" >
+        
+          
+          <a href="../descricao-do-sistema/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Descrição do Sistema">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Descrição do Sistema
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../c4/contexto/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Nível 1 — Contexto">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Próximo
+              </span>
+              <div class="md-ellipsis">
+                Nível 1 — Contexto
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      IFVest — Projeto de Extensão · IFSP Campus Jacareí · Tecnologia em Análise e Desenvolvimento de Sistemas
+    </div>
   
   
     Made with
     <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
       Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/IthaloCavalcante/ifvest-docs" target="_blank" rel="noopener" title="Repositório da documentação" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://ifvest.jcr.ifsp.edu.br" target="_blank" rel="noopener" title="Plataforma IFVest" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2m-5.15 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56M14.34 14H9.66c-.1-.66-.16-1.32-.16-2s.06-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2M12 19.96c-.83-1.2-1.5-2.53-1.91-3.96h3.82c-.41 1.43-1.08 2.76-1.91 3.96M8 8H5.08A7.92 7.92 0 0 1 9.4 4.44C8.8 5.55 8.35 6.75 8 8m-2.92 8H8c.35 1.25.8 2.45 1.4 3.56A8 8 0 0 1 5.08 16m-.82-2C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2M12 4.03c.83 1.2 1.5 2.54 1.91 3.97h-3.82c.41-1.43 1.08-2.77 1.91-3.97M18.92 8h-2.95a15.7 15.7 0 0 0-1.38-3.56c1.84.63 3.37 1.9 4.33 3.56M12 2C6.47 2 2 6.5 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg>
     </a>
   
 </div>
@@ -2844,11 +3074,13 @@ GET   /flashcards/grupos         # Retorna flashcards agrupados por tempo de rev
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
     
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "Mais 1 nesta p\u00e1gina", "search.result.more.other": "Mais # nesta p\u00e1gina", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.path", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.tooltips"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "Mais 1 nesta p\u00e1gina", "search.result.more.other": "Mais # nesta p\u00e1gina", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
     
     
       <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
