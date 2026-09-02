@@ -1,6 +1,14 @@
 # Subprojetos Ativos do IFVest
 
-Esta seção detalha os subprojetos ativos que compõem a evolução contínua da plataforma IFVest. Eles estão organizados por eixos de desenvolvimento, refletindo as principais frentes de trabalho e as equipes envolvidas.
+Esta seção detalha os subprojetos ativos vinculados ao IFVest.
+
+A maior parte deles atua sobre a própria plataforma e está organizada em **quatro eixos de desenvolvimento**, que refletem as principais frentes de trabalho e as equipes envolvidas. Há ainda subprojetos que, em vez de evoluir a plataforma, **geraram produtos de software próprios** — estes possuem página individual, por exigirem descrição de sistema e arquitetura próprias.
+
+## Produtos gerados por subprojetos
+
+| Produto | Descrição | Situação |
+|---|---|---|
+| [IFVest Reader](ifvest-reader.md) | Aplicativo leitor de PDF voltado ao estudo, com anotações, categorias e leitura em voz alta | Em desenvolvimento — versão 0.1.0 |
 
 ---
 

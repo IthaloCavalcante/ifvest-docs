@@ -39,6 +39,7 @@ A arquitetura está documentada em diagramas C4 separados por nível:
 
 - [Nível 1 — Contexto](c4/contexto.md)
 - [Nível 2 — Contêineres](c4/containers.md)
+- [Nível 3 — Componentes](c4/componentes.md)
 
 ---
 
@@ -105,25 +106,54 @@ A plataforma está disponível publicamente em `ifvest.jcr.ifsp.edu.br`, hospeda
 
 As principais entidades do sistema são:
 
+**Cadastro e acesso**
+
 | Tabela | Descrição |
 |--------|-----------|
 | `usuarios` | Dados de cadastro, autenticação e perfil do usuário |
+| `sessions` | Sessões ativas, persistidas em banco pelo `connect-session-sequelize` |
+
+**Organização de conteúdo**
+
+| Tabela | Descrição |
+|--------|-----------|
 | `areas` | Disciplinas/áreas de conhecimento disponíveis na plataforma |
-| `areaprof` | Associação entre professores e áreas de atuação |
 | `topicos` | Tópicos de estudo organizados por área |
-| `perguntas` | Questões cadastradas na plataforma (objetivas e dissertativas) |
-| `provas` | Simulados criados pelos usuários |
-| `perguntas_provas` | Associação entre questões e simulados |
-| `resposta` | Respostas submetidas pelos alunos em cada simulado |
-| `favoritos` | Questões marcadas como favoritas por um usuário |
-| `videos` | Videoaulas vinculadas a tópicos de estudo |
-| `noticias` | Notícias exibidas na página inicial da plataforma |
-| `comentarios` | Feedbacks enviados pelos usuários |
-| `flashcards` | Cartões de estudo criados por professores e administradores, categorizados por área, tópico e nível de dificuldade |
-| `dificuldade` | Níveis de dificuldade disponíveis para classificação dos flashcards |
-| `flashcard_usuario` | Registro de histórico de revisão por usuário (relação N:N entre flashcard e usuário); armazena o campo `visto_por_ultimo` que sustenta a lógica de repetição espaçada |
-| `placar` | Pontuações registradas pelos usuários no módulo IFQuiz (acertos, total de questões, porcentagem e data) |
-| `SequelizeMeta` | Controle interno de migrações gerenciado pelo Sequelize |
+| `assuntos` | Assuntos em estrutura hierárquica, com autorreferência que permite subassuntos |
+
+**Banco de questões e simulados**
+
+| Tabela | Descrição |
+|--------|-----------|
+| `questoes` | Questões cadastradas na plataforma (objetivas e dissertativas) |
+| `opcoes` | Alternativas de resposta de cada questão objetiva, com indicação da correta |
+| `questoes_topicos` | Associação entre questões e tópicos (relação N:N) |
+| `simulados` | Simulados criados pelos professores |
+| `perguntas_provas` | Associação entre questões e simulados (relação N:N) |
+| `respostas` | Respostas submetidas pelos alunos em cada simulado |
+
+**Materiais de revisão**
+
+| Tabela | Descrição |
+|--------|-----------|
+| `conteudos` | Materiais de estudo em Markdown, com título, links externos e contador de leituras |
+| `palavras_chave` | Palavras-chave utilizadas na busca de materiais |
+| `tag_conteudo` | Associação entre materiais e palavras-chave (relação N:N) |
+
+**Flashcards e gamificação**
+
+| Tabela | Descrição |
+|--------|-----------|
+| `flashcards` | Cartões de estudo categorizados por área, tópico e nível de dificuldade |
+| `dificuldades` | Níveis de dificuldade disponíveis para classificação |
+| `flashcard_usuario` | Histórico de revisão por usuário (relação N:N); sustenta a lógica de repetição espaçada |
+| `placar` | Pontuações registradas no módulo IFQuiz (acertos, total de questões, porcentagem e data) |
+
+**Controle interno**
+
+| Tabela | Descrição |
+|--------|-----------|
+| `SequelizeMeta` | Controle de migrações gerenciado pelo Sequelize |
 
 ---
 
@@ -142,6 +172,9 @@ As principais entidades do sistema são:
 | CORS | 2.8.5 | Cross-Origin Resource Sharing |
 | express-rate-limit | 7.5.0 | Limitação de taxa de requisições |
 | Zod | 3.25.64 | Validação de schemas server-side |
+| body-parser | 2.2.0 | Interpretação do corpo das requisições |
+| express-ejs-layouts | 2.5.1 | Layouts reutilizáveis nas views EJS |
+| method-override | 3.0.0 | Suporte a PUT e DELETE a partir de formulários HTML |
 | bcrypt | 5.1.1 | Criptografia de senhas |
 | Multer | 1.4.5-lts.1 | Upload de arquivos (imagens de perfil, materiais) |
 | Puppeteer | 24.25.0 | Geração de PDFs via Chrome headless (server-side) |
@@ -179,58 +212,13 @@ As principais entidades do sistema são:
 
 ---
 
-## Endpoints Principais da API
+## Interface de Programação (API)
 
-A comunicação entre frontend e backend é feita via rotas HTTP. Os principais grupos de endpoints são:
+A plataforma expõe rotas REST que retornam dados em JSON, utilizadas pelos componentes de interface — como o placar do IFQuiz e a consulta de áreas e tópicos. As demais rotas seguem o modelo tradicional de renderização no servidor.
 
-### Autenticação
-```
-POST  /usuario/login      # Login do usuário
-POST  /usuario/cadastro   # Cadastro de novo usuário
-GET   /usuario/logout     # Logout
-```
+A relação completa das rotas, com seus métodos, parâmetros e respostas, é mantida na **especificação da API** produzida pelos subprojetos responsáveis, em formato OpenAPI (Swagger). ⬜ *A referência será incluída aqui quando a especificação estiver publicada.*
 
-### Simulados
-```
-GET   /simulados/                       # Lista simulados disponíveis
-POST  /simulados/criar-simulado         # Cria um novo simulado
-GET   /simulados/:id/fazer              # Executa um simulado
-POST  /simulados/responder-prova/:id    # Submete respostas
-GET   /simulados/:id/gabarito           # Visualiza gabarito
-```
-
-### Questões
-```
-GET   /simulados/questoes                        # Lista questões
-POST  /simulados/registrar-questao/:tipo         # Cria questão
-```
-
-### Revisão de Conteúdo
-```
-GET   /revisao/                  # Lista materiais de revisão
-POST  /revisao/criar-material    # Cria novo material
-```
-
-### IFQuiz
-```
-GET   /quiz/questoes             # Recupera questões do ENEM via API externa
-POST  /quiz/responder            # Submete resposta e armazena no placar
-GET   /quiz/placar               # Lista o ranking de desempenho dos usuários
-```
-
-### Flashcards
-```
-GET   /flashcards                # Lista flashcards (com filtros opcionais por área, tópico e dificuldade)
-POST  /flashcards                # Cria novo flashcard (professor/administrador)
-PUT   /flashcards/:id            # Edita flashcard existente
-DELETE /flashcards/:id           # Remove flashcard
-GET   /flashcards/grupos         # Retorna flashcards agrupados por tempo de revisão (repetição espaçada)
-```
-
-!!! info "Documentação completa da API"
-    A documentação detalhada dos endpoints, parâmetros e modelos de resposta será disponibilizada via Swagger/OpenAPI, a ser gerada pela equipe de backend.
-
----
+O comportamento de cada módulo, do ponto de vista funcional, está descrito em [Descrição das Funcionalidades](funcionalidades.md).
 
 ## Integrações Externas
 
@@ -247,11 +235,11 @@ O sistema conta com uma integração externa em uso e outras em desenvolvimento 
 | Redis | Cache para otimização de consultas frequentes | Planejado |
 
 !!! info "Subprojetos ativos"
-    As integrações com as APIs da FUVEST, UNICAMP e demais vestibulares são subprojetos de extensão em andamento no IFSP Campus Jacareí. A documentação detalhada de cada subprojeto está disponível na seção Subprojetos (Fase 2).
+    As integrações com as APIs da FUVEST, UNICAMP e demais vestibulares são subprojetos de extensão em andamento no IFSP Campus Jacareí. A documentação detalhada de cada subprojeto está disponível na seção [Subprojetos Ativos](subprojetos/index.md).
 
 ---
 
-
+## Evolução da Stack
 
 O sistema passou por uma migração significativa desde sua concepção:
 
@@ -259,8 +247,14 @@ O sistema passou por uma migração significativa desde sua concepção:
 |--------|-------|--------|---------|
 | v1 (original) | PHP + MariaDB + MVC nativo | TCCs de Fonseca e Sousa | 2021 |
 | v2 (atual) | Node.js + Express + Sequelize + MySQL + EJS | TCC de Cristian Zago Da Silva | 2024 |
-| v2.x (em andamento) | Integração híbrida de componentes React via Vite + Zod + Axios | Projeto de extensão | 2025–2026 |
+| v2.x (atual) | Integração híbrida de componentes React via Vite + Zod + Axios | Projeto de extensão | 2025–2026 |
+| v3 (em desenvolvimento) | Reescrita do frontend em React, com redesign completo da interface | Projeto de extensão | 2026– |
 
 A migração de PHP para Node.js foi realizada integralmente por Cristian Rodolfo Zago Da Silva como seu TCC (2024). A reconstrução manteve a arquitetura MVC e os conceitos de domínio da v1, modernizando a stack para o ecossistema JavaScript e unificando a linguagem entre frontend e backend. É essa versão que está em produção hoje e sobre a qual os subprojetos ativos de extensão operam.
 
-A evolução atual não consiste em uma reescrita completa para React, mas em uma **estratégia de integração híbrida incremental**: componentes React são compilados com Vite e injetados como assets estáticos nas páginas EJS existentes, permitindo modernizar partes críticas da interface sem substituir o backend ou reescrever o código legado.
+A versão em produção adota uma **estratégia de integração híbrida incremental**: componentes React são compilados com Vite e injetados como assets estáticos nas páginas EJS existentes, permitindo modernizar partes críticas da interface — como o editor de materiais — sem substituir o backend ou reescrever o código legado.
+
+!!! info "Reescrita do frontend em andamento"
+    Desde 2026, um subprojeto de extensão conduz a **reescrita completa do frontend em React**, acompanhada de redesign de toda a interface. Diferente da integração híbrida descrita acima, trata-se da substituição das telas construídas em EJS.
+
+    Enquanto essa entrega não é concluída, esta documentação descreve a plataforma em produção, e a documentação de usuário é produzida tendo a versão refatorada como referência. Ver [Planejamento da Documentação](planejamento.md) e [Subprojetos Ativos](subprojetos/index.md).

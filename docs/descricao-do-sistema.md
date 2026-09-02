@@ -21,12 +21,15 @@ A principal motivação é a desigualdade no acesso à educação de qualidade. 
 A plataforma atende dois perfis principais de usuários:
 
 **Estudantes (Alunos)**
-Estudantes do ensino médio ou cursinho que desejam se preparar para o ENEM e vestibulares como FUVEST, UNICAMP e UNESP. A plataforma oferece a eles um ambiente de estudos gratuito, com simulados personalizados, revisão de conteúdos e acompanhamento de desempenho.
+Estudantes do ensino médio ou cursinho que desejam se preparar para o ENEM e vestibulares como FUVEST, UNICAMP e UNESP. A plataforma oferece a eles um ambiente de estudos gratuito, com simulados, revisão de conteúdos, flashcards e quizzes gamificados.
 
 **Educadores (Professores)**
 Professores que desejam utilizar a plataforma como ferramenta de apoio ao ensino. Podem criar e organizar questões por área e tópico, montar simulados personalizados para seus alunos e gerar provas em formato PDF para aplicação presencial.
 
-Existe também o perfil de **Administrador**, responsável por moderar o conteúdo da plataforma — autorizar questões enviadas por professores e gerenciar usuários.
+!!! warning "Perfil de Administrador — previsto, não implementado"
+    A plataforma prevê um terceiro perfil, o de **Administrador**, destinado à moderação de conteúdo e à gestão de usuários. O valor correspondente existe na estrutura do banco de dados, mas **não há implementação associada a ele**: o cadastro oferece apenas os perfis de estudante e professor, e nenhuma tela ou função exclusiva de administrador existe na versão atual.
+
+    Esse perfil está sendo definido pelo subprojeto de refatoração do frontend, que prevê a transferência de parte das atribuições hoje exercidas pelo professor. Ver [Subprojetos Ativos](subprojetos/index.md).
 
 ---
 
@@ -34,13 +37,10 @@ Existe também o perfil de **Administrador**, responsável por moderar o conteú
 
 ### Para Estudantes
 
-- Realização de simulados personalizados com filtro por disciplina e tópico
-- Simulado no **modo desafio**: com cronômetro baseado no número de questões e tela de desempenho ao final (acertos, erros, tempo médio por questão)
+- Realização de simulados montados pelos professores, com relatório de desempenho ao final (acertos, erros e percentual) e consulta ao gabarito
 - Revisão de materiais educacionais organizados por área e tópico, com busca por título de assunto e por palavra-chave, sistema de paginação e hierarquia de conteúdos em estrutura de árvore
-- Histórico de simulados realizados e acompanhamento de desempenho
-- Download de simulados e gabaritos em formato PDF
 - **IFQuiz** — módulo de gamificação com questões do ENEM: seleção de disciplina e quantidade de questões, feedback imediato por resposta (acerto/erro com indicação da alternativa correta), cálculo de pontuação e placar de líderes com ranking comparativo entre usuários
-- **Flashcards com repetição espaçada** — revisão de conteúdos por cartões baseada em *active recall*: filtro por área, tópico e nível de dificuldade, agrupamento automático por tempo de última revisão (≤3 dias, 7 dias, 15 dias e 15+ dias), exibição de até 10 cartões aleatórios por sessão com animação de rotação para revelação da resposta
+- **Flashcards com repetição espaçada** — revisão de conteúdos por cartões baseada em *active recall*: filtro por área, tópico e nível de dificuldade, agrupamento automático por tempo desde a última revisão (1, 3, 7, 15 e mais de 15 dias), exibição de até 10 cartões aleatórios por sessão com animação de rotação para revelação da resposta
 
 ### Para Professores
 
@@ -51,29 +51,24 @@ Existe também o perfil de **Administrador**, responsável por moderar o conteú
 - Geração de provas em formato PDF para aplicação presencial
 - Criação, edição e exclusão de flashcards categorizados por área, tópico e nível de dificuldade, com reflexo imediato para todos os alunos da plataforma
 
-### Para Administradores
-
-- Autorização de questões enviadas por professores
-- Promoção de usuários ao perfil de professor
-- Gerenciamento de notícias na página inicial
-- Leitura de feedbacks enviados pelos usuários
-
 ### Funcionalidades Técnicas
 
-- Autenticação com sistema de sessões
-- Confirmação de cadastro por e-mail
-- Recuperação de senha por e-mail
-- Criptografia de senhas e dados sensíveis
-- Proteção contra SQL Injection e XSS
+- Autenticação com sistema de sessões, com limite de tentativas de login por origem
+- Armazenamento de senhas com hash criptográfico
+- Validação de dados de entrada em todas as requisições
+- Cabeçalhos de segurança e política de origem cruzada
 - Interface responsiva adaptável a diferentes dispositivos
+
+!!! note "Funcionalidades previstas, ainda não implementadas"
+    A confirmação de cadastro e a recuperação de senha por e-mail constam do projeto da plataforma, mas **não existem na versão atual** — não há envio de e-mail implementado. A recuperação de senha em três etapas está prevista no redesign do frontend, e é documentada como tal no [Guia de Acesso e Conta](guias/conta/acesso.md#tarefa-3-recuperar-sua-senha).
 
 ---
 
 ## Restrições do Sistema
 
 - O acesso a todos os módulos da plataforma (Simulados, Revisão, IFQuiz, Flashcards) requer autenticação prévia com conta cadastrada
-- A criação, edição e exclusão de questões, simulados, materiais de revisão e flashcards é restrita aos perfis Professor e Administrador
-- A autorização de questões submetidas por professores é exclusiva do perfil Administrador
+- A criação, edição e exclusão de questões, simulados, materiais de revisão e flashcards é restrita ao perfil Professor
+- A criação de simulados é exclusiva do perfil Professor; o estudante realiza os simulados disponibilizados, mas não os cria
 - A plataforma depende de conexão ativa com a internet, tanto para o acesso dos usuários quanto para o carregamento de questões do ENEM pelo módulo IFQuiz (via API externa [enem.dev](https://enem.dev))
 - O sistema não oferece modo offline
 

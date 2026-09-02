@@ -1,0 +1,3227 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentação oficial da plataforma IFVest — IFSP Campus Jacareí">
+      
+      
+        <meta name="author" content="Ithalo Cavalcante Gomes">
+      
+      
+        <link rel="canonical" href="https://IthaloCavalcante.github.io/ifvest-docs/funcionalidades/">
+      
+      
+        <link rel="prev" href="../requisitos/nao-funcionais/">
+      
+      
+        <link rel="next" href="../versoes/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Descrição das Funcionalidades - IFVest - Documentação</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#descricao-das-funcionalidades" class="md-skip">
+          Ir para o conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href=".." title="IFVest - Documentação" class="md-header__button md-logo" aria-label="IFVest - Documentação" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            IFVest - Documentação
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Descrição das Funcionalidades
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando a pesquisa
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Início
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../planejamento/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Planejamento da Documentação
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../descricao-do-sistema/" class="md-tabs__link">
+          
+  
+  
+  O Sistema
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../requisitos/funcionais/" class="md-tabs__link">
+          
+  
+  
+  Requisitos
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  Funcionalidades
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../subprojetos/" class="md-tabs__link">
+          
+  
+  
+  Subprojetos Ativos
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../guias/" class="md-tabs__link">
+          
+  
+  
+  Guias de Uso
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="IFVest - Documentação" class="md-nav__button md-logo" aria-label="IFVest - Documentação" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    IFVest - Documentação
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Início
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../planejamento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Planejamento da Documentação
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    O Sistema
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    O Sistema
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../descricao-do-sistema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Descrição do Sistema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arquitetura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitetura do Sistema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagramas C4
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Diagramas C4
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../c4/contexto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nível 1 — Contexto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../c4/containers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nível 2 — Contêineres
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../c4/componentes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nível 3 — Componentes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requisitos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Requisitos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../requisitos/funcionais/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requisitos Funcionais
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../requisitos/nao-funcionais/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requisitos Não-Funcionais
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Funcionalidades
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Funcionalidades
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Descrição das Funcionalidades
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Descrição das Funcionalidades
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-autenticacao-e-acesso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Autenticação e Acesso
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Autenticação e Acesso">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cadastro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cadastro
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#login" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Login
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logoff
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#perfil-de-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Perfil de Usuário
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-modulo-de-simulados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Módulo de Simulados
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Módulo de Simulados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#para-o-professor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Para o Professor
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Para o Professor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#criar-simulado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Criar Simulado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gerenciar-simulados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gerenciar Simulados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#imprimir-simulado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Imprimir Simulado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#criar-e-gerenciar-questoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Criar e Gerenciar Questões
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#topicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tópicos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verificacao-de-similaridade-por-ia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verificação de Similaridade por IA
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#para-o-aluno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Para o Aluno
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Para o Aluno">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#visualizar-simulados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Visualizar Simulados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fazer-simulado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fazer Simulado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gabarito" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gabarito
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-ifquiz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. IFQuiz
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. IFQuiz">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fluxo-do-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fluxo do Usuário
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registro-de-pontuacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registro de Pontuação
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-flashcards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Flashcards
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Flashcards">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#para-o-aluno_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Para o Aluno
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Para o Aluno">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estudar-flashcards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estudar Flashcards
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#repeticao-espacada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repetição Espaçada
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grupos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grupos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#para-o-professor_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Para o Professor
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Para o Professor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#criar-flashcard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Criar Flashcard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#editar-flashcard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Editar Flashcard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#excluir-flashcard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Excluir Flashcard
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-revisao-de-conteudo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Revisão de Conteúdo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Revisão de Conteúdo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#para-o-aluno_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Para o Aluno
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Para o Aluno">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#navegar-por-conteudo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Navegar por Conteúdo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#para-o-professor_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Para o Professor
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Para o Professor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#meus-materiais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Meus Materiais
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#criar-material" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Criar Material
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#editar-material" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Editar Material
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remover-material" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remover Material
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upload-de-arquivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Upload de Arquivos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-editor-markdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Editor Markdown
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-gestao-compartilhada-shared" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Gestão Compartilhada (Shared)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Gestão Compartilhada (Shared)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#areas-de-conhecimento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Áreas de Conhecimento
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assuntos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assuntos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#topicos_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tópicos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#politica-de-privacidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Política de Privacidade
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-perfis-de-usuario-e-controle-de-acesso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Perfis de Usuário e Controle de Acesso
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../versoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registro de Versões
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Subprojetos Ativos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Subprojetos Ativos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../subprojetos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visão Geral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../subprojetos/frontend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Eixo 1: Interface e Modernização (Frontend)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../subprojetos/qualidade-e-testes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Eixo 2: Qualidade, Testes e Acessibilidade
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../subprojetos/ia-e-recomendacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Eixo 3: Inteligência Artificial e Recomendação
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../subprojetos/infra-e-seguranca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Eixo 4: Infraestrutura, APIs e Segurança
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guias de Uso
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guias de Uso
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visão Geral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conta
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Conta
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/conta/acesso/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Acesso e Conta
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/conta/perfil/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Perfil e Seus Dados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guia do Aluno
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guia do Aluno
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/aluno/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visão Geral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/aluno/revisao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Revisão de Conteúdo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/aluno/flashcards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flashcards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/aluno/simulados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Simulados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/aluno/ifquiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IFQuiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guia do Professor
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guia do Professor
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/professor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visão Geral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/professor/banco-de-questoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Banco de Questões
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/professor/simulados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Simulados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/professor/flashcards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flashcards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/professor/materiais-de-revisao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Materiais de Revisão
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/glossario/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossário
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-autenticacao-e-acesso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Autenticação e Acesso
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Autenticação e Acesso">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cadastro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cadastro
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#login" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Login
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logoff
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#perfil-de-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Perfil de Usuário
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-modulo-de-simulados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Módulo de Simulados
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Módulo de Simulados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#para-o-professor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Para o Professor
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Para o Professor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#criar-simulado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Criar Simulado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gerenciar-simulados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gerenciar Simulados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#imprimir-simulado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Imprimir Simulado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#criar-e-gerenciar-questoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Criar e Gerenciar Questões
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#topicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tópicos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verificacao-de-similaridade-por-ia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verificação de Similaridade por IA
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#para-o-aluno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Para o Aluno
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Para o Aluno">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#visualizar-simulados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Visualizar Simulados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fazer-simulado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fazer Simulado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gabarito" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gabarito
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-ifquiz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. IFQuiz
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. IFQuiz">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fluxo-do-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fluxo do Usuário
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registro-de-pontuacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registro de Pontuação
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-flashcards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Flashcards
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Flashcards">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#para-o-aluno_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Para o Aluno
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Para o Aluno">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estudar-flashcards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estudar Flashcards
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#repeticao-espacada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repetição Espaçada
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grupos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grupos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#para-o-professor_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Para o Professor
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Para o Professor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#criar-flashcard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Criar Flashcard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#editar-flashcard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Editar Flashcard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#excluir-flashcard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Excluir Flashcard
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-revisao-de-conteudo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Revisão de Conteúdo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Revisão de Conteúdo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#para-o-aluno_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Para o Aluno
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Para o Aluno">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#navegar-por-conteudo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Navegar por Conteúdo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#para-o-professor_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Para o Professor
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Para o Professor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#meus-materiais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Meus Materiais
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#criar-material" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Criar Material
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#editar-material" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Editar Material
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remover-material" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remover Material
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upload-de-arquivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Upload de Arquivos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-editor-markdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Editor Markdown
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-gestao-compartilhada-shared" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Gestão Compartilhada (Shared)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Gestão Compartilhada (Shared)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#areas-de-conhecimento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Áreas de Conhecimento
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assuntos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assuntos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#topicos_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tópicos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#politica-de-privacidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Política de Privacidade
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-perfis-de-usuario-e-controle-de-acesso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Perfis de Usuário e Controle de Acesso
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="descricao-das-funcionalidades">Descrição das Funcionalidades</h1>
+<p>Esta página descreve o que cada funcionalidade do IFVest faz, organizada por módulo. As informações são baseadas no código-fonte da plataforma e nos relatórios das equipes de desenvolvimento.</p>
+<hr />
+<h2 id="1-autenticacao-e-acesso">1. Autenticação e Acesso</h2>
+<h3 id="cadastro">Cadastro</h3>
+<p>Acessível em <code>/cadastro</code>. Permite que novos usuários criem uma conta na plataforma.</p>
+<p><strong>Campos obrigatórios:</strong></p>
+<ul>
+<li><strong>Nome completo</strong> — texto, mínimo 2 caracteres</li>
+<li><strong>Nome de usuário</strong> — entre 3 e 30 caracteres, aceita letras, números, <code>_</code>, <code>.</code> e <code>-</code></li>
+<li><strong>E-mail</strong> — deve ser um endereço de e-mail válido</li>
+<li><strong>Senha</strong> — mínimo 8 caracteres, obrigatoriamente contendo letras e números</li>
+<li><strong>Perfil</strong> — seleção entre <code>USUARIO</code> (aluno) e <code>PROFESSOR</code></li>
+</ul>
+<p>Todos os campos são validados pelo servidor com Zod antes do registro. O nome de usuário deve ser único no sistema. A senha é armazenada com hash bcrypt.</p>
+<p>Após o cadastro bem-sucedido, o usuário é redirecionado para a tela de login.</p>
+<hr />
+<h3 id="login">Login</h3>
+<p>Acessível em <code>/login</code>. Autentica o usuário com nome de usuário e senha.</p>
+<p>O sistema compara a senha fornecida com o hash armazenado via bcrypt. Em caso de sucesso, uma sessão é criada e o usuário é redirecionado para a página inicial logada (<code>/usuario/inicioLogado</code>). Em caso de erro, uma mensagem é exibida na mesma página.</p>
+<p><strong>Proteção contra força bruta:</strong> o endpoint de login possui um limitador de requisições — máximo de 5 tentativas por IP a cada 15 minutos. Ao exceder o limite, o usuário recebe uma mensagem de bloqueio temporário.</p>
+<hr />
+<h3 id="logoff">Logoff</h3>
+<p>Disponível para usuários autenticados. Ao acionar o logoff, o sistema destrói a sessão no servidor, remove o registro da sessão no banco de dados e limpa o cookie de sessão no navegador. O usuário é redirecionado para <code>/login</code>.</p>
+<hr />
+<h3 id="perfil-de-usuario">Perfil de Usuário</h3>
+<p>Acessível em <code>/usuario/perfil</code>. Permite ao usuário autenticado visualizar e editar suas informações.</p>
+<p><strong>Campos editáveis:</strong> nome, nome de usuário, e-mail, foto de perfil (upload de imagem), e troca de senha (campo senha atual + campo nova senha).</p>
+<p>Usuários também podem solicitar a exclusão de sua conta. A exclusão remove o registro do usuário e, em cascata, seus dados associados (questões, respostas).</p>
+<hr />
+<h2 id="2-modulo-de-simulados">2. Módulo de Simulados</h2>
+<p>Acessível em <code>/simulados</code>. Funcionalidade central da plataforma, com experiências distintas para professores e alunos.</p>
+<h3 id="para-o-professor">Para o Professor</h3>
+<h4 id="criar-simulado">Criar Simulado</h4>
+<p>Rota: <code>GET /simulados/criar-simulado</code> (formulário) + <code>POST /simulados/criar-simulado</code> (envio).</p>
+<p>O professor define título, descrição e tipo do simulado:</p>
+<ul>
+<li><strong>OBJETIVO</strong> — questões de múltipla escolha (A–E)</li>
+<li><strong>DISSERTATIVO</strong> — questões abertas</li>
+<li><strong>ALEATORIO</strong> — mistura de ambos os tipos</li>
+</ul>
+<p>Em seguida, seleciona as questões a vincular ao simulado. É necessário selecionar ao menos uma questão.</p>
+<h4 id="gerenciar-simulados">Gerenciar Simulados</h4>
+<ul>
+<li><strong>Meus simulados</strong> (<code>/simulados/meus-simulados</code>) — lista os simulados criados pelo professor, com opções de editar, excluir e gerenciar questões.</li>
+<li><strong>Editar simulado</strong> (<code>/simulados/:id/editar</code>) — altera título, descrição e tipo.</li>
+<li><strong>Adicionar questões</strong> (<code>/simulados/:simuladoId/adicionar-questoes</code>) — vincula novas questões ao simulado existente.</li>
+<li><strong>Remover questões</strong> (<code>/simulados/:simuladoId/remover-questoes</code>) — desvincula questões do simulado.</li>
+</ul>
+<h4 id="imprimir-simulado">Imprimir Simulado</h4>
+<p>Rota: <code>/simulados/:simuladoId/imprimir</code>. Gera uma versão formatada do simulado para impressão, com template dedicado (<code>templatePDF.ejs</code>).</p>
+<h4 id="criar-e-gerenciar-questoes">Criar e Gerenciar Questões</h4>
+<ul>
+<li><strong>Minhas questões</strong> (<code>/simulados/questoes</code>) — lista as questões criadas pelo professor.</li>
+<li><strong>Criar questão</strong> (<code>/simulados/registrar-questao/:tipo</code>) — o professor escolhe o tipo (<code>OBJETIVA</code> ou <code>DISSERTATIVA</code>) e preenche título, enunciado, área, tópicos e, para questões objetivas, as opções de resposta (A–E) e indica a correta.</li>
+<li><strong>Editar questão</strong> (<code>/simulados/editar_questao/:id</code>) — altera os dados de uma questão existente.</li>
+<li><strong>Excluir questão</strong> (<code>/simulados/excluir-questao/:id</code>) — remove a questão e suas opções associadas.</li>
+</ul>
+<p>O campo de enunciado utiliza o editor de equações matemáticas com suporte a LaTeX.</p>
+<h4 id="topicos">Tópicos</h4>
+<p>Rota: <code>/simulados/meus-topicos</code> (visualização). Professores podem criar tópicos vinculados a uma área de conhecimento para categorizar questões.</p>
+<h4 id="verificacao-de-similaridade-por-ia">Verificação de Similaridade por IA</h4>
+<p>Funcionalidade disponível apenas para professores. Ao cadastrar ou editar uma questão, o sistema pode acionar a função <code>comparaPerguntasIAGemini</code>, que consulta a API Gemini (Google) para identificar se já existe uma questão semanticamente similar no banco de dados. O resultado é exibido na tela de verificação de similaridade (<code>/simulados/views/professor/verificar_similaridade.ejs</code>), indicando os trechos similares encontrados.</p>
+<hr />
+<h3 id="para-o-aluno">Para o Aluno</h3>
+<h4 id="visualizar-simulados">Visualizar Simulados</h4>
+<p>Rota: <code>/simulados/visualizar</code>. Exibe os simulados disponíveis na plataforma.</p>
+<h4 id="fazer-simulado">Fazer Simulado</h4>
+<p>Rota: <code>/simulados/:simuladoId/fazer</code>. O aluno responde ao simulado no tempo que desejar. Para questões objetivas, seleciona a alternativa (A–E). Para questões dissertativas, insere texto livre.</p>
+<p>Ao finalizar, as respostas são submetidas via <code>POST /simulados/responder-prova/:simuladoId</code>.</p>
+<h4 id="gabarito">Gabarito</h4>
+<p>Rota: <code>/simulados/:simuladoId/gabarito</code>. Exibe as respostas corretas após a realização do simulado.</p>
+<hr />
+<h2 id="3-ifquiz">3. IFQuiz</h2>
+<p>Acessível em <code>/quiz</code>. Módulo de gamificação com quizzes de múltipla escolha baseados em questões do ENEM.</p>
+<h3 id="fluxo-do-usuario">Fluxo do Usuário</h3>
+<ol>
+<li><strong>Página de entrada</strong> (<code>/quiz/</code>) — apresentação do módulo, com botão para iniciar.</li>
+<li><strong>Menu do Quiz</strong> (<code>/quiz/MenuQuiz</code>) — o usuário seleciona a matéria e a quantidade de questões desejada.</li>
+<li><strong>Tela de jogo</strong> — exibe as questões uma a uma, buscadas da API externa <code>enem.dev</code>. Para cada questão, o usuário seleciona uma alternativa e recebe feedback imediato (correto/incorreto).</li>
+<li><strong>Tela de resultados</strong> — ao término, exibe o total de acertos, o total de questões e o percentual de eficiência.</li>
+<li><strong>Placar</strong> (<code>/quiz/placar</code>) — exibe o ranking dos 5 melhores jogadores, ordenados por número de acertos e percentual.</li>
+</ol>
+<h3 id="registro-de-pontuacao">Registro de Pontuação</h3>
+<p>Ao concluir o quiz, o resultado é enviado via <code>POST /quiz/api/Placar</code>. O sistema registra nome (do usuário logado ou "Visitante"), acertos, total de questões e percentual.</p>
+<p>O ranking é recuperado via <code>GET /quiz/api/Placar</code>, retornando os 5 melhores registros.</p>
+<hr />
+<h2 id="4-flashcards">4. Flashcards</h2>
+<p>Acessível em <code>/flashcards</code>. Módulo de estudo com repetição espaçada para revisão de conteúdo.</p>
+<h3 id="para-o-aluno_1">Para o Aluno</h3>
+<h4 id="estudar-flashcards">Estudar Flashcards</h4>
+<p>Rota: <code>/flashcards/</code>. Exibe flashcards disponíveis com filtros opcionais por <strong>Área</strong>, <strong>Tópico</strong> e <strong>Dificuldade</strong> (Fácil, Médio, Difícil). Até 10 cartões são exibidos por vez, selecionados de forma aleatória conforme os filtros e o histórico de revisão do usuário.</p>
+<p>Cada cartão exibe a pergunta na frente; ao virar, revela a resposta. A interação de virada utiliza animação CSS.</p>
+<h4 id="repeticao-espacada">Repetição Espaçada</h4>
+<p>Ao visualizar um flashcard, o sistema registra a data do acesso na tabela <code>FlashcardUsuario</code> (campo <code>visto_por_ultimo</code>). A lógica de priorização agrupa os cartões por urgência de revisão com base nos intervalos: 1, 3, 7, 15 e mais de 15 dias desde o último acesso. Cartões não vistos ou com revisão mais antiga recebem maior prioridade.</p>
+<h4 id="grupos">Grupos</h4>
+<p>Rota: <code>/flashcards/grupos</code>. Permite ao aluno navegar os flashcards organizados por grupo/categoria.</p>
+<hr />
+<h3 id="para-o-professor_1">Para o Professor</h3>
+<h4 id="criar-flashcard">Criar Flashcard</h4>
+<p>Rota: <code>GET /flashcards/criar</code> (formulário) + <code>POST /flashcards/criar</code>.</p>
+<p>O professor preenche a pergunta, a resposta, a área, o tópico e o nível de dificuldade do cartão.</p>
+<h4 id="editar-flashcard">Editar Flashcard</h4>
+<p>Rota: <code>GET /flashcards/:id/editar</code> (formulário) + <code>POST /flashcards/:id/editar</code>.</p>
+<p>Permite alterar qualquer campo do flashcard.</p>
+<h4 id="excluir-flashcard">Excluir Flashcard</h4>
+<p>Rota: <code>POST /flashcards/:id/excluir</code>. Remove o flashcard do banco de dados.</p>
+<hr />
+<h2 id="5-revisao-de-conteudo">5. Revisão de Conteúdo</h2>
+<p>Acessível em <code>/revisao</code>. Módulo de materiais de estudo criados pelos professores e consumidos pelos alunos.</p>
+<h3 id="para-o-aluno_2">Para o Aluno</h3>
+<h4 id="navegar-por-conteudo">Navegar por Conteúdo</h4>
+<ul>
+<li><strong>Home</strong> (<code>/revisao/</code>) — página principal do módulo com acesso à navegação e busca.</li>
+<li><strong>Busca por assunto</strong> (<code>/revisao/busca</code> ou <code>/revisao/busca/:id_assunto</code>) — exibe materiais organizados hierarquicamente por assunto. Os assuntos possuem estrutura em árvore (cada assunto pode ter subitens, definidos pelo campo <code>id_assunto_ascendente</code>).</li>
+<li><strong>Leitura</strong> (<code>/revisao/leitura/:id_conteudo</code>) — exibe o material completo em Markdown renderizado. O sistema registra a leitura incrementando o contador <code>contagem_leituras</code> do conteúdo.</li>
+</ul>
+<p>A busca também aceita pesquisa por área (<code>POST /revisao/buscar_area</code>), por tópico (<code>POST /revisao/buscar_topico</code>) e por material (<code>POST /revisao/buscar_material</code>).</p>
+<hr />
+<h3 id="para-o-professor_2">Para o Professor</h3>
+<h4 id="meus-materiais">Meus Materiais</h4>
+<p>Rota: <code>/revisao/meus_materiais</code>. Lista os conteúdos criados pelo professor logado.</p>
+<h4 id="criar-material">Criar Material</h4>
+<p>Rota: <code>GET /revisao/criar_material</code> (formulário) + <code>POST /revisao/criar_material</code>.</p>
+<p>O professor preenche:</p>
+<ul>
+<li><strong>Título</strong> — nome do material (máx. 200 caracteres)</li>
+<li><strong>Área</strong> e <strong>Tópico</strong> — categorização do conteúdo</li>
+<li><strong>Palavras-chave</strong> — ao menos uma, usadas para busca e tagueamento</li>
+<li><strong>Conteúdo</strong> — texto em Markdown, editado com o Editor Markdown integrado (mínimo 10 caracteres)</li>
+<li><strong>Links externos</strong> — URLs opcionais de referência</li>
+</ul>
+<h4 id="editar-material">Editar Material</h4>
+<p>Rota: <code>GET /revisao/editar_material/:id_conteudo</code> + <code>PATCH /revisao/editar_material/:id_conteudo</code>.</p>
+<h4 id="remover-material">Remover Material</h4>
+<p>Rota: <code>DELETE /revisao/remover_material/:id_conteudo</code>. Remove o conteúdo do banco.</p>
+<h4 id="upload-de-arquivos">Upload de Arquivos</h4>
+<p>Rota: <code>POST /revisao/upload</code>. Permite anexar arquivos a materiais de revisão via upload (campo <code>file</code>).</p>
+<hr />
+<h2 id="6-editor-markdown">6. Editor Markdown</h2>
+<p>O editor Markdown é um componente React + Vite isolado em <code>editor_markdown/</code>, compilado separadamente (<code>npm run build:editor</code>) e servido como assets estáticos pelo Express.</p>
+<p>Ele é utilizado internamente nas telas de criação e edição de conteúdo do módulo de Revisão.</p>
+<p><strong>Funcionalidades:</strong></p>
+<ul>
+<li>Edição de texto em formato Markdown com preview em tempo real</li>
+<li>Suporte a notação matemática LaTeX via extensão KaTeX (<code>marked-katex-extension</code>)</li>
+<li>Interface dividida em painel de edição e painel de visualização</li>
+</ul>
+<p>O conteúdo produzido é armazenado no campo <code>conteudo_markdown</code> da tabela <code>Conteudo</code> e renderizado nas páginas de leitura do módulo de Revisão.</p>
+<hr />
+<h2 id="7-gestao-compartilhada-shared">7. Gestão Compartilhada (Shared)</h2>
+<p>Acessível em <code>/shared</code>. Contém funcionalidades administrativas compartilhadas entre os domínios.</p>
+<h3 id="areas-de-conhecimento">Áreas de Conhecimento</h3>
+<ul>
+<li><strong>Listar</strong> (<code>GET /shared/areas</code>) — exibe todas as áreas cadastradas</li>
+<li><strong>Listar em JSON</strong> (<code>GET /shared/api/areas</code>) — retorna as áreas em formato JSON para uso interno</li>
+<li><strong>Criar</strong> (<code>POST /shared/areas</code>)</li>
+<li><strong>Editar</strong> (<code>PATCH /shared/areas/:id_area</code>)</li>
+<li><strong>Excluir</strong> (<code>DELETE /shared/areas/:id_area</code>)</li>
+</ul>
+<p>As áreas pré-cadastradas via seeder são: Matemática, Português, História, Geografia, Ciências, Artes, Informática, Química, Física, Biologia, Filosofia, Sociologia, Educação Física e Língua Estrangeira.</p>
+<h3 id="assuntos">Assuntos</h3>
+<ul>
+<li><strong>Listar</strong> (<code>GET /shared/assuntos</code>)</li>
+<li><strong>Criar</strong> (<code>POST /shared/assuntos</code>)</li>
+<li><strong>Editar</strong> (<code>PATCH /shared/assuntos/:id_assunto</code>)</li>
+<li><strong>Excluir</strong> (<code>DELETE /shared/assuntos/:id_assunto</code>)</li>
+</ul>
+<p>Assuntos suportam hierarquia — cada assunto pode ter um assunto ascendente (<code>id_assunto_ascendente</code>), formando uma árvore de categorias de conteúdo.</p>
+<h3 id="topicos_1">Tópicos</h3>
+<ul>
+<li><strong>Listar</strong> (<code>GET /shared/topicos</code>)</li>
+<li><strong>Criar</strong> (<code>POST /shared/topicos</code>)</li>
+<li><strong>Editar</strong> (<code>PATCH /shared/topicos/:id_topico</code>)</li>
+<li><strong>Excluir</strong> (<code>DELETE /shared/topicos/:id_topico</code>)</li>
+<li><strong>Consultar por área</strong> (<code>GET /shared/api/topicos/:id_area</code>) — retorna tópicos em JSON filtrados por área, usado por outros domínios</li>
+</ul>
+<h3 id="politica-de-privacidade">Política de Privacidade</h3>
+<p>Rota: <code>/shared/politica_de_privacidade</code>. Página da Política de Privacidade do IFVest, elaborada em conformidade com a LGPD, exibida sem o layout padrão da plataforma (layout independente).</p>
+<hr />
+<h2 id="8-perfis-de-usuario-e-controle-de-acesso">8. Perfis de Usuário e Controle de Acesso</h2>
+<p>O sistema possui dois perfis:</p>
+<table>
+<thead>
+<tr>
+<th>Perfil</th>
+<th>Acesso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>USUARIO</code> (Aluno)</td>
+<td>Fazer simulados, usar IFQuiz, estudar flashcards, ler materiais de revisão, editar próprio perfil</td>
+</tr>
+<tr>
+<td><code>PROFESSOR</code></td>
+<td>Tudo do aluno + criar/editar/excluir questões, simulados, flashcards, tópicos, áreas, assuntos e materiais de revisão</td>
+</tr>
+</tbody>
+</table>
+<p>O controle de acesso é baseado em sessão. O middleware <code>sessionMidleware.js</code> (<code>secure_pass</code>) protege as rotas autenticadas, redirecionando para <code>/login</code> caso não haja sessão ativa. O perfil do usuário (<code>req.session.perfil</code>) é disponibilizado para as views via <code>authLocals.js</code>.</p>
+<hr />
+<div class="admonition note">
+<p class="admonition-title">Funcionalidades em desenvolvimento</p>
+<p>Os seguintes módulos estão em desenvolvimento ativo por equipes de subprojeto e ainda não estão disponíveis em produção: correção automatizada de redações (Arthur, Douglas e Guilherme), migração do frontend para React (Isabella e Maria Luiza), integração com APIs do ENEM e FUVEST (Vitor, Helena e Thales), e sistema de recomendação personalizado (João Pedro).</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar ao topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "Mais 1 nesta p\u00e1gina", "search.result.more.other": "Mais # nesta p\u00e1gina", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

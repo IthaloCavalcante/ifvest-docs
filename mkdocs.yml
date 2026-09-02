@@ -1,24 +1,78 @@
-site_name: IFVest - Documentação
+site_name: IFVest — Documentação
 site_description: Documentação oficial da plataforma IFVest — IFSP Campus Jacareí
 site_author: Ithalo Cavalcante Gomes
 site_url: https://IthaloCavalcante.github.io/ifvest-docs/
 
+# Link do repositório no header"
+repo_url: https://github.com/IthaloCavalcante/ifvest-docs
+repo_name: ifvest-docs
+
+copyright: IFVest — Projeto de Extensão · IFSP Campus Jacareí · Tecnologia em Análise e Desenvolvimento de Sistemas
+
 theme:
   name: material
   language: pt
+
+  # tema claro e escuro
   palette:
-    primary: blue
-    accent: light blue
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Mudar para o tema escuro
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Mudar para o tema claro
+
+  font:
+    text: Inter
+    code: JetBrains Mono
+
+  icon:
+    logo: material/school
+    repo: fontawesome/brands/github
+
   features:
-    - navigation.tabs
-    - navigation.sections
-    - navigation.top
+    # Navegação
+    - navigation.instant          # troca de página sem recarregar o site
+    - navigation.instant.progress # barra de progresso no carregamento
+    - navigation.tabs             # seções principais como abas no topo
+    - navigation.tabs.sticky      # abas fixas ao rolar
+    - navigation.sections         # subseções agrupadas na lateral
+    - navigation.indexes          # index.md vira a página da própria seção
+    - navigation.path             # caminho da página (trilha)
+    - navigation.top              # botão "voltar ao topo"
+    - navigation.footer           # links de página anterior / próxima
+    - toc.follow                  # sumário lateral acompanha a leitura
+    # Busca
     - search.suggest
     - search.highlight
-    - content.code.copy
+    - search.share
+    # Conteúdo
+    - content.code.copy           # botão de copiar nos blocos de código
+    - content.tooltips
+
+extra_css:
+  - stylesheets/extra.css
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/IthaloCavalcante/ifvest-docs
+      name: Repositório da documentação
+    - icon: material/web
+      link: https://ifvest.jcr.ifsp.edu.br
+      name: Plataforma IFVest
 
 plugins:
-  - search
+  - search:
+      lang: pt        # busca com processamento em português
 
 markdown_extensions:
   - admonition
@@ -32,6 +86,15 @@ markdown_extensions:
       alternate_style: true
   - attr_list
   - md_in_html
+  - tables
+  - footnotes
+  - toc:
+      permalink: true          # ancora de link do lado dos títulos
+      permalink_title: Link para esta seção
+      toc_depth: 3
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - plantuml_markdown:
       server: https://www.plantuml.com/plantuml
       format: svg
@@ -58,6 +121,8 @@ nav:
     - "Eixo 2: Qualidade, Testes e Acessibilidade": subprojetos/qualidade-e-testes.md
     - "Eixo 3: Inteligência Artificial e Recomendação": subprojetos/ia-e-recomendacao.md
     - "Eixo 4: Infraestrutura, APIs e Segurança": subprojetos/infra-e-seguranca.md
+    - Aplicações Derivadas:
+      - IFVest Reader: subprojetos/ifvest-reader.md
   - Guias de Uso:
     - Visão Geral: guias/index.md
     - Conta:
