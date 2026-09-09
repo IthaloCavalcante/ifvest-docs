@@ -1,35 +1,36 @@
 # Planejamento da Documentação
 
-Este documento apresenta o mapeamento visual de toda a documentação a ser produzida para o projeto IFVest, organizando os itens por ordem de produção com base em suas dependências.
+Este documento apresenta o mapeamento de toda a documentação a ser produzida para o projeto IFVest, organizando os itens por ordem de produção com base em suas dependências, e registrando as normas e os critérios adotados.
 
 A ordem não é arbitrária — ela segue o princípio de que **você não consegue documentar algo que ainda não entendeu**. Para escrever como um usuário usa o sistema, você precisa antes saber o que o sistema faz. Para saber o que ele faz, você precisa antes entender como está construído. E assim por diante.
 
-!!! warning "Sobre o estado da plataforma refletido nesta documentação"
-    As **Fases 1 a 3** desta documentação — descrição do sistema, arquitetura,
-    requisitos, funcionalidades e histórico de versões — foram produzidas a partir
-    das fontes disponíveis até então: os TCCs de 2021 e 2024, os relatórios de
-    extensão de 2024–2025 e o código-fonte do repositório, cujo último estado
-    disponível não acompanha as refatorações em curso. Elas descrevem, portanto,
-    **a plataforma anterior à refatoração**.
+!!! danger "O IFVest está sendo substituído por uma nova plataforma"
+    A partir de setembro de 2026, o IFVest passa a ser **uma plataforma nova**, desenvolvida do zero e referida internamente como **IFVest V3**. Ela substitui a versão anterior no mesmo endereço, com stack, modelo de dados e organização de perfis diferentes.
 
-    Enquanto essa documentação era produzida, diversos subprojetos passaram a
-    refatorar a plataforma simultaneamente — com destaque para a migração do
-    frontend para React e o redesign completo da interface. Isso significa que
-    partes das Fases 1 a 3 descrevem um estado que está sendo substituído.
+    Esta documentação passa a descrever **a plataforma nova**. O conteúdo produzido para a versão anterior permanece preservado no histórico do repositório, identificado pela etiqueta `legado-v2`, e sua trajetória fica registrada no [Registro de Versões](versoes.md).
 
-    Por orientação do projeto, a **Fase 4** é a primeira produzida tendo a
-    **plataforma refatorada como referência**, e não o estado transitório atual.
-    Os guias de usuário separam explicitamente o que é verificável hoje do que
-    está previsto no redesign, citando a fonte de cada informação futura — ver
-    [Guia do Aluno](guias/aluno/index.md).
+    O que muda e o que permanece está detalhado em [O que a mudança de plataforma afeta](#o-que-a-mudanca-de-plataforma-afeta).
 
-    A revisão das fases anteriores não foi feita ainda porque a refatoração
-    também não está concluída: revisá-las agora, contra um alvo em movimento,
-    reproduziria o mesmo problema. **Concluída a Fase 4 e entregues as
-    refatorações, a documentação será revisada desde a Fase 1**, com o mesmo
-    critério adotado na Fase 4 — corrigindo e atualizando o que não corresponder
-    à plataforma refatorada. Divergências já identificadas entre as fontes ficam
-    registradas nas próprias páginas até essa revisão.
+---
+
+## O que está sendo documentado
+
+O **IFVest V3** é uma aplicação educacional de apoio à preparação para o ENEM e vestibulares, com ferramentas de prática para estudantes e de gestão acadêmica para professores.
+
+| | |
+|---|---|
+| **Frontend** | Next.js e React, hospedados na Vercel |
+| **Backend** | Python com FastAPI, hospedado em VPS |
+| **Banco de dados** | PostgreSQL |
+| **Autenticação** | Firebase |
+| **Infraestrutura local** | Docker Compose |
+
+Duas características do domínio orientam toda a documentação:
+
+- **Hierarquia de conteúdo** — todo material e questão obedece à estrutura **Disciplina → Assunto → Tópico**.
+- **Permissões granulares (RBAC)** — o sistema não se apoia apenas nos cargos de aluno e professor: há uma camada de permissões específicas, atribuídas por administradores, que controlam ações individuais.
+
+O escopo da primeira versão (MVP) contempla os módulos de **Redação**, **Quiz** e **Simulados**. **Revisão** e **Flashcards** estão previstos para versões seguintes.
 
 ---
 
@@ -52,27 +53,25 @@ O diagrama abaixo mostra as quatro fases da documentação e as dependências en
 ```mermaid
 flowchart TD
     subgraph F1["📘 FASE 1 — Base"]
-        A["✅ Descrição do Sistema"]
-        B["✅ Arquitetura do Sistema"]
+        A["🟡 Descrição do Sistema"]
+        B["⬜ Arquitetura do Sistema"]
     end
 
     subgraph F2["📙 FASE 2 — Conteúdo"]
-        C["✅ Especificação de Requisitos"]
-        D["✅ Subprojetos Ativos"]
+        C["🟡 Especificação de Requisitos"]
+        D["⬜ Subprojetos e Projetos Paralelos"]
     end
 
     subgraph F3["📒 FASE 3 — Detalhamento"]
-        E["✅ Descrição das Funcionalidades"]
-        F["🟡 Referência à API (Swagger)"]
+        E["⬜ Descrição das Funcionalidades"]
+        F["⬜ Referência à API (OpenAPI)"]
         G["✅ Registro de Versões"]
     end
 
     subgraph F4["📗 FASE 4 — Usuário"]
-        J["✅ Conta e Perfil"]
-        I["✅ Guia do Aluno"]
-        H["🟡 Guia do Professor"]
-        K["⬜ Guia do Administrador"]
-        L["✅ Glossário"]
+        J["⬜ Conta e Perfil"]
+        I["⬜ Guias por módulo"]
+        L["🟡 Glossário"]
     end
 
     A --> C
@@ -84,11 +83,7 @@ flowchart TD
     C --> E
     D --> E
     E --> J
-    E --> H
     E --> I
-    E --> K
-    G --> H
-    G --> I
 
     style F1 fill:#dbeafe,stroke:#2563eb,color:#1e3a5f
     style F2 fill:#fef9c3,stroke:#ca8a04,color:#713f12
@@ -107,53 +102,82 @@ flowchart TD
 
 | Item | Descrição | Status |
 |------|-----------|--------|
-| Descrição do Sistema | O que é o IFVest, qual problema resolve, quem usa, quais funcionalidades existem e quais tecnologias compõem o sistema. | ✅ Concluído |
-| Arquitetura do Sistema | Como o sistema está organizado internamente: frontend, backend, banco de dados e integrações com APIs externas (ENEM, FUVEST). | ✅ Concluído |
+| Descrição do Sistema | O que é o IFVest, qual problema resolve, quem usa, quais módulos existem e como o conteúdo e as permissões estão organizados. | 🟡 Em andamento |
+| Arquitetura do Sistema | Como o sistema está organizado: frontend em Next.js, backend em FastAPI, banco PostgreSQL, autenticação Firebase e integrações externas. | ⬜ Pendente |
 
 ---
 
 ### 📙 Fase 2 — Conteúdo
 
 !!! info "Por que vem em segundo?"
-    Com a base definida, é possível registrar formalmente o que o sistema deve fazer e mapear o que está sendo desenvolvido pelos subprojetos. Esses dois itens alimentam diretamente o detalhamento da fase seguinte.
+    Com a base definida, é possível registrar formalmente o que o sistema deve fazer e mapear o que está sendo desenvolvido pelas frentes de trabalho. Esses dois itens alimentam diretamente o detalhamento da fase seguinte.
 
 | Item | Descrição | Status |
 |------|-----------|--------|
-| Especificação de Requisitos | Consolidação do que o sistema deve fazer (requisitos funcionais) e como deve se comportar (desempenho, acessibilidade, segurança). | ✅ Concluído |
-| Subprojetos Ativos | Descrição dos projetos vinculados ao IFVest e seu estado atual: migração para React, correção de redações, LGPD, sistema de recomendação, entre outros. | ✅ Concluído |
+| Especificação de Requisitos | Consolidação do que o sistema deve fazer (requisitos funcionais) e como deve se comportar (desempenho, acessibilidade, segurança). | 🟡 Em andamento |
+| Subprojetos e Projetos Paralelos | Frentes de trabalho do projeto e produtos que se integram ao ecossistema, como o leitor de PDFs educacionais e o extrator de questões por IA. | ⬜ Pendente |
 
 ---
 
 ### 📒 Fase 3 — Detalhamento
 
 !!! info "Por que vem em terceiro?"
-    Com sistema, arquitetura e requisitos documentados, é possível detalhar cada funcionalidade existente, referenciar a documentação de API e registrar o histórico de mudanças. Estes itens são a ponte entre a estrutura técnica e o uso do sistema.
+    Com sistema, arquitetura e requisitos documentados, é possível detalhar cada funcionalidade, referenciar a documentação de API e registrar o histórico de mudanças. Estes itens são a ponte entre a estrutura técnica e o uso do sistema.
 
 | Item | Descrição | Status |
 |------|-----------|--------|
-| Descrição das Funcionalidades | O que cada funcionalidade da plataforma faz: autenticação e perfil, Revisão de Conteúdo, IFQuiz, Flashcards, Simulados e banco de questões, tanto no perfil de aluno quanto no de professor. | ✅ Concluído |
-| Referência à API (Swagger) | Link e orientações para a documentação de API gerada pela equipe de backend via Swagger/OpenAPI. Sem duplicação de conteúdo. | 🟡 Em andamento |
-| Registro de Versões | Histórico das mudanças relevantes na plataforma: funcionalidades adicionadas, modificadas ou removidas ao longo do projeto. | ✅ Concluído |
+| Descrição das Funcionalidades | O que cada módulo faz — Redação, Quiz e Simulados no MVP; Revisão e Flashcards nas versões seguintes. | ⬜ Pendente — depende da entrega do MVP |
+| Referência à API (OpenAPI) | Link para a especificação OpenAPI gerada pelo backend, sem duplicação de conteúdo. | ⬜ Pendente |
+| Registro de Versões | Histórico das mudanças relevantes na plataforma, incluindo a transição da versão anterior para o IFVest V3. | ✅ Concluído |
 
 ---
 
 ### 📗 Fase 4 — Usuário
 
 !!! info "Por que vem por último?"
-    A documentação de usuário só pode ser produzida quando todas as funcionalidades estão descritas e os requisitos consolidados. Só então é possível escrever guias de uso precisos e completos.
+    A documentação de usuário só pode ser produzida quando as funcionalidades estão descritas e os requisitos consolidados. Só então é possível escrever guias de uso precisos e completos.
 
     A referência à API **não é pré-requisito** desta fase: ela documenta o sistema para quem desenvolve, enquanto os guias documentam o uso da plataforma para quem estuda e ensina. As duas seguem em paralelo.
 
-!!! warning "A divisão de perfis está em definição"
-    O redesign prevê um **perfil de administrador**, que assumirá parte das tarefas hoje atribuídas ao professor. Enquanto essa redistribuição não é concluída, o Guia do Professor marca cada tarefa com o perfil a que pertence, de modo que as tarefas realocadas possam migrar para o Guia do Administrador sem reescrita.
+!!! warning "Os guias dependem da interface entregue"
+    O desenho da interface do IFVest V3 é produzido por uma frente dedicada de design. Os guias de usuário só podem ser finalizados quando as telas estiverem implementadas, sob pena de descreverem uma interface que ainda pode mudar.
+
+    Até lá, o material de design serve de base para a **camada de interface** de cada tarefa, sempre identificada como tal e com a fonte citada (ver [Separação entre o estado atual e o estado previsto](#separacao-entre-o-estado-atual-e-o-estado-previsto)).
 
 | Item | Descrição | Status |
 |------|-----------|--------|
-| Conta e Perfil | Tarefas comuns a todos os perfis: criar conta, entrar, recuperar acesso, editar dados e excluir a conta. Seção única, referenciada pelos demais guias. | ✅ Concluído |
-| Guia do Aluno | Passo a passo das ações de estudo: ler materiais de revisão, estudar flashcards, realizar simulados e jogar o IFQuiz. | ✅ Concluído |
-| Guia do Professor | Passo a passo da criação e gestão de conteúdo: banco de questões, simulados, flashcards e materiais de revisão. | 🟡 Em andamento |
-| Guia do Administrador | Tarefas do perfil de administrador previsto no redesign, incluindo a organização de conteúdos e o acompanhamento de alterações. | ⬜ Pendente |
-| Glossário | Termos da plataforma e explicação de como os conteúdos são organizados. Compartilhado por todos os guias. | ✅ Concluído |
+| Conta e Perfil | Tarefas comuns a todos os perfis: criar conta, entrar, editar dados e excluir a conta. Seção única, referenciada pelos demais guias. | ⬜ Pendente |
+| Guias por módulo | Passo a passo das ações de cada módulo, organizadas por objetivo do usuário e com indicação da permissão exigida, quando houver. | ⬜ Pendente |
+| Glossário | Termos da plataforma e explicação de como os conteúdos e as permissões estão organizados. | 🟡 Em andamento |
+
+!!! note "A estrutura dos guias acompanha o modelo de permissões"
+    A versão anterior separava os guias por cargo — um para o aluno, outro para o professor. Como o IFVest V3 adota **permissões granulares** sobre os cargos, a organização por perfil deixa de ser suficiente: uma mesma tarefa pode estar disponível a usuários diferentes conforme as permissões que possuem.
+
+    Os guias passam, portanto, a se organizar **por módulo e por tarefa**, indicando em cada uma a permissão exigida. ⬜ *A validar com o projeto conforme o modelo de permissões se consolidar.*
+
+---
+
+## O que a mudança de plataforma afeta
+
+A substituição da plataforma não descarta a documentação já produzida. O que se mantém é o que descreve o **propósito** do sistema; o que se refaz é o que descreve sua **construção**.
+
+| Item | Situação |
+|---|---|
+| Descrição do Sistema | Aproveitada em grande parte — mudam os módulos, a hierarquia de conteúdo e a organização de perfis |
+| Especificação de Requisitos | Aproveitada em grande parte — entram as permissões granulares e o módulo de Redação |
+| Diagrama C4 de Contexto | Aproveitado com ajustes |
+| Diagramas C4 de Contêineres e Componentes | Refeitos — descrevem uma estrutura que deixa de existir |
+| Arquitetura do Sistema | Refeita — a stack é outra |
+| Descrição das Funcionalidades | Refeita — derivada do código da versão anterior |
+| Guias de Uso | Refeitos, reaproveitando o material de design da frente de interface |
+| Registro de Versões | Preservado e ampliado — a transição passa a fazer parte do histórico |
+| Glossário | Aproveitado em parte — a hierarquia de conteúdo mudou de ordem |
+| Normas, critérios e método | Integralmente preservados |
+
+!!! note "Uma condição diferente, e melhor"
+    A documentação da versão anterior foi produzida **anos depois** do sistema, por leitura de código e de relatórios. A do IFVest V3 é produzida **junto com o desenvolvimento**, com acesso às decisões enquanto são tomadas.
+
+    Isso desloca o principal risco: deixa de ser a reconstrução de conhecimento perdido e passa a ser o acompanhamento de um sistema em construção acelerada. Os critérios registrados abaixo — evidência confirmada, separação de camadas e registro de divergências — respondem a esse risco.
 
 ---
 
@@ -167,25 +191,26 @@ A ordem das fases responde *o que* documentar primeiro. Esta seção registra *c
 
 | Fonte | Uso |
 |---|---|
-| Código-fonte do repositório | Comportamento atual da plataforma: rotas, validações, regras de acesso e efeitos de exclusão |
-| Relatórios dos subprojetos | Interface e funcionalidades previstas na refatoração, sempre com indicação do relatório e da figura |
-| Atas de reunião | Decisões do projeto que alteram escopo, atribuições ou funcionamento |
-| Trabalhos de conclusão de curso | Histórico do sistema e das versões anteriores |
+| Código-fonte dos repositórios | Comportamento implementado: rotas, modelos de dados, validações e regras de acesso |
+| Documento de onboarding e decisões de projeto | Escopo, stack, regras de negócio e definições acordadas pela equipe |
+| Material da frente de design | Interface prevista de cada módulo |
+| Especificação OpenAPI | Contrato da API entre backend e frontend |
+| Registros de reunião | Decisões que alteram escopo, atribuições ou funcionamento |
 
 Quando uma informação não pode ser confirmada, ela **não é inferida**: registra-se uma pendência explícita no lugar, indicando o que falta e com quem esclarecer.
 
 ### Separação entre o estado atual e o estado previsto
 
-Como a plataforma está sendo refatorada enquanto a documentação é produzida, cada informação é classificada em uma de duas camadas:
+O sistema é documentado enquanto está sendo construído. Por isso, cada informação é classificada em uma de duas camadas:
 
-- **Camada estável** — objetivo, pré-requisitos e sequência de passos de cada tarefa. Verificável hoje e válida após a refatoração, porque descreve o que o usuário faz, não a tela em que faz.
-- **Camada de interface** — telas, botões e caminhos de navegação. É a parte que a refatoração substitui, e por isso aparece sempre identificada como referente à versão refatorada, com a fonte citada e a ressalva de que o design pode mudar.
+- **Camada estável** — objetivo, pré-requisitos e sequência de passos de cada tarefa. Descreve o que o usuário faz, não a tela em que faz, e por isso sobrevive a mudanças de interface.
+- **Camada de interface** — telas, botões e caminhos de navegação. É a parte volátil, e por isso aparece sempre identificada como prevista, com a fonte citada e a ressalva de que o design pode mudar.
 
-Essa separação é o que permite produzir documentação útil antes da entrega da refatoração, sem produzir material descartável.
+Essa separação é o que permite produzir documentação útil antes da entrega das funcionalidades, sem produzir material descartável.
 
 ### Registro de divergências
 
-Quando duas fontes se contradizem — por exemplo, o código descrevendo um comportamento e um relatório de subprojeto observando outro na plataforma em uso —, a divergência é **registrada na própria página**, com a indicação de qual fonte foi adotada e por quê. Divergências não são resolvidas silenciosamente.
+Quando duas fontes se contradizem — por exemplo, um documento de projeto descrevendo um comportamento e o código implementando outro —, a divergência é **registrada na própria página**, com a indicação de qual fonte foi adotada e por quê. Divergências não são resolvidas silenciosamente.
 
 ### Formato e publicação
 
@@ -204,6 +229,10 @@ Esta estrutura foi definida com base na **ISO/IEC/IEEE 15289:2019** — norma in
 
 As três normas permitem **adaptação ao contexto do projeto**, desde que a seleção dos itens produzidos e omitidos seja registrada — o que este documento faz.
 
-!!! tip "Resumindo em uma frase"
-    O IFVest estará documentado quando qualquer pessoa de fora conseguir responder, só lendo esta documentação: *O que é esse sistema? Como está construído? O que faz? Como eu uso? O que deve fazer? O que mudou até agora?*
+---
 
+## Resumindo
+
+O IFVest será considerado documentado quando qualquer pessoa de fora conseguir responder, apenas lendo esta documentação:
+
+**O que é este sistema? Como ele está construído? O que ele faz? O que ele deve fazer? Como eu uso? O que mudou até agora?**
