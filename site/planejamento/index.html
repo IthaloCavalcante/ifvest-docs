@@ -519,6 +519,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#o-que-esta-sendo-documentado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O que está sendo documentado
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#legenda-de-status" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -602,6 +613,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#o-que-a-mudanca-de-plataforma-afeta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O que a mudança de plataforma afeta
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#como-a-documentacao-e-produzida" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -667,6 +689,17 @@
     <span class="md-ellipsis">
       
         Norma de referência
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumindo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumindo
       
     </span>
   </a>
@@ -2135,6 +2168,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#o-que-esta-sendo-documentado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O que está sendo documentado
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#legenda-de-status" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2218,6 +2262,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#o-que-a-mudanca-de-plataforma-afeta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O que a mudança de plataforma afeta
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#como-a-documentacao-e-produzida" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2289,6 +2344,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#resumindo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumindo
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2318,33 +2384,53 @@
 
 
 <h1 id="planejamento-da-documentacao">Planejamento da Documentação<a class="headerlink" href="#planejamento-da-documentacao" title="Link para esta seção">&para;</a></h1>
-<p>Este documento apresenta o mapeamento visual de toda a documentação a ser produzida para o projeto IFVest, organizando os itens por ordem de produção com base em suas dependências.</p>
+<p>Este documento apresenta o mapeamento de toda a documentação a ser produzida para o projeto IFVest, organizando os itens por ordem de produção com base em suas dependências, e registrando as normas e os critérios adotados.</p>
 <p>A ordem não é arbitrária — ela segue o princípio de que <strong>você não consegue documentar algo que ainda não entendeu</strong>. Para escrever como um usuário usa o sistema, você precisa antes saber o que o sistema faz. Para saber o que ele faz, você precisa antes entender como está construído. E assim por diante.</p>
-<div class="admonition warning">
-<p class="admonition-title">Sobre o estado da plataforma refletido nesta documentação</p>
-<p>As <strong>Fases 1 a 3</strong> desta documentação — descrição do sistema, arquitetura,
-requisitos, funcionalidades e histórico de versões — foram produzidas a partir
-das fontes disponíveis até então: os TCCs de 2021 e 2024, os relatórios de
-extensão de 2024–2025 e o código-fonte do repositório, cujo último estado
-disponível não acompanha as refatorações em curso. Elas descrevem, portanto,
-<strong>a plataforma anterior à refatoração</strong>.</p>
-<p>Enquanto essa documentação era produzida, diversos subprojetos passaram a
-refatorar a plataforma simultaneamente — com destaque para a migração do
-frontend para React e o redesign completo da interface. Isso significa que
-partes das Fases 1 a 3 descrevem um estado que está sendo substituído.</p>
-<p>Por orientação do projeto, a <strong>Fase 4</strong> é a primeira produzida tendo a
-<strong>plataforma refatorada como referência</strong>, e não o estado transitório atual.
-Os guias de usuário separam explicitamente o que é verificável hoje do que
-está previsto no redesign, citando a fonte de cada informação futura — ver
-<a href="../guias/aluno/">Guia do Aluno</a>.</p>
-<p>A revisão das fases anteriores não foi feita ainda porque a refatoração
-também não está concluída: revisá-las agora, contra um alvo em movimento,
-reproduziria o mesmo problema. <strong>Concluída a Fase 4 e entregues as
-refatorações, a documentação será revisada desde a Fase 1</strong>, com o mesmo
-critério adotado na Fase 4 — corrigindo e atualizando o que não corresponder
-à plataforma refatorada. Divergências já identificadas entre as fontes ficam
-registradas nas próprias páginas até essa revisão.</p>
+<div class="admonition danger">
+<p class="admonition-title">O IFVest está sendo substituído por uma nova plataforma</p>
+<p>A partir de setembro de 2026, o IFVest passa a ser <strong>uma plataforma nova</strong>, desenvolvida do zero e referida internamente como <strong>IFVest V3</strong>. Ela substitui a versão anterior no mesmo endereço, com stack, modelo de dados e organização de perfis diferentes.</p>
+<p>Esta documentação passa a descrever <strong>a plataforma nova</strong>. O conteúdo produzido para a versão anterior permanece preservado no histórico do repositório, identificado pela etiqueta <code>legado-v2</code>, e sua trajetória fica registrada no <a href="../versoes/">Registro de Versões</a>.</p>
+<p>O que muda e o que permanece está detalhado em <a href="#o-que-a-mudanca-de-plataforma-afeta">O que a mudança de plataforma afeta</a>.</p>
 </div>
+<hr />
+<h2 id="o-que-esta-sendo-documentado">O que está sendo documentado<a class="headerlink" href="#o-que-esta-sendo-documentado" title="Link para esta seção">&para;</a></h2>
+<p>O <strong>IFVest V3</strong> é uma aplicação educacional de apoio à preparação para o ENEM e vestibulares, com ferramentas de prática para estudantes e de gestão acadêmica para professores.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Frontend</strong></td>
+<td>Next.js e React, hospedados na Vercel</td>
+</tr>
+<tr>
+<td><strong>Backend</strong></td>
+<td>Python com FastAPI, hospedado em VPS</td>
+</tr>
+<tr>
+<td><strong>Banco de dados</strong></td>
+<td>PostgreSQL</td>
+</tr>
+<tr>
+<td><strong>Autenticação</strong></td>
+<td>Firebase</td>
+</tr>
+<tr>
+<td><strong>Infraestrutura local</strong></td>
+<td>Docker Compose</td>
+</tr>
+</tbody>
+</table>
+<p>Duas características do domínio orientam toda a documentação:</p>
+<ul>
+<li><strong>Hierarquia de conteúdo</strong> — todo material e questão obedece à estrutura <strong>Disciplina → Assunto → Tópico</strong>.</li>
+<li><strong>Permissões granulares (RBAC)</strong> — o sistema não se apoia apenas nos cargos de aluno e professor: há uma camada de permissões específicas, atribuídas por administradores, que controlam ações individuais.</li>
+</ul>
+<p>O escopo da primeira versão (MVP) contempla os módulos de <strong>Redação</strong>, <strong>Quiz</strong> e <strong>Simulados</strong>. <strong>Revisão</strong> e <strong>Flashcards</strong> estão previstos para versões seguintes.</p>
 <hr />
 <h2 id="legenda-de-status">Legenda de Status<a class="headerlink" href="#legenda-de-status" title="Link para esta seção">&para;</a></h2>
 <table>
@@ -2375,27 +2461,25 @@ registradas nas próprias páginas até essa revisão.</p>
 <p>O diagrama abaixo mostra as quatro fases da documentação e as dependências entre os itens. As setas indicam que um item depende do anterior para ser produzido.</p>
 <pre class="mermaid"><code>flowchart TD
     subgraph F1["📘 FASE 1 — Base"]
-        A["✅ Descrição do Sistema"]
-        B["✅ Arquitetura do Sistema"]
+        A["🟡 Descrição do Sistema"]
+        B["⬜ Arquitetura do Sistema"]
     end
 
     subgraph F2["📙 FASE 2 — Conteúdo"]
-        C["✅ Especificação de Requisitos"]
-        D["✅ Subprojetos Ativos"]
+        C["🟡 Especificação de Requisitos"]
+        D["⬜ Subprojetos e Projetos Paralelos"]
     end
 
     subgraph F3["📒 FASE 3 — Detalhamento"]
-        E["✅ Descrição das Funcionalidades"]
-        F["🟡 Referência à API (Swagger)"]
+        E["⬜ Descrição das Funcionalidades"]
+        F["⬜ Referência à API (OpenAPI)"]
         G["✅ Registro de Versões"]
     end
 
     subgraph F4["📗 FASE 4 — Usuário"]
-        J["✅ Conta e Perfil"]
-        I["✅ Guia do Aluno"]
-        H["🟡 Guia do Professor"]
-        K["⬜ Guia do Administrador"]
-        L["✅ Glossário"]
+        J["⬜ Conta e Perfil"]
+        I["⬜ Guias por módulo"]
+        L["🟡 Glossário"]
     end
 
     A --&gt; C
@@ -2407,11 +2491,7 @@ registradas nas próprias páginas até essa revisão.</p>
     C --&gt; E
     D --&gt; E
     E --&gt; J
-    E --&gt; H
     E --&gt; I
-    E --&gt; K
-    G --&gt; H
-    G --&gt; I
 
     style F1 fill:#dbeafe,stroke:#2563eb,color:#1e3a5f
     style F2 fill:#fef9c3,stroke:#ca8a04,color:#713f12
@@ -2435,13 +2515,13 @@ registradas nas próprias páginas até essa revisão.</p>
 <tbody>
 <tr>
 <td>Descrição do Sistema</td>
-<td>O que é o IFVest, qual problema resolve, quem usa, quais funcionalidades existem e quais tecnologias compõem o sistema.</td>
-<td>✅ Concluído</td>
+<td>O que é o IFVest, qual problema resolve, quem usa, quais módulos existem e como o conteúdo e as permissões estão organizados.</td>
+<td>🟡 Em andamento</td>
 </tr>
 <tr>
 <td>Arquitetura do Sistema</td>
-<td>Como o sistema está organizado internamente: frontend, backend, banco de dados e integrações com APIs externas (ENEM, FUVEST).</td>
-<td>✅ Concluído</td>
+<td>Como o sistema está organizado: frontend em Next.js, backend em FastAPI, banco PostgreSQL, autenticação Firebase e integrações externas.</td>
+<td>⬜ Pendente</td>
 </tr>
 </tbody>
 </table>
@@ -2449,7 +2529,7 @@ registradas nas próprias páginas até essa revisão.</p>
 <h3 id="fase-2-conteudo">📙 Fase 2 — Conteúdo<a class="headerlink" href="#fase-2-conteudo" title="Link para esta seção">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">Por que vem em segundo?</p>
-<p>Com a base definida, é possível registrar formalmente o que o sistema deve fazer e mapear o que está sendo desenvolvido pelos subprojetos. Esses dois itens alimentam diretamente o detalhamento da fase seguinte.</p>
+<p>Com a base definida, é possível registrar formalmente o que o sistema deve fazer e mapear o que está sendo desenvolvido pelas frentes de trabalho. Esses dois itens alimentam diretamente o detalhamento da fase seguinte.</p>
 </div>
 <table>
 <thead>
@@ -2463,12 +2543,12 @@ registradas nas próprias páginas até essa revisão.</p>
 <tr>
 <td>Especificação de Requisitos</td>
 <td>Consolidação do que o sistema deve fazer (requisitos funcionais) e como deve se comportar (desempenho, acessibilidade, segurança).</td>
-<td>✅ Concluído</td>
+<td>🟡 Em andamento</td>
 </tr>
 <tr>
-<td>Subprojetos Ativos</td>
-<td>Descrição dos projetos vinculados ao IFVest e seu estado atual: migração para React, correção de redações, LGPD, sistema de recomendação, entre outros.</td>
-<td>✅ Concluído</td>
+<td>Subprojetos e Projetos Paralelos</td>
+<td>Frentes de trabalho do projeto e produtos que se integram ao ecossistema, como o leitor de PDFs educacionais e o extrator de questões por IA.</td>
+<td>⬜ Pendente</td>
 </tr>
 </tbody>
 </table>
@@ -2476,7 +2556,7 @@ registradas nas próprias páginas até essa revisão.</p>
 <h3 id="fase-3-detalhamento">📒 Fase 3 — Detalhamento<a class="headerlink" href="#fase-3-detalhamento" title="Link para esta seção">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">Por que vem em terceiro?</p>
-<p>Com sistema, arquitetura e requisitos documentados, é possível detalhar cada funcionalidade existente, referenciar a documentação de API e registrar o histórico de mudanças. Estes itens são a ponte entre a estrutura técnica e o uso do sistema.</p>
+<p>Com sistema, arquitetura e requisitos documentados, é possível detalhar cada funcionalidade, referenciar a documentação de API e registrar o histórico de mudanças. Estes itens são a ponte entre a estrutura técnica e o uso do sistema.</p>
 </div>
 <table>
 <thead>
@@ -2489,17 +2569,17 @@ registradas nas próprias páginas até essa revisão.</p>
 <tbody>
 <tr>
 <td>Descrição das Funcionalidades</td>
-<td>O que cada funcionalidade da plataforma faz: autenticação e perfil, Revisão de Conteúdo, IFQuiz, Flashcards, Simulados e banco de questões, tanto no perfil de aluno quanto no de professor.</td>
-<td>✅ Concluído</td>
+<td>O que cada módulo faz — Redação, Quiz e Simulados no MVP; Revisão e Flashcards nas versões seguintes.</td>
+<td>⬜ Pendente — depende da entrega do MVP</td>
 </tr>
 <tr>
-<td>Referência à API (Swagger)</td>
-<td>Link e orientações para a documentação de API gerada pela equipe de backend via Swagger/OpenAPI. Sem duplicação de conteúdo.</td>
-<td>🟡 Em andamento</td>
+<td>Referência à API (OpenAPI)</td>
+<td>Link para a especificação OpenAPI gerada pelo backend, sem duplicação de conteúdo.</td>
+<td>⬜ Pendente</td>
 </tr>
 <tr>
 <td>Registro de Versões</td>
-<td>Histórico das mudanças relevantes na plataforma: funcionalidades adicionadas, modificadas ou removidas ao longo do projeto.</td>
+<td>Histórico das mudanças relevantes na plataforma, incluindo a transição da versão anterior para o IFVest V3.</td>
 <td>✅ Concluído</td>
 </tr>
 </tbody>
@@ -2508,12 +2588,13 @@ registradas nas próprias páginas até essa revisão.</p>
 <h3 id="fase-4-usuario">📗 Fase 4 — Usuário<a class="headerlink" href="#fase-4-usuario" title="Link para esta seção">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">Por que vem por último?</p>
-<p>A documentação de usuário só pode ser produzida quando todas as funcionalidades estão descritas e os requisitos consolidados. Só então é possível escrever guias de uso precisos e completos.</p>
+<p>A documentação de usuário só pode ser produzida quando as funcionalidades estão descritas e os requisitos consolidados. Só então é possível escrever guias de uso precisos e completos.</p>
 <p>A referência à API <strong>não é pré-requisito</strong> desta fase: ela documenta o sistema para quem desenvolve, enquanto os guias documentam o uso da plataforma para quem estuda e ensina. As duas seguem em paralelo.</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">A divisão de perfis está em definição</p>
-<p>O redesign prevê um <strong>perfil de administrador</strong>, que assumirá parte das tarefas hoje atribuídas ao professor. Enquanto essa redistribuição não é concluída, o Guia do Professor marca cada tarefa com o perfil a que pertence, de modo que as tarefas realocadas possam migrar para o Guia do Administrador sem reescrita.</p>
+<p class="admonition-title">Os guias dependem da interface entregue</p>
+<p>O desenho da interface do IFVest V3 é produzido por uma frente dedicada de design. Os guias de usuário só podem ser finalizados quando as telas estiverem implementadas, sob pena de descreverem uma interface que ainda pode mudar.</p>
+<p>Até lá, o material de design serve de base para a <strong>camada de interface</strong> de cada tarefa, sempre identificada como tal e com a fonte citada (ver <a href="#separacao-entre-o-estado-atual-e-o-estado-previsto">Separação entre o estado atual e o estado previsto</a>).</p>
 </div>
 <table>
 <thead>
@@ -2526,31 +2607,84 @@ registradas nas próprias páginas até essa revisão.</p>
 <tbody>
 <tr>
 <td>Conta e Perfil</td>
-<td>Tarefas comuns a todos os perfis: criar conta, entrar, recuperar acesso, editar dados e excluir a conta. Seção única, referenciada pelos demais guias.</td>
-<td>✅ Concluído</td>
+<td>Tarefas comuns a todos os perfis: criar conta, entrar, editar dados e excluir a conta. Seção única, referenciada pelos demais guias.</td>
+<td>⬜ Pendente</td>
 </tr>
 <tr>
-<td>Guia do Aluno</td>
-<td>Passo a passo das ações de estudo: ler materiais de revisão, estudar flashcards, realizar simulados e jogar o IFQuiz.</td>
-<td>✅ Concluído</td>
-</tr>
-<tr>
-<td>Guia do Professor</td>
-<td>Passo a passo da criação e gestão de conteúdo: banco de questões, simulados, flashcards e materiais de revisão.</td>
-<td>🟡 Em andamento</td>
-</tr>
-<tr>
-<td>Guia do Administrador</td>
-<td>Tarefas do perfil de administrador previsto no redesign, incluindo a organização de conteúdos e o acompanhamento de alterações.</td>
+<td>Guias por módulo</td>
+<td>Passo a passo das ações de cada módulo, organizadas por objetivo do usuário e com indicação da permissão exigida, quando houver.</td>
 <td>⬜ Pendente</td>
 </tr>
 <tr>
 <td>Glossário</td>
-<td>Termos da plataforma e explicação de como os conteúdos são organizados. Compartilhado por todos os guias.</td>
-<td>✅ Concluído</td>
+<td>Termos da plataforma e explicação de como os conteúdos e as permissões estão organizados.</td>
+<td>🟡 Em andamento</td>
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="admonition-title">A estrutura dos guias acompanha o modelo de permissões</p>
+<p>A versão anterior separava os guias por cargo — um para o aluno, outro para o professor. Como o IFVest V3 adota <strong>permissões granulares</strong> sobre os cargos, a organização por perfil deixa de ser suficiente: uma mesma tarefa pode estar disponível a usuários diferentes conforme as permissões que possuem.</p>
+<p>Os guias passam, portanto, a se organizar <strong>por módulo e por tarefa</strong>, indicando em cada uma a permissão exigida. ⬜ <em>A validar com o projeto conforme o modelo de permissões se consolidar.</em></p>
+</div>
+<hr />
+<h2 id="o-que-a-mudanca-de-plataforma-afeta">O que a mudança de plataforma afeta<a class="headerlink" href="#o-que-a-mudanca-de-plataforma-afeta" title="Link para esta seção">&para;</a></h2>
+<p>A substituição da plataforma não descarta a documentação já produzida. O que se mantém é o que descreve o <strong>propósito</strong> do sistema; o que se refaz é o que descreve sua <strong>construção</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Situação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Descrição do Sistema</td>
+<td>Aproveitada em grande parte — mudam os módulos, a hierarquia de conteúdo e a organização de perfis</td>
+</tr>
+<tr>
+<td>Especificação de Requisitos</td>
+<td>Aproveitada em grande parte — entram as permissões granulares e o módulo de Redação</td>
+</tr>
+<tr>
+<td>Diagrama C4 de Contexto</td>
+<td>Aproveitado com ajustes</td>
+</tr>
+<tr>
+<td>Diagramas C4 de Contêineres e Componentes</td>
+<td>Refeitos — descrevem uma estrutura que deixa de existir</td>
+</tr>
+<tr>
+<td>Arquitetura do Sistema</td>
+<td>Refeita — a stack é outra</td>
+</tr>
+<tr>
+<td>Descrição das Funcionalidades</td>
+<td>Refeita — derivada do código da versão anterior</td>
+</tr>
+<tr>
+<td>Guias de Uso</td>
+<td>Refeitos, reaproveitando o material de design da frente de interface</td>
+</tr>
+<tr>
+<td>Registro de Versões</td>
+<td>Preservado e ampliado — a transição passa a fazer parte do histórico</td>
+</tr>
+<tr>
+<td>Glossário</td>
+<td>Aproveitado em parte — a hierarquia de conteúdo mudou de ordem</td>
+</tr>
+<tr>
+<td>Normas, critérios e método</td>
+<td>Integralmente preservados</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Uma condição diferente, e melhor</p>
+<p>A documentação da versão anterior foi produzida <strong>anos depois</strong> do sistema, por leitura de código e de relatórios. A do IFVest V3 é produzida <strong>junto com o desenvolvimento</strong>, com acesso às decisões enquanto são tomadas.</p>
+<p>Isso desloca o principal risco: deixa de ser a reconstrução de conhecimento perdido e passa a ser o acompanhamento de um sistema em construção acelerada. Os critérios registrados abaixo — evidência confirmada, separação de camadas e registro de divergências — respondem a esse risco.</p>
+</div>
 <hr />
 <h2 id="como-a-documentacao-e-produzida">Como a documentação é produzida<a class="headerlink" href="#como-a-documentacao-e-produzida" title="Link para esta seção">&para;</a></h2>
 <p>A ordem das fases responde <em>o que</em> documentar primeiro. Esta seção registra <em>como</em> cada item é produzido — os critérios aplicados de forma uniforme em toda a documentação.</p>
@@ -2565,33 +2699,37 @@ registradas nas próprias páginas até essa revisão.</p>
 </thead>
 <tbody>
 <tr>
-<td>Código-fonte do repositório</td>
-<td>Comportamento atual da plataforma: rotas, validações, regras de acesso e efeitos de exclusão</td>
+<td>Código-fonte dos repositórios</td>
+<td>Comportamento implementado: rotas, modelos de dados, validações e regras de acesso</td>
 </tr>
 <tr>
-<td>Relatórios dos subprojetos</td>
-<td>Interface e funcionalidades previstas na refatoração, sempre com indicação do relatório e da figura</td>
+<td>Documento de onboarding e decisões de projeto</td>
+<td>Escopo, stack, regras de negócio e definições acordadas pela equipe</td>
 </tr>
 <tr>
-<td>Atas de reunião</td>
-<td>Decisões do projeto que alteram escopo, atribuições ou funcionamento</td>
+<td>Material da frente de design</td>
+<td>Interface prevista de cada módulo</td>
 </tr>
 <tr>
-<td>Trabalhos de conclusão de curso</td>
-<td>Histórico do sistema e das versões anteriores</td>
+<td>Especificação OpenAPI</td>
+<td>Contrato da API entre backend e frontend</td>
+</tr>
+<tr>
+<td>Registros de reunião</td>
+<td>Decisões que alteram escopo, atribuições ou funcionamento</td>
 </tr>
 </tbody>
 </table>
 <p>Quando uma informação não pode ser confirmada, ela <strong>não é inferida</strong>: registra-se uma pendência explícita no lugar, indicando o que falta e com quem esclarecer.</p>
 <h3 id="separacao-entre-o-estado-atual-e-o-estado-previsto">Separação entre o estado atual e o estado previsto<a class="headerlink" href="#separacao-entre-o-estado-atual-e-o-estado-previsto" title="Link para esta seção">&para;</a></h3>
-<p>Como a plataforma está sendo refatorada enquanto a documentação é produzida, cada informação é classificada em uma de duas camadas:</p>
+<p>O sistema é documentado enquanto está sendo construído. Por isso, cada informação é classificada em uma de duas camadas:</p>
 <ul>
-<li><strong>Camada estável</strong> — objetivo, pré-requisitos e sequência de passos de cada tarefa. Verificável hoje e válida após a refatoração, porque descreve o que o usuário faz, não a tela em que faz.</li>
-<li><strong>Camada de interface</strong> — telas, botões e caminhos de navegação. É a parte que a refatoração substitui, e por isso aparece sempre identificada como referente à versão refatorada, com a fonte citada e a ressalva de que o design pode mudar.</li>
+<li><strong>Camada estável</strong> — objetivo, pré-requisitos e sequência de passos de cada tarefa. Descreve o que o usuário faz, não a tela em que faz, e por isso sobrevive a mudanças de interface.</li>
+<li><strong>Camada de interface</strong> — telas, botões e caminhos de navegação. É a parte volátil, e por isso aparece sempre identificada como prevista, com a fonte citada e a ressalva de que o design pode mudar.</li>
 </ul>
-<p>Essa separação é o que permite produzir documentação útil antes da entrega da refatoração, sem produzir material descartável.</p>
+<p>Essa separação é o que permite produzir documentação útil antes da entrega das funcionalidades, sem produzir material descartável.</p>
 <h3 id="registro-de-divergencias">Registro de divergências<a class="headerlink" href="#registro-de-divergencias" title="Link para esta seção">&para;</a></h3>
-<p>Quando duas fontes se contradizem — por exemplo, o código descrevendo um comportamento e um relatório de subprojeto observando outro na plataforma em uso —, a divergência é <strong>registrada na própria página</strong>, com a indicação de qual fonte foi adotada e por quê. Divergências não são resolvidas silenciosamente.</p>
+<p>Quando duas fontes se contradizem — por exemplo, um documento de projeto descrevendo um comportamento e o código implementando outro —, a divergência é <strong>registrada na própria página</strong>, com a indicação de qual fonte foi adotada e por quê. Divergências não são resolvidas silenciosamente.</p>
 <h3 id="formato-e-publicacao">Formato e publicação<a class="headerlink" href="#formato-e-publicacao" title="Link para esta seção">&para;</a></h3>
 <p>A documentação é produzida em formato <strong>docs-as-code</strong>: o conteúdo é escrito em Markdown, versionado em repositório Git e mantido junto ao projeto, o que permite revisar alterações, recuperar versões anteriores e atualizar documentação e software no mesmo fluxo de trabalho.</p>
 <p>A publicação utiliza o <strong>MkDocs</strong> com o tema Material, que converte os arquivos-fonte em um site navegável com busca e sumário. Os diagramas de arquitetura são igualmente descritos em texto, com <strong>PlantUML</strong>, e renderizados na geração do site.</p>
@@ -2603,10 +2741,10 @@ registradas nas próprias páginas até essa revisão.</p>
 <li><strong>ISO/IEC/IEEE 26514:2022</strong> — <em>Design and development of information for users</em>. Orienta a estrutura e o conteúdo da documentação de usuário produzida na Fase 4.</li>
 </ul>
 <p>As três normas permitem <strong>adaptação ao contexto do projeto</strong>, desde que a seleção dos itens produzidos e omitidos seja registrada — o que este documento faz.</p>
-<div class="admonition tip">
-<p class="admonition-title">Resumindo em uma frase</p>
-<p>O IFVest estará documentado quando qualquer pessoa de fora conseguir responder, só lendo esta documentação: <em>O que é esse sistema? Como está construído? O que faz? Como eu uso? O que deve fazer? O que mudou até agora?</em></p>
-</div>
+<hr />
+<h2 id="resumindo">Resumindo<a class="headerlink" href="#resumindo" title="Link para esta seção">&para;</a></h2>
+<p>O IFVest será considerado documentado quando qualquer pessoa de fora conseguir responder, apenas lendo esta documentação:</p>
+<p><strong>O que é este sistema? Como ele está construído? O que ele faz? O que ele deve fazer? Como eu uso? O que mudou até agora?</strong></p>
 
 
 
