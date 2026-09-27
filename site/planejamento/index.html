@@ -729,6 +729,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -836,6 +840,62 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../modelo-de-dados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelo de Dados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referência da API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
       
@@ -858,10 +918,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
         
           
-          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
             
   
   
@@ -879,8 +939,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_3">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1454,7 +1514,7 @@
   <span class="md-ellipsis">
     
   
-    Aplicações Derivadas
+    Produtos
   
 
     
@@ -1470,7 +1530,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Aplicações Derivadas
+    Produtos
   
 
           </label>
@@ -2380,6 +2440,11 @@
 
 
   
+    <a href="https://github.com/IthaloCavalcante/ifvest-docs/edit/main/docs/planejamento.md" title="Editar esta página" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
   
 
 
@@ -2405,11 +2470,15 @@
 <tbody>
 <tr>
 <td><strong>Frontend</strong></td>
-<td>Next.js e React, hospedados na Vercel</td>
+<td>React e TypeScript, construído com Vite</td>
 </tr>
 <tr>
 <td><strong>Backend</strong></td>
-<td>Python com FastAPI, hospedado em VPS</td>
+<td>Python com FastAPI</td>
+</tr>
+<tr>
+<td><strong>Hospedagem</strong></td>
+<td>Servidor próprio (VPS), sob o domínio <code>ifvest.com.br</code></td>
 </tr>
 <tr>
 <td><strong>Banco de dados</strong></td>
@@ -2462,7 +2531,7 @@
 <pre class="mermaid"><code>flowchart TD
     subgraph F1["📘 FASE 1 — Base"]
         A["🟡 Descrição do Sistema"]
-        B["⬜ Arquitetura do Sistema"]
+        B["✅ Arquitetura do Sistema"]
     end
 
     subgraph F2["📙 FASE 2 — Conteúdo"]
@@ -2472,7 +2541,7 @@
 
     subgraph F3["📒 FASE 3 — Detalhamento"]
         E["⬜ Descrição das Funcionalidades"]
-        F["⬜ Referência à API (OpenAPI)"]
+        F["✅ Referência à API (OpenAPI)"]
         G["✅ Registro de Versões"]
     end
 
@@ -2520,8 +2589,8 @@
 </tr>
 <tr>
 <td>Arquitetura do Sistema</td>
-<td>Como o sistema está organizado: frontend em Next.js, backend em FastAPI, banco PostgreSQL, autenticação Firebase e integrações externas.</td>
-<td>⬜ Pendente</td>
+<td>Como o sistema está organizado: frontend em React, backend em FastAPI, banco PostgreSQL, autenticação Firebase, topologia de produção e implantação. Inclui o modelo de dados e a referência da API.</td>
+<td>✅ Concluído</td>
 </tr>
 </tbody>
 </table>
@@ -2569,13 +2638,13 @@
 <tbody>
 <tr>
 <td>Descrição das Funcionalidades</td>
-<td>O que cada módulo faz — Redação, Quiz e Simulados no MVP; Revisão e Flashcards nas versões seguintes.</td>
-<td>⬜ Pendente — depende da entrega do MVP</td>
+<td>O que cada módulo faz — Redação, Quiz e Simulados na primeira versão; Revisão e Flashcards nas versões seguintes.</td>
+<td>⬜ Pendente</td>
 </tr>
 <tr>
 <td>Referência à API (OpenAPI)</td>
-<td>Link para a especificação OpenAPI gerada pelo backend, sem duplicação de conteúdo.</td>
-<td>⬜ Pendente</td>
+<td>Especificação OpenAPI gerada a partir do código-fonte, publicada de forma estática e interativa.</td>
+<td>✅ Concluído</td>
 </tr>
 <tr>
 <td>Registro de Versões</td>
@@ -2867,7 +2936,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.path", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.tooltips"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "Mais 1 nesta p\u00e1gina", "search.result.more.other": "Mais # nesta p\u00e1gina", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.path", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "content.tooltips"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "Mais 1 nesta p\u00e1gina", "search.result.more.other": "Mais # nesta p\u00e1gina", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
     
     
       <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>

@@ -1,0 +1,36 @@
+@startuml C4_Componentes_API_Dominios
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Componentes — API IFVest (C4 L3 · Rotas e Serviços)
+
+LAYOUT_LEFT_RIGHT()
+
+Container_Boundary(api, "API — FastAPI") {
+    Component(r_quiz, "Rotas de Quiz", "quiz.py · 17 rotas", "Partidas, pergunta do dia,\nranking, loja e histórico")
+    Component(r_mock, "Rotas de Simulados", "mocktests.py · 14 rotas", "Questões, simulados\ne tentativas")
+    Component(r_essays, "Rotas de Redação", "essays.py · 11 rotas", "Propostas, redações\ne correções")
+    Component(r_users, "Rotas de Usuário", "users.py · 4 rotas", "Perfil do usuário")
+    Component(r_feat, "Rotas de Flags", "features.py · 3 rotas", "Consulta e alteração\ndas feature flags")
+    Component(r_auth, "Rotas de Sessão", "auth.py · 2 rotas", "Sessão do usuário")
+
+    Component(s_quiz, "Serviço de Quiz", "quiz_service.py", "Pontuação, ofensiva diária\ne gamificação")
+    Component(s_mock, "Serviço de Simulados", "mocktests_service.py", "Montagem e correção\ndos simulados")
+    Component(s_essays, "Serviço de Redação", "essays_service.py", "Propostas e correção por\ncompetências do ENEM")
+    Component(s_seed, "Serviços de Carga", "seed_service.py\nunicamp_seed_service.py", "Carga inicial de dados\ne de questões")
+}
+
+ContainerDb(db, "Banco de Dados", "PostgreSQL 16", "Persistência")
+
+Rel_R(r_quiz, s_quiz, "Delega")
+Rel_R(r_mock, s_mock, "Delega")
+Rel_R(r_essays, s_essays, "Delega")
+
+Rel_D(s_quiz, db, "Lê e escreve", "SQL")
+Rel_D(s_mock, db, "Lê e escreve", "SQL")
+Rel_D(s_essays, db, "Lê e escreve", "SQL")
+Rel_D(s_seed, db, "Popula", "SQL")
+Rel_D(r_users, db, "Lê e escreve", "SQL")
+Rel_D(r_feat, db, "Lê e escreve", "SQL")
+
+SHOW_LEGEND()
+@enduml

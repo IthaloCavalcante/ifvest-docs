@@ -1,0 +1,39 @@
+@startuml C4_Componentes_API_Completo
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Componentes — API IFVest (C4 Nível 3 · Visão Completa)
+
+LAYOUT_TOP_DOWN()
+
+Container(web, "Aplicação Web", "React + Vite", "Consome a API")
+
+Container_Boundary(api, "API — FastAPI") {
+    Component(rotas, "Camada de Rotas", "FastAPI Routers", "auth · users · quiz · mocktests\nessays · features")
+    Component(seguranca, "Segurança", "security.py · firebase.py", "Extrai e verifica o token,\nidentifica o usuário")
+    Component(permissoes, "Permissões", "permissions.py", "Atribui as permissões iniciais e\nautoriza cada ação")
+    Component(flags, "Feature Flags", "feature_flags_service.py", "Liga e desliga módulos\ne funcionalidades")
+    Component(servicos, "Serviços de Domínio", "quiz · mocktests · essays\nseed · unicamp_seed", "Regras de negócio de cada módulo")
+    Component(esquemas, "Esquemas", "Pydantic", "Valida entradas e formata\nas respostas da API")
+    Component(modelos, "Modelos", "SQLAlchemy 2.0", "Mapeamento das 22 tabelas\ndo banco de dados")
+}
+
+ContainerDb(db, "Banco de Dados", "PostgreSQL 16", "Persistência")
+System_Ext(firebase, "Firebase Authentication", "Verificação de tokens")
+
+Rel_D(web, rotas, "Requisições REST\ncom token", "HTTPS")
+
+Rel_D(rotas, seguranca, "Identifica o usuário")
+Rel_D(rotas, permissoes, "Verifica a permissão exigida")
+Rel_D(rotas, flags, "Verifica se o módulo\nestá ativo")
+Rel_D(rotas, esquemas, "Valida e serializa")
+Rel_D(rotas, servicos, "Delega a regra de negócio")
+
+Rel_R(seguranca, firebase, "Verifica a assinatura\ndo token", "SDK Admin")
+Rel_D(seguranca, modelos, "Carrega o usuário")
+Rel_D(permissoes, modelos, "Lê as permissões\ndo usuário")
+Rel_D(flags, modelos, "Lê o estado das flags")
+Rel_D(servicos, modelos, "Lê e escreve dados")
+Rel_D(modelos, db, "Consultas assíncronas", "asyncpg / SQL")
+
+SHOW_LEGEND()
+@enduml

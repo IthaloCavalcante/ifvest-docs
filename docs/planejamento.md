@@ -19,8 +19,9 @@ O **IFVest V3** é uma aplicação educacional de apoio à preparação para o E
 
 | | |
 |---|---|
-| **Frontend** | Next.js e React, hospedados na Vercel |
-| **Backend** | Python com FastAPI, hospedado em VPS |
+| **Frontend** | React e TypeScript, construído com Vite |
+| **Backend** | Python com FastAPI |
+| **Hospedagem** | Servidor próprio (VPS), sob o domínio `ifvest.com.br` |
 | **Banco de dados** | PostgreSQL |
 | **Autenticação** | Firebase |
 | **Infraestrutura local** | Docker Compose |
@@ -54,7 +55,7 @@ O diagrama abaixo mostra as quatro fases da documentação e as dependências en
 flowchart TD
     subgraph F1["📘 FASE 1 — Base"]
         A["🟡 Descrição do Sistema"]
-        B["⬜ Arquitetura do Sistema"]
+        B["✅ Arquitetura do Sistema"]
     end
 
     subgraph F2["📙 FASE 2 — Conteúdo"]
@@ -64,7 +65,7 @@ flowchart TD
 
     subgraph F3["📒 FASE 3 — Detalhamento"]
         E["⬜ Descrição das Funcionalidades"]
-        F["⬜ Referência à API (OpenAPI)"]
+        F["✅ Referência à API (OpenAPI)"]
         G["✅ Registro de Versões"]
     end
 
@@ -103,7 +104,7 @@ flowchart TD
 | Item | Descrição | Status |
 |------|-----------|--------|
 | Descrição do Sistema | O que é o IFVest, qual problema resolve, quem usa, quais módulos existem e como o conteúdo e as permissões estão organizados. | 🟡 Em andamento |
-| Arquitetura do Sistema | Como o sistema está organizado: frontend em Next.js, backend em FastAPI, banco PostgreSQL, autenticação Firebase e integrações externas. | ⬜ Pendente |
+| Arquitetura do Sistema | Como o sistema está organizado: frontend em React, backend em FastAPI, banco PostgreSQL, autenticação Firebase, topologia de produção e implantação. Inclui o modelo de dados, a referência da API e os diagramas C4. | ✅ Concluído |
 
 ---
 
@@ -126,8 +127,8 @@ flowchart TD
 
 | Item | Descrição | Status |
 |------|-----------|--------|
-| Descrição das Funcionalidades | O que cada módulo faz — Redação, Quiz e Simulados no MVP; Revisão e Flashcards nas versões seguintes. | ⬜ Pendente — depende da entrega do MVP |
-| Referência à API (OpenAPI) | Link para a especificação OpenAPI gerada pelo backend, sem duplicação de conteúdo. | ⬜ Pendente |
+| Descrição das Funcionalidades | O que cada módulo faz — Redação, Quiz e Simulados na primeira versão; Revisão e Flashcards nas versões seguintes. | ⬜ Pendente |
+| Referência à API (OpenAPI) | Especificação OpenAPI gerada a partir do código-fonte, publicada de forma estática e interativa. | ✅ Concluído |
 | Registro de Versões | Histórico das mudanças relevantes na plataforma, incluindo a transição da versão anterior para o IFVest V3. | ✅ Concluído |
 
 ---

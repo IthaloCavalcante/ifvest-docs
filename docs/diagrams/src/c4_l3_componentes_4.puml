@@ -1,0 +1,52 @@
+@startuml C4_Componentes_Frontend
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Componentes — Aplicação Web IFVest (C4 Nível 3)
+
+LAYOUT_TOP_DOWN()
+
+Person(usuario, "Usuário", "Qualquer perfil")
+
+Container_Boundary(web, "Aplicação Web — React + Vite") {
+    Component(router, "Roteador", "React Router 7", "Define as rotas e protege\nas telas que exigem sessão")
+    Component(layout, "Layout", "core/layout", "Estrutura visual comum\na todas as telas")
+
+    Component(f_home, "Início", "features/home", "Página inicial e navegação\nentre os módulos")
+    Component(f_quiz, "Quiz", "features/quiz", "Partidas, pergunta do dia,\nranking e loja")
+    Component(f_mock, "Simulados", "features/mocktests", "Criação e resolução\nde simulados")
+    Component(f_essays, "Redação", "features/essays", "Envio de redações\ne consulta às correções")
+    Component(f_admin, "Administração", "features/admin", "Permissões, conteúdo\ne feature flags")
+    Component(f_auth, "Autenticação", "features/auth", "Cadastro e entrada")
+    Component(f_dev, "Em Desenvolvimento", "features/underDevelopment", "Tela exibida no lugar dos\nmódulos desligados")
+
+    Component(c_api, "Cliente HTTP", "core/api", "Chamadas à API com o token,\npor caminhos relativos")
+    Component(c_auth, "Sessão", "core/auth", "Integração com o Firebase\ne estado da sessão")
+    Component(c_feat, "Feature Flags", "core/features", "Consulta as flags e oculta\nos módulos desligados")
+}
+
+Container(api, "API", "FastAPI", "Regras de negócio")
+System_Ext(firebase, "Firebase Authentication", "Serviço de identidade")
+
+Rel_D(usuario, router, "Navega", "HTTPS")
+Rel_D(router, layout, "Renderiza dentro de")
+Rel_D(router, c_feat, "Consulta antes\nde exibir o módulo")
+Rel_D(c_feat, f_dev, "Módulo desligado")
+
+Rel_D(layout, f_home, "Exibe")
+Rel_D(layout, f_quiz, "Exibe")
+Rel_D(layout, f_mock, "Exibe")
+Rel_D(layout, f_essays, "Exibe")
+Rel_D(layout, f_admin, "Exibe")
+Rel_D(layout, f_auth, "Exibe")
+
+Rel_D(f_quiz, c_api, "Usa")
+Rel_D(f_mock, c_api, "Usa")
+Rel_D(f_essays, c_api, "Usa")
+Rel_D(f_admin, c_api, "Usa")
+Rel_D(f_auth, c_auth, "Usa")
+
+Rel_R(c_auth, firebase, "Autentica", "SDK / HTTPS")
+Rel_D(c_api, api, "Requisições REST\ncom token", "HTTPS")
+
+SHOW_LEGEND()
+@enduml

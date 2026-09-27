@@ -84,7 +84,7 @@ Na prática, o que um usuário pode fazer é a soma das permissões que possui �
 Quando alguém tenta executar uma ação para a qual não tem permissão, a plataforma informa **qual permissão está faltando** e orienta a procurar um administrador — em vez de simplesmente negar o acesso.
 
 !!! note "Por que este modelo importa para a documentação"
-    Como as capacidades não derivam de um cargo, a documentação de uso **não se organiza por perfil**. Cada tarefa indica a permissão que exige, permitindo que qualquer usuário identifique o que pode fazer a partir do que possui. Ver [Planejamento da Documentação](planejamento.md#-fase-4--usuario).
+    Como as capacidades não derivam de um cargo, a documentação de uso **não se organiza por perfil**. Cada tarefa indica a permissão que exige, permitindo que qualquer usuário identifique o que pode fazer a partir do que possui. Ver [Planejamento da Documentação](planejamento.md#fase-4-usuario).
 
 ---
 
@@ -132,8 +132,9 @@ Cada questão de múltipla escolha registra suas alternativas com indicação de
 
 | Camada | Tecnologia |
 |---|---|
-| **Frontend** | Next.js e React, hospedados na Vercel |
-| **Backend** | Python 3.12 com FastAPI, em arquitetura assíncrona, hospedado em VPS |
+| **Frontend** | React e TypeScript, construído com Vite |
+| **Backend** | Python 3.12 com FastAPI, em arquitetura assíncrona |
+| **Hospedagem** | Servidor próprio (VPS), com frontend, backend e banco sob o domínio `ifvest.com.br` |
 | **Banco de dados** | PostgreSQL 16 |
 | **Autenticação** | Firebase Authentication, com login por e-mail/senha e Google |
 | **Infraestrutura local** | Docker Compose |
@@ -170,11 +171,9 @@ O detalhamento está em [Subprojetos Ativos](subprojetos/index.md).
 | Camada | Fonte | Data |
 |---|---|---|
 | Proposta de valor, escopo, público-alvo, taxonomia, permissões e módulos | Documentação do repositório do backend (README — Visão de Negócio) | set/2026 |
-| Escopo do MVP, stack e infraestrutura | Documento de onboarding do projeto | set/2026 |
+| Escopo dos módulos, stack e hospedagem | Código-fonte e configuração de produção do `ifvest-monorepo` | set/2026 |
 | Regras de atribuição de permissões e mensagens de restrição | Código-fonte do backend (`src/core/permissions.py`) | set/2026 |
 | Estrutura do banco de questões e da taxonomia | Modelo relacional do backend (`docs/database_model.md`) | set/2026 |
 
-!!! note "Divergência entre fontes quanto ao escopo da primeira versão"
-    O documento de onboarding indica que a primeira versão contempla os módulos de **Redação, Quiz e Simulados**, ficando Revisão e Flashcards para depois. O roadmap do repositório do backend, por sua vez, situa **Redação e Quiz** em uma segunda fase de implementação.
-
-    ⬜ *A esclarecer com a coordenação do projeto.* Esta página descreve os módulos previstos para a plataforma, sem afirmar quais estarão disponíveis na primeira entrega.
+!!! note "Escopo da primeira versão — divergência resolvida"
+    O documento de onboarding e o roadmap do repositório do backend divergiam sobre quais módulos entrariam primeiro. O **código em produção resolve a questão**: ele define os módulos por meio de *feature flags*, com **Quiz, Redação e Simulados** implementados e **Revisão e Flashcards** marcados como em construção — o que confirma o onboarding. Ver [Arquitetura — Feature flags](arquitetura.md#feature-flags).

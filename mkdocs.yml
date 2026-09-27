@@ -3,9 +3,10 @@ site_description: Documentação oficial da plataforma IFVest — IFSP Campus Ja
 site_author: Ithalo Cavalcante Gomes
 site_url: https://IthaloCavalcante.github.io/ifvest-docs/
 
-# Link do repositório no header"
+# Link do repositório no header+ + botão de editar 
 repo_url: https://github.com/IthaloCavalcante/ifvest-docs
 repo_name: ifvest-docs
+edit_uri: edit/main/docs/
 
 copyright: IFVest — Projeto de Extensão · IFSP Campus Jacareí · Tecnologia em Análise e Desenvolvimento de Sistemas
 
@@ -56,6 +57,7 @@ theme:
     - search.share
     # Conteúdo
     - content.code.copy           # botão de copiar nos blocos de código
+    - content.action.edit         # lápis de editar a página no GitHub
     - content.tooltips
 
 extra_css:
@@ -73,6 +75,7 @@ extra:
 plugins:
   - search:
       lang: pt        # busca com processamento em português
+  - swagger-ui-tag     # renderiza a especificação OpenAPI na Referência da API
 
 markdown_extensions:
   - admonition
@@ -89,7 +92,7 @@ markdown_extensions:
   - tables
   - footnotes
   - toc:
-      permalink: true          # ancora de link do lado dos títulos
+      permalink: true          # ancora de link do lado dos titulos
       permalink_title: Link para esta seção
       toc_depth: 3
   - pymdownx.emoji:
@@ -105,6 +108,8 @@ nav:
   - O Sistema:
     - Descrição do Sistema: descricao-do-sistema.md
     - Arquitetura do Sistema: arquitetura.md
+    - Modelo de Dados: modelo-de-dados.md
+    - Referência da API: api.md
     - Diagramas C4:
       - Nível 1 — Contexto: c4/contexto.md
       - Nível 2 — Contêineres: c4/containers.md
@@ -121,7 +126,7 @@ nav:
     - "Eixo 2: Qualidade, Testes e Acessibilidade": subprojetos/qualidade-e-testes.md
     - "Eixo 3: Inteligência Artificial e Recomendação": subprojetos/ia-e-recomendacao.md
     - "Eixo 4: Infraestrutura, APIs e Segurança": subprojetos/infra-e-seguranca.md
-    - Aplicações Derivadas:
+    - Produtos:
       - IFVest Reader: subprojetos/ifvest-reader.md
   - Guias de Uso:
     - Visão Geral: guias/index.md

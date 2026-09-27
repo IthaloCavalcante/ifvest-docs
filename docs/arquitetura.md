@@ -1,260 +1,349 @@
 # Arquitetura do Sistema
 
-O IFVest é uma aplicação web full-stack construída sobre Node.js, com arquitetura baseada em domínios e padrão MVC (Model-View-Controller). Esta página descreve como o sistema está organizado internamente, quais tecnologias compõem cada camada e como as partes se comunicam.
+Esta página descreve como o IFVest está construído: os componentes que formam a plataforma, como se comunicam, onde estão hospedados e como são entregues em produção.
+
+!!! info "Fonte desta descrição"
+    O conteúdo foi levantado diretamente do **repositório em produção** (`ifvest-monorepo`) — código-fonte, configurações de infraestrutura e pipeline de implantação. Onde a documentação de apoio da equipe diverge do código, **o código foi adotado**, conforme o [critério de evidência](planejamento.md#criterio-de-evidencia) desta documentação.
 
 ---
 
-## Visão Geral
+## Visão geral
 
+O IFVest é uma aplicação web composta por um **frontend de página única** e uma **API REST**, mantidos no mesmo repositório (monorepo) e publicados sob um **único domínio**.
+
+```mermaid
+flowchart LR
+    U["Usuário<br/>(navegador)"] -->|"HTTPS"| C["Caddy<br/>TLS e proxy reverso"]
+    C -->|"/api · /static · /imgs · /health"| A["api<br/>FastAPI"]
+    C -->|"demais caminhos"| W["web<br/>nginx + aplicação React"]
+    A --> D[("db<br/>PostgreSQL 16")]
+    W -.->|"autenticação"| F["Firebase<br/>Authentication"]
+    A -.->|"verificação do token"| F
 ```
-┌─────────────────────────────────────────────┐
-│                  USUÁRIO                    │
-│         (Navegador Web / Dispositivo)       │
-└───────────────────┬─────────────────────────┘
-                    │ HTTP/HTTPS
-┌───────────────────▼─────────────────────────┐
-│               FRONTEND                      │
-│     Bootstrap 5 + JavaScript (ES6+)         │
-│            Templates EJS                    │
-└───────────────────┬─────────────────────────┘
-                    │
-┌───────────────────▼─────────────────────────┐
-│               BACKEND                       │
-│         Node.js + Express.js                │
-│     Arquitetura MVC por domínios            │
-│    Middleware: Helmet, CORS, Sessões        │
-└───────────────────┬─────────────────────────┘
-                    │ Sequelize ORM
-┌───────────────────▼─────────────────────────┐
-│            BANCO DE DADOS                   │
-│   MySQL (produção) / PostgreSQL (testes)    │
-└─────────────────────────────────────────────┘
+
+| Componente | Tecnologia | Papel |
+|---|---|---|
+| **Frontend** | React + TypeScript, construído com Vite | Interface do usuário, executada no navegador |
+| **Backend** | Python + FastAPI | API REST com as regras de negócio |
+| **Banco de dados** | PostgreSQL 16 | Persistência de todos os dados da plataforma |
+| **Autenticação** | Firebase Authentication | Identidade dos usuários e emissão de tokens |
+| **Proxy reverso** | Caddy | Certificado TLS e roteamento das requisições |
+
+O repositório é organizado em duas aplicações independentes, cada uma com seus próprios testes, dependências e imagem de container:
+
+```text
+ifvest-monorepo/
+├── ifvest-backend/      # API FastAPI, modelos, serviços e migrations
+├── ifvest-frontend/     # aplicação React
+├── deploy/              # infraestrutura de produção
+└── .githooks/           # validações executadas antes de cada push
 ```
 
 ---
 
-## Diagramas C4
+## Topologia de produção
 
-A arquitetura está documentada em diagramas C4 separados por nível:
+A plataforma roda em uma **VPS única**, com quatro containers orquestrados por Docker Compose:
 
-- [Nível 1 — Contexto](c4/contexto.md)
-- [Nível 2 — Contêineres](c4/containers.md)
-- [Nível 3 — Componentes](c4/componentes.md)
+| Serviço | Imagem | Porta publicada | Função |
+|---|---|---|---|
+| `caddy` | Caddy 2 | **80 e 443** | Recebe todo o tráfego externo, emite o certificado TLS e distribui as requisições |
+| `web` | nginx | nenhuma | Serve os arquivos estáticos da aplicação React |
+| `api` | Python 3.12 | nenhuma | Executa a API FastAPI |
+| `db` | PostgreSQL 16 | nenhuma | Banco de dados |
 
----
+**Apenas o Caddy é acessível de fora.** Frontend, API e banco existem somente na rede interna do Compose — o banco de dados, em particular, não tem nenhuma porta exposta à internet.
 
-## Camadas do Sistema
+### Roteamento por caminho
 
-### Frontend
+Como frontend e API compartilham o mesmo domínio, o Caddy decide o destino de cada requisição pelo início do caminho:
 
-O frontend adota uma **arquitetura híbrida**: a base da aplicação é renderizada no servidor via **EJS** (Embedded JavaScript Templates), enquanto o editor de conteúdo do módulo de revisão utiliza componentes **React** compilados e servidos como assets estáticos.
+| Caminho | Destino |
+|---|---|
+| `/api/*` | API — endpoints da aplicação |
+| `/static/*` e `/imgs/*` | API — arquivos e imagens servidos pelo backend |
+| `/health` | API — verificação de disponibilidade |
+| qualquer outro | Frontend — a aplicação React assume o roteamento |
 
-Essa integração React é **isolada na pasta `editor_markdown/`**, que possui seu próprio `package.json` com React e Vite. O processo de build (`npm run build:editor`) compila os componentes e deposita os arquivos otimizados em `public/`, onde o Express os serve normalmente. O `package.json` principal do projeto não contém React nem Vite — eles são dependências exclusivas do subprojeto `editor_markdown/`.
+Estando tudo na mesma origem, **o navegador não precisa de CORS**: o frontend chama a API por caminhos relativos. A lista de origens permitidas continua configurada no backend, restrita ao próprio domínio, como camada adicional de proteção.
 
-A estilização global é feita com **Bootstrap 5**, complementada por folhas CSS personalizadas. A comunicação assíncrona entre frontend e backend é feita via **Axios** (v1.10.0).
-
-A renderização de conteúdo Markdown é feita com **marked** (v16.3.0), com suporte a equações matemáticas via extensão **marked-katex-extension** (v5.1.5). A geração de PDFs é feita no servidor via **Puppeteer** (v24.25.0), que controla uma instância headless do Chrome para renderizar e exportar páginas como PDF com fidelidade ao layout da aplicação.
-
-### Backend
-
-O backend é construído com **Node.js** (v22.5.0) e o framework web **Express.js** (v5.1.0). Ele é responsável por receber as requisições do usuário, processar a lógica de negócio e retornar as respostas.
-
-O sistema adota o padrão arquitetural **MVC**, organizado em domínios:
-
-```
-IFVest/
-├── .github/            # Configurações do GitHub (CI/CD workflows)
-├── config/             # Configurações do banco de dados
-├── domains/            # Módulos por domínio de negócio
-│   ├── simulados/      # Sistema de simulados e questões
-│   ├── revisao/        # Sistema de revisão de conteúdos
-│   ├── flashcards/     # Módulo de flashcards com repetição espaçada
-│   └── shared/         # Componentes compartilhados
-├── editor_markdown/    # Editor Markdown em React + Vite (build isolado, próprio package.json)
-├── logs/               # Logs de execução da aplicação
-├── middleware/         # Middlewares customizados (autenticação, segurança, validação)
-├── migrations/         # Migrações do banco de dados
-├── models/             # Modelos Sequelize (entidades do banco)
-├── modules/            # Módulos utilitários reutilizáveis
-├── public/             # Assets estáticos (CSS, JS, imagens, output do build React)
-├── routes/             # Rotas principais da aplicação
-├── seeders/            # Dados iniciais para o banco
-├── utils/              # Funções auxiliares gerais
-├── validations/        # Schemas de validação Zod por entidade
-├── views/              # Templates EJS
-├── ecosystem.config.js # Configuração do PM2 (gerenciador de processos)
-├── eslint.config.cjs   # Configuração do ESLint
-└── index.js            # Ponto de entrada da aplicação
-```
-
-A segurança é gerenciada por middlewares dedicados:
-
-- **Helmet** — define cabeçalhos HTTP de segurança
-- **CORS** — controla o acesso cross-origin
-- **Express-session** — gerencia sessões de usuário autenticado
-- **Validação em duas camadas** — client-side via JavaScript (feedback visual imediato, bloqueio de caracteres inválidos) e server-side via middleware **Zod** (`validateRequest`), que intercepta requisições antes dos controllers e aplica schemas tipados por entidade (Autenticação, Questões, Simulados, Tópicos, Conteúdos)
-- Prevenção de **SQL Injection** via expressão regular no middleware Zod, rejeitando termos reservados SQL em todos os campos de texto
-- **Criptografia de senhas** com `bcrypt` e criptografia de URLs de recuperação
-
-### Banco de Dados
-
-O banco de dados principal é o **MySQL**, utilizado em desenvolvimento e produção. Em ambiente de testes, é utilizado o **PostgreSQL**. O acesso ao banco é feito exclusivamente através do **Sequelize** (v6.37.3), um ORM (Object-Relational Mapper) que abstrai as queries SQL e gerencia as migrações e seeders.
-
-### Infraestrutura de Hospedagem
-
-A plataforma está disponível publicamente em `ifvest.jcr.ifsp.edu.br`, hospedada em servidor externo provido pelo serviço [GoInfinite](https://goinfinite.net). O gerenciamento de processos em produção é feito via **PM2** (v6.0.5), configurado no arquivo `ecosystem.config.js`.
-
-As principais entidades do sistema são:
-
-**Cadastro e acesso**
-
-| Tabela | Descrição |
-|--------|-----------|
-| `usuarios` | Dados de cadastro, autenticação e perfil do usuário |
-| `sessions` | Sessões ativas, persistidas em banco pelo `connect-session-sequelize` |
-
-**Organização de conteúdo**
-
-| Tabela | Descrição |
-|--------|-----------|
-| `areas` | Disciplinas/áreas de conhecimento disponíveis na plataforma |
-| `topicos` | Tópicos de estudo organizados por área |
-| `assuntos` | Assuntos em estrutura hierárquica, com autorreferência que permite subassuntos |
-
-**Banco de questões e simulados**
-
-| Tabela | Descrição |
-|--------|-----------|
-| `questoes` | Questões cadastradas na plataforma (objetivas e dissertativas) |
-| `opcoes` | Alternativas de resposta de cada questão objetiva, com indicação da correta |
-| `questoes_topicos` | Associação entre questões e tópicos (relação N:N) |
-| `simulados` | Simulados criados pelos professores |
-| `perguntas_provas` | Associação entre questões e simulados (relação N:N) |
-| `respostas` | Respostas submetidas pelos alunos em cada simulado |
-
-**Materiais de revisão**
-
-| Tabela | Descrição |
-|--------|-----------|
-| `conteudos` | Materiais de estudo em Markdown, com título, links externos e contador de leituras |
-| `palavras_chave` | Palavras-chave utilizadas na busca de materiais |
-| `tag_conteudo` | Associação entre materiais e palavras-chave (relação N:N) |
-
-**Flashcards e gamificação**
-
-| Tabela | Descrição |
-|--------|-----------|
-| `flashcards` | Cartões de estudo categorizados por área, tópico e nível de dificuldade |
-| `dificuldades` | Níveis de dificuldade disponíveis para classificação |
-| `flashcard_usuario` | Histórico de revisão por usuário (relação N:N); sustenta a lógica de repetição espaçada |
-| `placar` | Pontuações registradas no módulo IFQuiz (acertos, total de questões, porcentagem e data) |
-
-**Controle interno**
-
-| Tabela | Descrição |
-|--------|-----------|
-| `SequelizeMeta` | Controle de migrações gerenciado pelo Sequelize |
+O domínio de produção é **`ifvest.com.br`**, com certificado Let's Encrypt emitido e renovado automaticamente pelo Caddy. O endereço `www` redireciona permanentemente para o domínio principal.
 
 ---
 
-## Tecnologias Utilizadas
+## Backend
 
-### Backend
+### Tecnologias
+
+| Tecnologia | Versão mínima | Função |
+|---|---|---|
+| Python | 3.12 | Linguagem |
+| FastAPI | 0.115 | Framework da API |
+| Uvicorn | 0.32 | Servidor ASGI |
+| SQLAlchemy | 2.0 | ORM, em modo assíncrono |
+| asyncpg | 0.30 | Driver assíncrono do PostgreSQL |
+| Alembic | 1.14 | Migrations do banco de dados |
+| Pydantic | 2.10 | Validação de dados e esquemas da API |
+| pydantic-settings | 2.7 | Configuração por variáveis de ambiente |
+| firebase-admin | 6.5 | Verificação dos tokens de autenticação |
+
+### Organização
+
+```text
+ifvest-backend/src/
+├── api/v1/       # rotas: auth, users, quiz, mocktests, essays, features
+├── core/         # segurança, Firebase, permissões, feature flags
+├── models/       # modelos de dados (SQLAlchemy)
+├── schemas/      # contratos de entrada e saída da API (Pydantic)
+├── services/     # regras de negócio de cada módulo
+└── scripts/      # rotinas auxiliares, como carga de dados
+```
+
+O código segue uma **separação em camadas**: as rotas recebem e validam a requisição, os serviços aplicam as regras de negócio e os modelos representam as tabelas. As rotas não acessam o banco diretamente.
+
+Toda a comunicação com o banco é **assíncrona**, o que permite à API atender várias requisições simultâneas sem bloquear enquanto aguarda o banco de dados.
+
+---
+
+## Frontend
+
+### Tecnologias
+
 | Tecnologia | Versão | Função |
-|------------|--------|--------|
-| Node.js | 22.5.0 | Runtime JavaScript |
-| Express.js | 5.1.0 | Framework web |
-| Sequelize | 6.37.3 | ORM para banco de dados |
-| EJS | 3.1.9 | Template engine (renderização server-side) |
-| Express-session | 1.17.3 | Gerenciamento de sessões de usuário |
-| connect-session-sequelize | 8.0.2 | Persistência de sessões no banco de dados |
-| Helmet | 8.1.0 | Cabeçalhos HTTP de segurança |
-| CORS | 2.8.5 | Cross-Origin Resource Sharing |
-| express-rate-limit | 7.5.0 | Limitação de taxa de requisições |
-| Zod | 3.25.64 | Validação de schemas server-side |
-| body-parser | 2.2.0 | Interpretação do corpo das requisições |
-| express-ejs-layouts | 2.5.1 | Layouts reutilizáveis nas views EJS |
-| method-override | 3.0.0 | Suporte a PUT e DELETE a partir de formulários HTML |
-| bcrypt | 5.1.1 | Criptografia de senhas |
-| Multer | 1.4.5-lts.1 | Upload de arquivos (imagens de perfil, materiais) |
-| Puppeteer | 24.25.0 | Geração de PDFs via Chrome headless (server-side) |
-| dotenv | 16.4.5 | Carregamento de variáveis de ambiente |
-| Nodemon | 3.0.1 | Auto-reload em desenvolvimento |
-| PM2 | 6.0.5 | Gerenciador de processos em produção |
+|---|---|---|
+| React | 19 | Biblioteca de interface |
+| TypeScript | 5.7 | Linguagem, com tipagem estática |
+| Vite | 6 | Ferramenta de build e servidor de desenvolvimento |
+| React Router | 7 | Roteamento entre telas |
+| Firebase SDK | 12 | Autenticação no navegador |
 
-### Frontend
-| Tecnologia | Versão | Função |
-|------------|--------|--------|
-| Bootstrap | 5.3.8 | Framework CSS responsivo |
-| JavaScript | ES6+ | Lógica no cliente |
-| CSS3 | — | Estilização personalizada |
-| React + Vite | — | Editor Markdown interativo — isolados em `editor_markdown/` com build próprio; o output é servido como asset estático pelo Express |
-| Axios | 1.10.0 | Requisições HTTP assíncronas no cliente |
-| marked | 16.3.0 | Renderização de Markdown no servidor |
-| marked-katex-extension | 5.1.5 | Suporte a equações matemáticas LaTeX no Markdown |
-| markdown-it | 14.1.0 | Parser Markdown alternativo (uso interno) |
+### Organização
 
-### Banco de Dados
-| Tecnologia | Uso |
-|------------|-----|
-| MySQL | Desenvolvimento e produção |
-| PostgreSQL | Ambiente de testes |
-| MariaDB | Suporte adicional |
+```text
+ifvest-frontend/src/
+├── core/                  # infraestrutura compartilhada
+│   ├── api/               # cliente HTTP de acesso à API
+│   ├── auth/              # sessão e integração com o Firebase
+│   ├── features/          # leitura e aplicação das feature flags
+│   ├── layout/            # estrutura visual comum às telas
+│   └── types/             # tipos compartilhados
+├── features/              # uma pasta por módulo
+│   ├── auth/  home/  quiz/  essays/  mocktests/  admin/
+│   └── underDevelopment/  # tela exibida para módulos ainda desativados
+└── router/                # definição das rotas da aplicação
+```
 
-### Ferramentas de Desenvolvimento e Testes
-| Tecnologia | Versão | Função |
-|------------|--------|--------|
-| Jest | 29.7.0 | Testes unitários |
-| Cypress | 15.0.0 | Testes end-to-end |
-| ESLint | 9.27.0 | Análise estática de código |
-| sequelize-cli | 6.6.0 | Gerenciamento de migrações e seeders via CLI |
-| supertest | 7.0.0 | Testes de integração de rotas HTTP |
+A organização é **por funcionalidade**: cada módulo da plataforma tem sua própria pasta, com telas, componentes e testes, enquanto `core/` concentra o que é compartilhado.
+
+Em produção, o frontend é compilado em arquivos estáticos e servido pelo nginx. Não há renderização no servidor: toda a interface é montada no navegador.
 
 ---
 
-## Interface de Programação (API)
+## Autenticação e autorização
 
-A plataforma expõe rotas REST que retornam dados em JSON, utilizadas pelos componentes de interface — como o placar do IFQuiz e a consulta de áreas e tópicos. As demais rotas seguem o modelo tradicional de renderização no servidor.
+A plataforma separa duas responsabilidades: **quem é o usuário** fica com o Firebase; **o que ele pode fazer** fica com o backend.
 
-A relação completa das rotas, com seus métodos, parâmetros e respostas, é mantida na **especificação da API** produzida pelos subprojetos responsáveis, em formato OpenAPI (Swagger). ⬜ *A referência será incluída aqui quando a especificação estiver publicada.*
+```mermaid
+sequenceDiagram
+    participant U as Usuário
+    participant W as Frontend
+    participant F as Firebase
+    participant A as API
+    participant D as Banco
 
-O comportamento de cada módulo, do ponto de vista funcional, está descrito em [Descrição das Funcionalidades](funcionalidades.md).
+    U->>W: e-mail e senha, ou conta Google
+    W->>F: solicita autenticação
+    F-->>W: token de identidade
+    W->>A: requisição com o token no cabeçalho
+    A->>F: verifica a assinatura do token
+    A->>D: busca o usuário e suas permissões
+    A-->>W: resposta, conforme as permissões
+```
 
-## Integrações Externas
+O backend **nunca recebe a senha do usuário**. Ele recebe apenas o token emitido pelo Firebase, verifica sua autenticidade com o SDK administrativo e, a partir do e-mail contido nele, carrega as permissões do usuário no banco.
 
-O sistema conta com uma integração externa em uso e outras em desenvolvimento ativo ou planejadas:
+### Permissões
 
-| Integração | Finalidade | Status |
-|------------|------------|--------|
-| [enem.dev](https://enem.dev) | Importação de questões do ENEM para o módulo IFQuiz | Em uso |
-| API da FUVEST | Extração de questões da FUVEST para o banco de dados | Em desenvolvimento |
-| API da UNICAMP | Extração de questões da UNICAMP para o banco de dados | Em desenvolvimento |
-| API de outro vestibular | Extração de questões de vestibular adicional para o banco de dados | Em desenvolvimento |
-| Firebase Authentication | Login social via conta Google | Planejado |
-| Elastic Search | Busca avançada de materiais por palavra-chave | Planejado |
-| Redis | Cache para otimização de consultas frequentes | Planejado |
+A autorização é feita por **permissões granulares**, sem papéis fixos. O catálogo atual tem cinco permissões:
 
-!!! info "Subprojetos ativos"
-    As integrações com as APIs da FUVEST, UNICAMP e demais vestibulares são subprojetos de extensão em andamento no IFSP Campus Jacareí. A documentação detalhada de cada subprojeto está disponível na seção [Subprojetos Ativos](subprojetos/index.md).
+| Permissão | Autoriza |
+|---|---|
+| `admin_permission` | Administração da plataforma e gestão de permissões |
+| `create_content_permission` | Criar conteúdo pedagógico |
+| `edit_content_permission` | Editar conteúdo pedagógico |
+| `create_essay_proposal_permission` | Publicar propostas de redação |
+| `grade_essay_permission` | Corrigir redações |
+
+As permissões iniciais são atribuídas no primeiro acesso, conforme o e-mail do usuário:
+
+| E-mail | Permissões atribuídas |
+|---|---|
+| Administrador inicial, definido na configuração | Todas as cinco |
+| Domínio `@ifsp.edu.br` | Criar e editar conteúdo |
+| Demais | Nenhuma permissão especial |
+
+As demais concessões são feitas individualmente por um administrador.
+
+### Ambiente de desenvolvimento
+
+Para desenvolver sem depender do Firebase, o backend aceita **tokens simulados** que representam perfis de teste — estudante, professor, corretor e administrador. Em produção esse mecanismo é desativado pela variável de ambiente, e a configuração de implantação o bloqueia mesmo que a opção seja ativada por engano.
 
 ---
 
-## Evolução da Stack
+## Feature flags
 
-O sistema passou por uma migração significativa desde sua concepção:
+Os módulos da plataforma são ligados e desligados por **feature flags**, sem necessidade de alterar código ou refazer a implantação.
 
-| Versão | Stack | Origem | Período |
-|--------|-------|--------|---------|
-| v1 (original) | PHP + MariaDB + MVC nativo | TCCs de Fonseca e Sousa | 2021 |
-| v2 (atual) | Node.js + Express + Sequelize + MySQL + EJS | TCC de Cristian Zago Da Silva | 2024 |
-| v2.x (atual) | Integração híbrida de componentes React via Vite + Zod + Axios | Projeto de extensão | 2025–2026 |
-| v3 (em desenvolvimento) | Reescrita do frontend em React, com redesign completo da interface | Projeto de extensão | 2026– |
+| Módulo | Funcionalidades controladas separadamente |
+|---|---|
+| **IFQuiz** | Pergunta do dia, ranking, loja de avatares, criação de quiz personalizado |
+| **Redação** | Correção de redações, criação de propostas |
+| **Simulados** | Simulado aleatório, exportação em PDF, cadastro de questões |
+| **Flashcards** | — *(em construção)* |
+| **Revisão** | — *(em construção)* |
+| **Administração** | — |
 
-A migração de PHP para Node.js foi realizada integralmente por Cristian Rodolfo Zago Da Silva como seu TCC (2024). A reconstrução manteve a arquitetura MVC e os conceitos de domínio da v1, modernizando a stack para o ecossistema JavaScript e unificando a linguagem entre frontend e backend. É essa versão que está em produção hoje e sobre a qual os subprojetos ativos de extensão operam.
+As flags obedecem a uma **hierarquia**: desligar um módulo desliga automaticamente todas as suas funcionalidades. O estado de cada flag pode vir de variável de ambiente ou do banco de dados, o que permite alterá-lo em produção pelo painel administrativo.
 
-A versão em produção adota uma **estratégia de integração híbrida incremental**: componentes React são compilados com Vite e injetados como assets estáticos nas páginas EJS existentes, permitindo modernizar partes críticas da interface — como o editor de materiais — sem substituir o backend ou reescrever o código legado.
+O controle é aplicado **nas duas pontas**: o backend recusa chamadas a funcionalidades desligadas, e o frontend oculta as telas correspondentes, exibindo uma página de "em desenvolvimento" no lugar.
 
-!!! info "Reescrita do frontend em andamento"
-    Desde 2026, um subprojeto de extensão conduz a **reescrita completa do frontend em React**, acompanhada de redesign de toda a interface. Diferente da integração híbrida descrita acima, trata-se da substituição das telas construídas em EJS.
+!!! note "O que está ligado em produção"
+    O código define quais flags existem; **quais estão ativas é estado da produção**, configurado no banco e no ambiente. A lista acima descreve o que a plataforma é capaz de controlar, não o que está disponível neste momento. ⬜ *A registrar o estado das flags na primeira versão publicada.*
 
-    Enquanto essa entrega não é concluída, esta documentação descreve a plataforma em produção, e a documentação de usuário é produzida tendo a versão refatorada como referência. Ver [Planejamento da Documentação](planejamento.md) e [Subprojetos Ativos](subprojetos/index.md).
+---
+
+## Dados
+
+O banco de dados tem **22 tabelas e 27 chaves estrangeiras**, organizadas em sete domínios:
+
+| Domínio | Tabelas |
+|---|---|
+| Usuários e permissões | `users`, `permissions`, `user_permissions` |
+| Taxonomia | `disciplines`, `subjects`, `topics` |
+| Banco de questões | `multiple_choice_questions`, `alternatives`, `question_topics` |
+| Simulados | `fixed_mocktests`, `questions_mocktests`, `user_mocktests` |
+| Quiz e gamificação | `quiz_history`, `question_history`, `items`, `transactions` |
+| Redação | `proposals`, `support_texts`, `essays`, `gradings`, `essay_annotations` |
+| Plataforma | `feature_flags` |
+
+O diagrama completo, com colunas e relacionamentos por domínio, está em **[Modelo de Dados](modelo-de-dados.md)**.
+
+### Armazenamento de arquivos
+
+A plataforma usa **duas estratégias** para arquivos:
+
+- **Imagens das questões** são gravadas como arquivos em um volume persistente e servidas pela API em `/static` e `/imgs`.
+- **Fotos de perfil** e **imagens dos textos de apoio** das propostas de redação são gravadas **dentro do banco**, como dados binários.
+
+O armazenamento no banco simplifica a implantação, mas aumenta o tamanho do banco e dos backups conforme o volume de imagens cresce.
+
+### Migrations
+
+A estrutura do banco é controlada pelo **Alembic**. Cada alteração nos modelos gera uma migration versionada, aplicada automaticamente na implantação. Atualmente há três:
+
+| Migration | Alteração |
+|---|---|
+| Schema inicial | Criação das tabelas da plataforma |
+| Feature flags | Tabela de controle dos módulos |
+| Tags e títulos | Tags nas propostas de redação e título nos textos de apoio |
+
+Em produção, a criação automática de tabelas fica **desligada de propósito**: com ela ativa, uma migration esquecida passaria despercebida, porque a tabela seria criada de qualquer forma.
+
+---
+
+## API
+
+A API segue o padrão **REST**, com troca de dados em JSON, e está versionada sob o prefixo `/api/v1`. Ela expõe **43 rotas**:
+
+| Grupo | Rotas | Cobre |
+|---|---|---|
+| `quiz` | 17 | Partidas, pergunta do dia, ranking, loja e histórico |
+| `mocktests` | 14 | Questões, simulados e tentativas |
+| `essays` | 11 | Propostas, redações e correções |
+| `users` | 4 | Perfil do usuário |
+| `features` | 3 | Consulta e alteração das feature flags |
+| `auth` | 2 | Sessão do usuário |
+
+A especificação completa, com todos os parâmetros e respostas, está em **[Referência da API](api.md)**.
+
+!!! note "A documentação interativa da API não é pública em produção"
+    O FastAPI gera automaticamente uma interface interativa da API, mas em produção ela está **fechada de propósito**: as rotas de documentação não são encaminhadas ao backend. A especificação publicada nesta documentação foi gerada a partir do código-fonte, sem expor o ambiente de produção.
+
+---
+
+## Qualidade e testes
+
+| | Backend | Frontend |
+|---|---|---|
+| **Testes** | pytest, com cobertura mínima de **90% dos ramos** | Vitest (unitários) e Playwright (ponta a ponta) |
+| **Análise estática** | Ruff (lint e formatação) | ESLint e verificação de tipos do TypeScript |
+| **Complexidade** | Limite de complexidade ciclomática 9 por função | Regras do plugin SonarJS |
+
+### Validação antes do push
+
+O repositório inclui um **hook de pre-push** que identifica quais aplicações foram alteradas e executa apenas as validações correspondentes — lint e testes do backend, ou tipos, lint e testes do frontend. O push é bloqueado se alguma falhar.
+
+!!! warning "O hook precisa ser ativado em cada máquina"
+    Hooks do Git não são ativados automaticamente ao clonar o repositório. Cada desenvolvedor precisa executar uma vez `git config core.hooksPath .githooks`. Sem isso, a validação não acontece.
+
+---
+
+## Implantação
+
+A implantação é feita por um **workflow do GitHub Actions**, disparado manualmente, que permite atualizar a plataforma inteira ou apenas o frontend ou o backend.
+
+```mermaid
+flowchart LR
+    S["Sincroniza o código<br/>com a VPS"] --> B["Constrói as<br/>imagens"]
+    B --> D["Garante o banco<br/>disponível"]
+    D --> M["Aplica as<br/>migrations"]
+    M --> U["Sobe os<br/>containers"]
+    U --> V["Verifica as rotas<br/>principais"]
+```
+
+A ordem é deliberada: **as migrations são aplicadas antes da nova versão subir**. Se uma migration falhar, a implantação é interrompida e a versão anterior continua no ar — a plataforma nunca fica rodando código novo contra um banco desatualizado.
+
+Ao final, o workflow confere se a página inicial, a verificação de disponibilidade e a consulta de feature flags respondem com sucesso, e marca a implantação como falha caso contrário.
+
+---
+
+## Operação e segurança
+
+| Aspecto | Configuração |
+|---|---|
+| **Backup** | Cópia completa do banco diariamente às 3h, com retenção de 14 dias |
+| **Firewall** | Apenas as portas 22 (SSH), 80 e 443 aceitam conexões |
+| **Acesso ao servidor** | Somente por chave SSH, com bloqueio automático após tentativas repetidas de invasão |
+| **Cabeçalhos HTTP** | HSTS, bloqueio de incorporação em outros sites e proteção contra interpretação indevida de conteúdo |
+| **Credenciais** | Arquivos de configuração e credenciais do Firebase existem apenas no servidor e nunca são sincronizados pela implantação |
+| **Logs** | Rotação automática dos logs dos containers e do acesso ao Caddy |
+
+---
+
+## Pontos de atenção
+
+Itens identificados na análise do repositório, relevantes para a evolução da plataforma:
+
+| Ponto | Situação |
+|---|---|
+| ⬜ **Integração contínua inativa** | Os workflows de testes do backend e do frontend estão em subpastas do monorepo. O GitHub Actions só executa workflows da raiz do repositório, e por isso eles **não estão sendo executados** — a validação depende do hook local. |
+| ⬜ **Sem limite de requisições** | Nenhum endpoint tem limite de taxa, o que deixa a API exposta a uso abusivo. Pendência já registrada pela equipe. |
+| ⬜ **Permissões atribuídas a e-mails fixos** | A lógica de permissões iniciais concede permissão de correção de redações a dois endereços de e-mail específicos, aparentemente usados em testes. |
+| ⬜ **Extrator de questões por IA** | Não há, no repositório, integração com o extrator de questões. A forma de alimentação do banco por ele ainda não está definida no código. |
+
+---
+
+## Fontes desta página
+
+| Conteúdo | Fonte | Data |
+|---|---|---|
+| Stack, organização e dependências | Código-fonte do `ifvest-monorepo` (`requirements.txt`, `package.json`, estrutura de `src/`) | set/2026 |
+| Topologia, roteamento, segurança e backup | Configuração de produção (`deploy/docker-compose.prod.yml`, `deploy/Caddyfile`, `deploy/README.md`) | set/2026 |
+| Autenticação e permissões | `src/core/security.py`, `src/core/firebase.py` e `src/core/permissions.py` | set/2026 |
+| Feature flags | `src/services/feature_flags_service.py` e migrations do Alembic | set/2026 |
+| Modelo de dados | Metadados dos modelos SQLAlchemy, lidos diretamente do código | set/2026 |
+| API | Especificação OpenAPI gerada a partir do código-fonte | set/2026 |
+| Implantação | Workflow `.github/workflows/cd.yml` | set/2026 |
+
+!!! note "Divergência na documentação de implantação"
+    A documentação de implantação do repositório registra, entre seus pontos em aberto, a ausência de migrations — mas o próprio repositório já contém as migrations do Alembic, e a seção anterior do mesmo documento descreve seu funcionamento. Menciona ainda um script de implantação que não está no repositório, substituído pelo workflow do GitHub Actions. Esta página adota o estado verificado no código.

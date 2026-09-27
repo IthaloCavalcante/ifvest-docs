@@ -1,0 +1,26 @@
+@startuml C4_Container_IFVest_Auth
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+title Contêineres — IFVest (C4 L2 · Autenticação)
+
+LAYOUT_LEFT_RIGHT()
+
+Person(usuario, "Usuário", "Qualquer perfil da plataforma")
+
+System_Boundary(ifvest, "IFVest") {
+    Container(web, "Aplicação Web", "React + Firebase SDK", "Obtém o token e o envia\nem cada requisição")
+    Container(api, "API", "FastAPI + firebase-admin", "Verifica o token e carrega\nas permissões do usuário")
+    ContainerDb(db, "Banco de Dados", "PostgreSQL 16", "Guarda os usuários\ne suas permissões")
+}
+
+System_Ext(firebase, "Firebase Authentication", "E-mail e senha\nou conta Google")
+
+Rel_R(usuario, web, "Informa credenciais", "HTTPS")
+Rel_R(web, firebase, "Solicita autenticação", "SDK / HTTPS")
+Rel_L(firebase, web, "Devolve o token\nde identidade", "HTTPS")
+Rel_D(web, api, "Requisição com o token\nno cabeçalho Authorization", "REST / HTTPS")
+Rel_R(api, firebase, "Verifica a assinatura\ndo token", "SDK Admin / HTTPS")
+Rel_D(api, db, "Busca o usuário\ne suas permissões", "SQL")
+
+SHOW_LEGEND()
+@enduml

@@ -1,3 +1,4 @@
 mkdocs-material
 pymdown-extensions
 plantuml-markdown
+mkdocs-swagger-ui-tag
