@@ -2,7 +2,7 @@
 
 Documentação técnica oficial da plataforma **IFVest**, projeto de extensão do IFSP Campus Jacareí dedicado à preparação gratuita de estudantes para o ENEM e vestibulares.
 
-[Acessar a Plataforma IFVest](https://ifvest.jcr.ifsp.edu.br/home){ .md-button .md-button--primary target="_blank" }
+[Acessar a Plataforma IFVest](https://ifvest.com.br/){ .md-button .md-button--primary target="_blank" }
 
 !!! warning "Projeto em desenvolvimento ativo"
     O IFVest evolui continuamente através de múltiplos subprojetos de extensão. Esta documentação acompanha o estado real do sistema e é atualizada conforme o desenvolvimento avança — consulte o [planejamento](planejamento.md) para o status de cada item.

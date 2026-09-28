@@ -1,10 +1,11 @@
 site_name: IFVest — Documentação
 site_description: Documentação oficial da plataforma IFVest — IFSP Campus Jacareí
 site_author: Ithalo Cavalcante Gomes
-site_url: https://IthaloCavalcante.github.io/ifvest-docs/
+site_url: https://ifvest-project.github.io/ifvest-docs/
+
 
 # Link do repositório no header+ + botão de editar 
-repo_url: https://github.com/IthaloCavalcante/ifvest-docs
+repo_url: https://github.com/ifvest-project/ifvest-docs
 repo_name: ifvest-docs
 edit_uri: edit/main/docs/
 
@@ -66,10 +67,10 @@ extra_css:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/IthaloCavalcante/ifvest-docs
+      link: https://github.com/ifvest-project/ifvest-docs
       name: Repositório da documentação
     - icon: material/web
-      link: https://ifvest.jcr.ifsp.edu.br
+      link: https://ifvest.com.br/
       name: Plataforma IFVest
 
 plugins:

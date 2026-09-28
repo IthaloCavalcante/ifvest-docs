@@ -2,7 +2,7 @@
 
 Documentação técnica oficial da plataforma **IFVest**, projeto acadêmico voltado à preparação gratuita de estudantes para o ENEM e vestibulares.
 
-**➜ [Ler a documentação](https://IthaloCavalcante.github.io/ifvest-docs/)**
+**➜ [Ler a documentação](https://ifvest-project.github.io/ifvest-docs/)**
 
 ---
 
