@@ -1,0 +1,16 @@
+{#-
+  Logo IFVest — substitui o partial de logo do Material (partials/logo.html).
+
+  O tema inclui este arquivo nos dois lugares onde a logo aparece:
+  no cabeçalho e no topo do menu lateral (telas com menos de 1220 px).
+
+  Mesma estrutura do componente LogoIFVEST da plataforma
+  (ifvest-monorepo: ifvest-frontend/src/core/layout/LogoIFVEST.tsx):
+  texto estilizado, não imagem. Estilos em docs/stylesheets/logo-ifvest.css.
+
+  - <span> em vez de <div>: no menu lateral a logo fica dentro de um
+    <label>, e <label> só aceita elementos de linha.
+  - aria-hidden: o link em volta já se anuncia com o site_name
+    (aria-label); o texto da pílula é só visual.
+-#}
+<span class="ifvest-logo" aria-hidden="true"><span class="ifvest-logo__if">IF</span><span class="ifvest-logo__vest">Vest</span></span>

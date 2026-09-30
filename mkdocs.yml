@@ -13,6 +13,8 @@ copyright: IFVest — Projeto de Extensão · IFSP Campus Jacareí · Tecnologia
 
 theme:
   name: material
+  custom_dir: overrides   # templates que substituem os do tema (logo da plataforma)
+  favicon: images/favicon.svg   # o mesmo ícone da plataforma (ifvest-frontend/public/favicon.svg)
   language: pt
 
   # tema claro e escuro
@@ -37,7 +39,6 @@ theme:
     code: JetBrains Mono
 
   icon:
-    logo: material/school
     repo: fontawesome/brands/github
 
   features:
@@ -63,6 +64,7 @@ theme:
 
 extra_css:
   - stylesheets/extra.css
+  - stylesheets/logo-ifvest.css
 
 extra:
   social:
