@@ -66,6 +66,9 @@ extra_css:
   - stylesheets/extra.css
   - stylesheets/logo-ifvest.css
 
+extra_javascript:
+  - javascripts/swagger-instant.js   # Swagger da Referência da API com a navegação instantânea
+
 extra:
   social:
     - icon: fontawesome/brands/github
