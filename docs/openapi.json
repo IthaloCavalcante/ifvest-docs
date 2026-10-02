@@ -11,7 +11,7 @@
           "auth"
         ],
         "summary": "Login",
-        "description": "Autentica o usuario provisionando registro e permissoes caso nao existam.",
+        "description": "Autentica o usuario; na primeira vez cria o registro com as permissoes padrao.",
         "operationId": "login_api_v1_auth_login_post",
         "security": [
           {
@@ -115,13 +115,72 @@
         }
       }
     },
+    "/api/v1/users/permissions/available": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "List Available Permissions",
+        "description": "Catalogo de permissoes do sistema (fonte unica: core/permission_catalog.py).\n\nAntes juntava as linhas da tabela permissions, entao nomes digitados errado ou\nantigos continuavam aparecendo para concessao.",
+        "operationId": "list_available_permissions_api_v1_users_permissions_available_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AvailablePermissionResponse"
+                  },
+                  "title": "Response List Available Permissions Api V1 Users Permissions Available Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/users": {
       "get": {
         "tags": [
           "users"
         ],
         "summary": "List All Users",
-        "description": "Retorna todos os usuarios cadastrados e suas permissoes (restrito a admin com paginacao).",
+        "description": "Usuarios e permissoes, paginados (total em X-Total-Count), com busca opcional.\n\nA busca procura no e-mail, no apelido e no nome das permissoes. Antes a tela filtrava\nso os 50 usuarios carregados, e quem estava alem deles nao aparecia na busca.",
         "operationId": "list_all_users_api_v1_users_get",
         "security": [
           {
@@ -129,6 +188,23 @@
           }
         ],
         "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 100
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Search"
+            }
+          },
           {
             "name": "limit",
             "in": "query",
@@ -371,18 +447,80 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "anyOf": [
-                      {
-                        "type": "string"
-                      },
-                      {
-                        "type": "integer"
-                      }
-                    ]
-                  },
-                  "title": "Response Grant Permission To User Api V1 Users  User Id  Permissions Post"
+                  "$ref": "#/components/schemas/PermissionOperationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/{user_id}/permissions/{permission_name}": {
+      "delete": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Revoke Permission From User",
+        "description": "Remove uma permissao granular atribuida a um usuario.",
+        "operationId": "revoke_permission_from_user_api_v1_users__user_id__permissions__permission_name__delete",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "permission_name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Permission Name"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PermissionOperationResponse"
                 }
               }
             }
@@ -552,6 +690,441 @@
                     "type": "string"
                   },
                   "title": "Response Reset Feature To Default Api V1 Features  Flag Key  Delete"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/mocktests/questions": {
+      "get": {
+        "tags": [
+          "question-bank"
+        ],
+        "summary": "Search Questions",
+        "description": "Lista questoes filtradas para visualizacao ou composicao de simulados.",
+        "operationId": "search_questions_api_v1_mocktests_questions_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "exam_board",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Exam Board"
+            }
+          },
+          {
+            "name": "difficulty",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Difficulty"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Search"
+            }
+          },
+          {
+            "name": "discipline_name",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Discipline Name"
+            }
+          },
+          {
+            "name": "subject_name",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Subject Name"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0,
+              "title": "Offset"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/QuestionItemResponse"
+                  },
+                  "title": "Response Search Questions Api V1 Mocktests Questions Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "question-bank"
+        ],
+        "summary": "Create Question",
+        "description": "Cadastra nova questão com alternativas (restrito a professores com permissão de conteúdo).",
+        "operationId": "create_question_api_v1_mocktests_questions_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QuestionCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuestionItemResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/mocktests/questions/{question_id}": {
+      "get": {
+        "tags": [
+          "question-bank"
+        ],
+        "summary": "Get Question For Editing",
+        "description": "Questão completa com gabarito, para o formulário de edição (expõe a resposta certa).",
+        "operationId": "get_question_for_editing_api_v1_mocktests_questions__question_id__get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "question_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Question Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuestionEditableResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "question-bank"
+        ],
+        "summary": "Edit Question",
+        "description": "Edita a questão (ex.: corrigir o problema apontado em uma denúncia).",
+        "operationId": "edit_question_api_v1_mocktests_questions__question_id__put",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "question_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Question Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QuestionUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuestionEditableResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/mocktests/questions/{question_id}/report": {
+      "post": {
+        "tags": [
+          "question-bank"
+        ],
+        "summary": "Report Question",
+        "description": "Registra uma denúncia ou sinalização de erro em uma questão.",
+        "operationId": "report_question_api_v1_mocktests_questions__question_id__report_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "question_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Question Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QuestionReportCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuestionReportResponse"
                 }
               }
             }
@@ -823,231 +1396,6 @@
         }
       }
     },
-    "/api/v1/mocktests/questions": {
-      "get": {
-        "tags": [
-          "mocktests"
-        ],
-        "summary": "Search Questions",
-        "description": "Lista questoes filtradas para visualizacao ou composicao de simulados.",
-        "operationId": "search_questions_api_v1_mocktests_questions_get",
-        "security": [
-          {
-            "HTTPBearer": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "exam_board",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Exam Board"
-            }
-          },
-          {
-            "name": "difficulty",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "integer"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Difficulty"
-            }
-          },
-          {
-            "name": "search",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Search"
-            }
-          },
-          {
-            "name": "discipline_name",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Discipline Name"
-            }
-          },
-          {
-            "name": "subject_name",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Subject Name"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "maximum": 100,
-              "minimum": 1,
-              "default": 50,
-              "title": "Limit"
-            }
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 0,
-              "default": 0,
-              "title": "Offset"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Authorization"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/QuestionItemResponse"
-                  },
-                  "title": "Response Search Questions Api V1 Mocktests Questions Get"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "mocktests"
-        ],
-        "summary": "Create Question",
-        "description": "Cadastra nova questão com alternativas (restrito a professores com permissão de conteúdo).",
-        "operationId": "create_question_api_v1_mocktests_questions_post",
-        "security": [
-          {
-            "HTTPBearer": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Authorization"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/QuestionCreate"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/QuestionItemResponse"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/v1/mocktests/statistics": {
       "get": {
         "tags": [
@@ -1171,7 +1519,7 @@
           "mocktests"
         ],
         "summary": "Update Mocktest Item",
-        "description": "Atualiza dados cadastrais de um simulado (restrito ao criador ou usuarios com permissao docente/admin).",
+        "description": "Atualiza dados cadastrais de um simulado (criador, docente ou admin).",
         "operationId": "update_mocktest_item_api_v1_mocktests__mocktest_id__put",
         "security": [
           {
@@ -1243,7 +1591,7 @@
           "mocktests"
         ],
         "summary": "Delete Mocktest Item",
-        "description": "Remove permanentemente um simulado (restrito ao criador ou usuarios com permissao docente/admin).",
+        "description": "Remove permanentemente um simulado (criador, docente ou admin).",
         "operationId": "delete_mocktest_item_api_v1_mocktests__mocktest_id__delete",
         "security": [
           {
@@ -2690,6 +3038,61 @@
         }
       }
     },
+    "/api/v1/quiz/filtros": {
+      "get": {
+        "tags": [
+          "quiz"
+        ],
+        "summary": "Get Quiz Filter Options",
+        "description": "Disciplinas e assuntos que existem no banco de questões, com a contagem de cada um.",
+        "operationId": "get_quiz_filter_options_api_v1_quiz_filtros_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuizFilterOptionsResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/quiz/start": {
       "post": {
         "tags": [
@@ -3093,9 +3496,9 @@
         "tags": [
           "quiz"
         ],
-        "summary": "Fetch General Ranking",
-        "description": "Retorna a classificacao geral com podio e paginacao.",
-        "operationId": "fetch_general_ranking_api_v1_quiz_ranking_get",
+        "summary": "Fetch Ranking Board",
+        "description": "Classificação geral (pontuação acumulada) ou semanal (pontos ganhos na semana).",
+        "operationId": "fetch_ranking_board_api_v1_quiz_ranking_get",
         "security": [
           {
             "HTTPBearer": []
@@ -3111,6 +3514,20 @@
               "minimum": 1,
               "default": 1,
               "title": "Pagina"
+            }
+          },
+          {
+            "name": "periodo",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "geral",
+                "semanal"
+              ],
+              "type": "string",
+              "default": "geral",
+              "title": "Periodo"
             }
           },
           {
@@ -3136,7 +3553,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GeneralRankingResponse"
+                  "$ref": "#/components/schemas/RankingBoardResponse"
                 }
               }
             }
@@ -3478,6 +3895,255 @@
         }
       }
     },
+    "/api/v1/admin/dashboard": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Get Dashboard",
+        "description": "Retorna métricas consolidadas, KPIs, alertas e pódio para o dashboard administrativo.",
+        "operationId": "get_dashboard_api_v1_admin_dashboard_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdmDashboardResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/reports": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Get Reports",
+        "description": "Denúncias paginadas (total em X-Total-Count), por status e/ou questão.",
+        "operationId": "get_reports_api_v1_admin_reports_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "pending",
+                    "resolved",
+                    "dismissed"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Status"
+            }
+          },
+          {
+            "name": "question_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Question Id"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0,
+              "title": "Offset"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/QuestionReportResponse"
+                  },
+                  "title": "Response Get Reports Api V1 Admin Reports Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/reports/{report_id}": {
+      "patch": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Update Report",
+        "description": "Atualiza o status de moderação de uma denúncia.",
+        "operationId": "update_report_api_v1_admin_reports__report_id__patch",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "report_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Report Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QuestionReportStatusUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuestionReportResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/health": {
       "get": {
         "summary": "Health",
@@ -3497,6 +4163,191 @@
   },
   "components": {
     "schemas": {
+      "AdmDashboardResponse": {
+        "properties": {
+          "user_name": {
+            "type": "string",
+            "title": "User Name"
+          },
+          "stats": {
+            "items": {
+              "$ref": "#/components/schemas/AdmStatItem"
+            },
+            "type": "array",
+            "title": "Stats"
+          },
+          "modifications": {
+            "$ref": "#/components/schemas/AdmModifications"
+          },
+          "alerts": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Alerts"
+          },
+          "recent_updates": {
+            "items": {
+              "$ref": "#/components/schemas/AdmRecentUpdate"
+            },
+            "type": "array",
+            "title": "Recent Updates"
+          },
+          "podium": {
+            "items": {
+              "$ref": "#/components/schemas/AdmPodiumEntry"
+            },
+            "type": "array",
+            "title": "Podium"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_name",
+          "stats",
+          "modifications",
+          "alerts",
+          "recent_updates",
+          "podium"
+        ],
+        "title": "AdmDashboardResponse",
+        "description": "Resposta consolidada do dashboard administrativo."
+      },
+      "AdmModifications": {
+        "properties": {
+          "total_mods": {
+            "type": "integer",
+            "title": "Total Mods"
+          },
+          "active_admins": {
+            "type": "integer",
+            "title": "Active Admins"
+          },
+          "added_questions": {
+            "type": "integer",
+            "title": "Added Questions"
+          },
+          "removed_questions": {
+            "type": "integer",
+            "title": "Removed Questions"
+          },
+          "latest_report": {
+            "type": "string",
+            "title": "Latest Report"
+          }
+        },
+        "type": "object",
+        "required": [
+          "total_mods",
+          "active_admins",
+          "added_questions",
+          "removed_questions",
+          "latest_report"
+        ],
+        "title": "AdmModifications",
+        "description": "Métricas de modificações nos últimos 30 dias."
+      },
+      "AdmPodiumEntry": {
+        "properties": {
+          "rank": {
+            "type": "integer",
+            "title": "Rank"
+          },
+          "username": {
+            "type": "string",
+            "title": "Username"
+          }
+        },
+        "type": "object",
+        "required": [
+          "rank",
+          "username"
+        ],
+        "title": "AdmPodiumEntry",
+        "description": "Item do pódio semanal do IFQuiz."
+      },
+      "AdmRecentUpdate": {
+        "properties": {
+          "action": {
+            "type": "string",
+            "title": "Action"
+          },
+          "date": {
+            "type": "string",
+            "title": "Date"
+          }
+        },
+        "type": "object",
+        "required": [
+          "action",
+          "date"
+        ],
+        "title": "AdmRecentUpdate",
+        "description": "Registro de atividade recente no painel administrativo."
+      },
+      "AdmStatItem": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "value": {
+            "type": "integer",
+            "title": "Value"
+          },
+          "subtitle": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Subtitle"
+          },
+          "subtitle_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Subtitle Type"
+          },
+          "button_text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Button Text"
+          },
+          "button_variant": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Button Variant"
+          }
+        },
+        "type": "object",
+        "required": [
+          "title",
+          "value"
+        ],
+        "title": "AdmStatItem",
+        "description": "Card de estatística do dashboard administrativo."
+      },
       "AlternativeCreate": {
         "properties": {
           "alternative_letter": {
@@ -3597,6 +4448,25 @@
         ],
         "title": "AuthUserResponse",
         "description": "Schema de retorno para dados de autenticacao de usuario."
+      },
+      "AvailablePermissionResponse": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "description"
+        ],
+        "title": "AvailablePermissionResponse",
+        "description": "Descricao de uma permissao disponivel no sistema."
       },
       "AvatarStoreResponse": {
         "properties": {
@@ -4248,45 +5118,6 @@
         ],
         "title": "FeatureFlagUpdate"
       },
-      "GeneralRankingResponse": {
-        "properties": {
-          "jogador_local": {
-            "$ref": "#/components/schemas/RankingEntry"
-          },
-          "podio": {
-            "items": {
-              "$ref": "#/components/schemas/RankingEntry"
-            },
-            "type": "array",
-            "title": "Podio"
-          },
-          "lista": {
-            "items": {
-              "$ref": "#/components/schemas/RankingEntry"
-            },
-            "type": "array",
-            "title": "Lista"
-          },
-          "pagina": {
-            "type": "integer",
-            "title": "Pagina"
-          },
-          "tem_mais": {
-            "type": "boolean",
-            "title": "Tem Mais"
-          }
-        },
-        "type": "object",
-        "required": [
-          "jogador_local",
-          "podio",
-          "lista",
-          "pagina",
-          "tem_mais"
-        ],
-        "title": "GeneralRankingResponse",
-        "description": "Classificação geral com pódio, jogador local e paginação."
-      },
       "GradingCreateRequest": {
         "properties": {
           "c1_score": {
@@ -4893,44 +5724,45 @@
         "properties": {
           "patente_atual": {
             "type": "string",
-            "title": "Patente Atual",
-            "default": "Bronze"
+            "title": "Patente Atual"
           },
           "patente_proxima": {
             "type": "string",
-            "title": "Patente Proxima",
-            "default": "Prata"
+            "title": "Patente Proxima"
           },
           "pontos_atuais": {
             "type": "integer",
-            "title": "Pontos Atuais",
-            "default": 0
+            "title": "Pontos Atuais"
           },
           "pontos_necessarios": {
             "type": "integer",
-            "title": "Pontos Necessarios",
-            "default": 500
+            "title": "Pontos Necessarios"
           },
           "pontos_faltam": {
             "type": "integer",
-            "title": "Pontos Faltam",
-            "default": 500
+            "title": "Pontos Faltam"
           },
           "percentual_progresso": {
             "type": "number",
-            "title": "Percentual Progresso",
-            "default": 0.0
+            "title": "Percentual Progresso"
           }
         },
         "type": "object",
+        "required": [
+          "patente_atual",
+          "patente_proxima",
+          "pontos_atuais",
+          "pontos_necessarios",
+          "pontos_faltam",
+          "percentual_progresso"
+        ],
         "title": "PatentProgress",
         "description": "Progresso de patente do jogador."
       },
       "PermissionAssignRequest": {
         "properties": {
           "permission_name": {
-            "type": "string",
-            "title": "Permission Name"
+            "$ref": "#/components/schemas/PermissionName"
           }
         },
         "type": "object",
@@ -4939,6 +5771,44 @@
         ],
         "title": "PermissionAssignRequest",
         "description": "Payload para atribuicao de permissao a um usuario."
+      },
+      "PermissionName": {
+        "type": "string",
+        "enum": [
+          "admin_permission",
+          "create_question",
+          "create_mocktest",
+          "manage_mocktests",
+          "edit_question",
+          "create_essay_proposal_permission",
+          "grade_essay_permission"
+        ],
+        "title": "PermissionName",
+        "description": "Nomes aceitos pelo sistema; o valor é o que fica gravado em permissions.name."
+      },
+      "PermissionOperationResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "user_id": {
+            "type": "integer",
+            "title": "User Id"
+          },
+          "permission": {
+            "type": "string",
+            "title": "Permission"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "user_id",
+          "permission"
+        ],
+        "title": "PermissionOperationResponse",
+        "description": "Resposta estruturada para atribuicao ou revogacao de permissao."
       },
       "ProposalCreate": {
         "properties": {
@@ -5291,6 +6161,136 @@
         "title": "QuestionCreate",
         "description": "Payload para criação de nova questão por professores."
       },
+      "QuestionEditableAlternative": {
+        "properties": {
+          "alternative_letter": {
+            "type": "string",
+            "title": "Alternative Letter"
+          },
+          "alternative_text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Alternative Text"
+          },
+          "image_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Url"
+          },
+          "is_correct": {
+            "type": "boolean",
+            "title": "Is Correct"
+          }
+        },
+        "type": "object",
+        "required": [
+          "alternative_letter",
+          "is_correct"
+        ],
+        "title": "QuestionEditableAlternative",
+        "description": "Alternativa com gabarito, exposta só para quem pode editar questões."
+      },
+      "QuestionEditableResponse": {
+        "properties": {
+          "question_id": {
+            "type": "integer",
+            "title": "Question Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "supplementary_text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Supplementary Text"
+          },
+          "question_text": {
+            "type": "string",
+            "title": "Question Text"
+          },
+          "year": {
+            "type": "integer",
+            "title": "Year"
+          },
+          "exam_board": {
+            "type": "string",
+            "title": "Exam Board"
+          },
+          "number": {
+            "type": "integer",
+            "title": "Number"
+          },
+          "type_or_color": {
+            "type": "string",
+            "title": "Type Or Color"
+          },
+          "difficulty": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Difficulty"
+          },
+          "discipline_name": {
+            "type": "string",
+            "title": "Discipline Name"
+          },
+          "subject_name": {
+            "type": "string",
+            "title": "Subject Name"
+          },
+          "topic_name": {
+            "type": "string",
+            "title": "Topic Name"
+          },
+          "alternatives": {
+            "items": {
+              "$ref": "#/components/schemas/QuestionEditableAlternative"
+            },
+            "type": "array",
+            "title": "Alternatives"
+          }
+        },
+        "type": "object",
+        "required": [
+          "question_id",
+          "title",
+          "question_text",
+          "year",
+          "exam_board",
+          "number",
+          "type_or_color",
+          "discipline_name",
+          "subject_name",
+          "topic_name",
+          "alternatives"
+        ],
+        "title": "QuestionEditableResponse",
+        "description": "Questão completa (com gabarito e taxonomia) para preencher o formulário de edição."
+      },
       "QuestionItemResponse": {
         "properties": {
           "question_id": {
@@ -5392,6 +6392,199 @@
         "title": "QuestionItemResponse",
         "description": "Representação de questão com alternativas para montagem ou resolução."
       },
+      "QuestionReportCreate": {
+        "properties": {
+          "reason": {
+            "type": "string",
+            "maxLength": 255,
+            "minLength": 3,
+            "title": "Reason",
+            "description": "Motivo da sinalização"
+          },
+          "details": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Details",
+            "description": "Detalhes adicionais do reporte"
+          }
+        },
+        "type": "object",
+        "required": [
+          "reason"
+        ],
+        "title": "QuestionReportCreate",
+        "description": "Schema para criação de denúncia ou sinalização de questão."
+      },
+      "QuestionReportResponse": {
+        "properties": {
+          "report_id": {
+            "type": "integer",
+            "title": "Report Id"
+          },
+          "question_id": {
+            "type": "integer",
+            "title": "Question Id"
+          },
+          "user_id": {
+            "type": "integer",
+            "title": "User Id"
+          },
+          "reason": {
+            "type": "string",
+            "title": "Reason"
+          },
+          "details": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Details"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "report_id",
+          "question_id",
+          "user_id",
+          "reason",
+          "details",
+          "status",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "QuestionReportResponse",
+        "description": "Schema de resposta para uma questão sinalizada."
+      },
+      "QuestionReportStatusUpdate": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "resolved",
+              "dismissed"
+            ],
+            "title": "Status",
+            "description": "Novo status da denúncia"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "QuestionReportStatusUpdate",
+        "description": "Schema para atualização do status de uma denúncia."
+      },
+      "QuestionUpdate": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "supplementary_text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Supplementary Text"
+          },
+          "question_text": {
+            "type": "string",
+            "title": "Question Text"
+          },
+          "year": {
+            "type": "integer",
+            "title": "Year"
+          },
+          "exam_board": {
+            "type": "string",
+            "title": "Exam Board"
+          },
+          "number": {
+            "type": "integer",
+            "title": "Number"
+          },
+          "type_or_color": {
+            "type": "string",
+            "title": "Type Or Color",
+            "default": "Padrão"
+          },
+          "difficulty": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Difficulty",
+            "default": 1
+          },
+          "discipline_name": {
+            "type": "string",
+            "title": "Discipline Name"
+          },
+          "subject_name": {
+            "type": "string",
+            "title": "Subject Name"
+          },
+          "topic_name": {
+            "type": "string",
+            "title": "Topic Name"
+          },
+          "alternatives": {
+            "items": {
+              "$ref": "#/components/schemas/AlternativeCreate"
+            },
+            "type": "array",
+            "title": "Alternatives"
+          }
+        },
+        "type": "object",
+        "required": [
+          "title",
+          "question_text",
+          "year",
+          "exam_board",
+          "number",
+          "discipline_name",
+          "subject_name",
+          "topic_name",
+          "alternatives"
+        ],
+        "title": "QuestionUpdate",
+        "description": "Payload de edição de questão (moderação de denúncias e correções por docentes).\n\nDiferente do cadastro, valida o gabarito: a edição existe para corrigir questões,\nentão não pode deixá-las sem alternativa correta ou com letras repetidas."
+      },
       "QuizAnswerRequest": {
         "properties": {
           "quiz_id": {
@@ -5418,8 +6611,7 @@
           },
           "questao_id": {
             "type": "integer",
-            "title": "Questao Id",
-            "default": 1
+            "title": "Questao Id"
           },
           "alternativa_selecionada": {
             "anyOf": [
@@ -5450,6 +6642,9 @@
           }
         },
         "type": "object",
+        "required": [
+          "questao_id"
+        ],
         "title": "QuizAnswerRequest",
         "description": "Envio de resposta para a questão corrente do quiz."
       },
@@ -5457,120 +6652,136 @@
         "properties": {
           "correta": {
             "type": "boolean",
-            "title": "Correta",
-            "default": true
+            "title": "Correta"
           },
           "acertou": {
             "type": "boolean",
-            "title": "Acertou",
-            "default": true
+            "title": "Acertou"
           },
           "alternativa_correta": {
             "type": "string",
-            "title": "Alternativa Correta",
-            "default": "A"
+            "title": "Alternativa Correta"
           },
           "resposta_correta": {
             "type": "string",
-            "title": "Resposta Correta",
-            "default": "A"
+            "title": "Resposta Correta"
           },
           "pontos_ganhos": {
             "type": "integer",
-            "title": "Pontos Ganhos",
-            "default": 20
+            "title": "Pontos Ganhos"
           },
           "pontos_total": {
             "type": "integer",
-            "title": "Pontos Total",
-            "default": 20
+            "title": "Pontos Total"
           },
           "vidas_restantes": {
             "type": "integer",
-            "title": "Vidas Restantes",
-            "default": 3
+            "title": "Vidas Restantes"
           },
           "combo": {
             "type": "integer",
-            "title": "Combo",
-            "default": 0
+            "title": "Combo"
           },
           "quiz_finalizado": {
             "type": "boolean",
-            "title": "Quiz Finalizado",
-            "default": false
+            "title": "Quiz Finalizado"
           }
         },
         "type": "object",
+        "required": [
+          "correta",
+          "acertou",
+          "alternativa_correta",
+          "resposta_correta",
+          "pontos_ganhos",
+          "pontos_total",
+          "vidas_restantes",
+          "combo",
+          "quiz_finalizado"
+        ],
         "title": "QuizAnswerResponse",
         "description": "Validação da resposta de uma questão da sessão de quiz."
+      },
+      "QuizDisciplineFilter": {
+        "properties": {
+          "nome": {
+            "type": "string",
+            "title": "Nome"
+          },
+          "total_questoes": {
+            "type": "integer",
+            "title": "Total Questoes"
+          },
+          "assuntos": {
+            "items": {
+              "$ref": "#/components/schemas/QuizSubjectFilter"
+            },
+            "type": "array",
+            "title": "Assuntos"
+          }
+        },
+        "type": "object",
+        "required": [
+          "nome",
+          "total_questoes",
+          "assuntos"
+        ],
+        "title": "QuizDisciplineFilter",
+        "description": "Disciplina disponível para filtrar o quiz e seus assuntos."
       },
       "QuizFeedbackResponse": {
         "properties": {
           "quiz_id": {
             "type": "integer",
-            "title": "Quiz Id",
-            "default": 1
+            "title": "Quiz Id"
           },
           "sessao_id": {
             "type": "string",
-            "title": "Sessao Id",
-            "default": "1"
+            "title": "Sessao Id"
           },
           "nome_quiz": {
             "type": "string",
-            "title": "Nome Quiz",
-            "default": "Quiz Rápido"
+            "title": "Nome Quiz"
           },
           "pontos_ganhos": {
             "type": "integer",
-            "title": "Pontos Ganhos",
-            "default": 100
+            "title": "Pontos Ganhos"
           },
           "pontos_total_sessao": {
             "type": "integer",
-            "title": "Pontos Total Sessao",
-            "default": 100
+            "title": "Pontos Total Sessao"
           },
           "pontuacao_total": {
             "type": "integer",
-            "title": "Pontuacao Total",
-            "default": 100
+            "title": "Pontuacao Total"
           },
           "acertos": {
             "type": "integer",
-            "title": "Acertos",
-            "default": 5
+            "title": "Acertos"
           },
           "erros": {
             "type": "integer",
-            "title": "Erros",
-            "default": 0
+            "title": "Erros"
           },
           "total_questoes": {
             "type": "integer",
-            "title": "Total Questoes",
-            "default": 5
+            "title": "Total Questoes"
           },
           "tempo_total_segundos": {
             "type": "integer",
-            "title": "Tempo Total Segundos",
-            "default": 50
+            "title": "Tempo Total Segundos"
           },
           "percentagem": {
             "type": "number",
-            "title": "Percentagem",
-            "default": 100.0
+            "title": "Percentagem"
           },
           "patente_atual": {
             "type": "string",
-            "title": "Patente Atual",
-            "default": "Bronze"
+            "title": "Patente Atual"
           },
           "vidas_restantes": {
             "type": "integer",
-            "title": "Vidas Restantes",
-            "default": 3
+            "title": "Vidas Restantes"
           },
           "progresso_patente": {
             "anyOf": [
@@ -5584,8 +6795,45 @@
           }
         },
         "type": "object",
+        "required": [
+          "quiz_id",
+          "sessao_id",
+          "nome_quiz",
+          "pontos_ganhos",
+          "pontos_total_sessao",
+          "pontuacao_total",
+          "acertos",
+          "erros",
+          "total_questoes",
+          "tempo_total_segundos",
+          "percentagem",
+          "patente_atual",
+          "vidas_restantes"
+        ],
         "title": "QuizFeedbackResponse",
         "description": "Consolidação e encerramento da sessão de quiz."
+      },
+      "QuizFilterOptionsResponse": {
+        "properties": {
+          "total_questoes": {
+            "type": "integer",
+            "title": "Total Questoes"
+          },
+          "disciplinas": {
+            "items": {
+              "$ref": "#/components/schemas/QuizDisciplineFilter"
+            },
+            "type": "array",
+            "title": "Disciplinas"
+          }
+        },
+        "type": "object",
+        "required": [
+          "total_questoes",
+          "disciplinas"
+        ],
+        "title": "QuizFilterOptionsResponse",
+        "description": "Opções de filtro do quiz tiradas do banco de questões (GET /quiz/filtros)."
       },
       "QuizHistoryEntry": {
         "properties": {
@@ -5726,8 +6974,7 @@
           },
           "sessao_id": {
             "type": "string",
-            "title": "Sessao Id",
-            "default": "1"
+            "title": "Sessao Id"
           },
           "questao_id": {
             "type": "integer",
@@ -5735,13 +6982,11 @@
           },
           "numero": {
             "type": "integer",
-            "title": "Numero",
-            "default": 1
+            "title": "Numero"
           },
           "total": {
             "type": "integer",
-            "title": "Total",
-            "default": 5
+            "title": "Total"
           },
           "disciplina": {
             "items": {
@@ -5752,8 +6997,7 @@
           },
           "dificuldade": {
             "type": "string",
-            "title": "Dificuldade",
-            "default": "facil"
+            "title": "Dificuldade"
           },
           "enunciado": {
             "type": "string",
@@ -5793,7 +7037,12 @@
         "type": "object",
         "required": [
           "quiz_id",
+          "sessao_id",
           "questao_id",
+          "numero",
+          "total",
+          "disciplina",
+          "dificuldade",
           "enunciado",
           "alternativas"
         ],
@@ -5941,6 +7190,85 @@
         "title": "QuizReviewResponse",
         "description": "Lista de revisão detalhada das questões do quiz."
       },
+      "QuizSubjectFilter": {
+        "properties": {
+          "nome": {
+            "type": "string",
+            "title": "Nome"
+          },
+          "total_questoes": {
+            "type": "integer",
+            "title": "Total Questoes"
+          }
+        },
+        "type": "object",
+        "required": [
+          "nome",
+          "total_questoes"
+        ],
+        "title": "QuizSubjectFilter",
+        "description": "Assunto disponível para filtrar o quiz, com quantas questões ele tem."
+      },
+      "RankingBoardResponse": {
+        "properties": {
+          "periodo": {
+            "type": "string",
+            "enum": [
+              "geral",
+              "semanal"
+            ],
+            "title": "Periodo"
+          },
+          "semana_inicio": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Semana Inicio"
+          },
+          "jogador_local": {
+            "$ref": "#/components/schemas/RankingEntry"
+          },
+          "podio": {
+            "items": {
+              "$ref": "#/components/schemas/RankingEntry"
+            },
+            "type": "array",
+            "title": "Podio"
+          },
+          "lista": {
+            "items": {
+              "$ref": "#/components/schemas/RankingEntry"
+            },
+            "type": "array",
+            "title": "Lista"
+          },
+          "pagina": {
+            "type": "integer",
+            "title": "Pagina"
+          },
+          "tem_mais": {
+            "type": "boolean",
+            "title": "Tem Mais"
+          }
+        },
+        "type": "object",
+        "required": [
+          "periodo",
+          "jogador_local",
+          "podio",
+          "lista",
+          "pagina",
+          "tem_mais"
+        ],
+        "title": "RankingBoardResponse",
+        "description": "Classificação (geral ou semanal) com pódio, jogador local e paginação."
+      },
       "RankingEntry": {
         "properties": {
           "posicao": {
@@ -6050,48 +7378,48 @@
           },
           "sessao_id": {
             "type": "string",
-            "title": "Sessao Id",
-            "default": "1"
+            "title": "Sessao Id"
           },
           "questao_atual": {
             "type": "integer",
-            "title": "Questao Atual",
-            "default": 1
+            "title": "Questao Atual"
           },
           "indice_atual": {
             "type": "integer",
-            "title": "Indice Atual",
-            "default": 0
+            "title": "Indice Atual"
           },
           "total_questoes": {
             "type": "integer",
-            "title": "Total Questoes",
-            "default": 5
+            "title": "Total Questoes"
           },
           "pontos": {
             "type": "integer",
-            "title": "Pontos",
-            "default": 0
+            "title": "Pontos"
           },
           "pontuacao_atual": {
             "type": "integer",
-            "title": "Pontuacao Atual",
-            "default": 0
+            "title": "Pontuacao Atual"
           },
           "combo": {
             "type": "integer",
-            "title": "Combo",
-            "default": 0
+            "title": "Combo"
           },
           "vidas": {
             "type": "integer",
-            "title": "Vidas",
-            "default": 3
+            "title": "Vidas"
           }
         },
         "type": "object",
         "required": [
-          "quiz_id"
+          "quiz_id",
+          "sessao_id",
+          "questao_atual",
+          "indice_atual",
+          "total_questoes",
+          "pontos",
+          "pontuacao_atual",
+          "combo",
+          "vidas"
         ],
         "title": "StartQuizResponse",
         "description": "Identificador e estado inicial da sessão ativa de quiz."
@@ -6378,14 +7706,20 @@
             },
             "type": "array",
             "title": "Entradas"
+          },
+          "semana_inicio": {
+            "type": "string",
+            "format": "date",
+            "title": "Semana Inicio"
           }
         },
         "type": "object",
         "required": [
-          "entradas"
+          "entradas",
+          "semana_inicio"
         ],
         "title": "WeeklyRankingResponse",
-        "description": "Top estudantes classificados no ranking semanal."
+        "description": "Top estudantes da semana (pontos ganhos desde segunda 00:00 de Brasília)."
       }
     },
     "securitySchemes": {

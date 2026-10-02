@@ -54,7 +54,7 @@ O diagrama abaixo mostra as quatro fases da documentação e as dependências en
 ```mermaid
 flowchart TD
     subgraph F1["📘 FASE 1 — Base"]
-        A["🟡 Descrição do Sistema"]
+        A["✅ Descrição do Sistema"]
         B["✅ Arquitetura do Sistema"]
     end
 
@@ -103,7 +103,7 @@ flowchart TD
 
 | Item | Descrição | Status |
 |------|-----------|--------|
-| Descrição do Sistema | O que é o IFVest, qual problema resolve, quem usa, quais módulos existem e como o conteúdo e as permissões estão organizados. | 🟡 Em andamento |
+| Descrição do Sistema | O que é o IFVest, qual problema resolve, quem usa, quais módulos existem e como o conteúdo e as permissões estão organizados. | ✅ Concluído |
 | Arquitetura do Sistema | Como o sistema está organizado: frontend em React, backend em FastAPI, banco PostgreSQL, autenticação Firebase, topologia de produção e implantação. Inclui o modelo de dados, a referência da API e os diagramas C4. | ✅ Concluído |
 
 ---

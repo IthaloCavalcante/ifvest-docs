@@ -13,14 +13,14 @@ System_Boundary(ifvest, "IFVest") {
     ContainerDb(db, "Banco de Dados", "PostgreSQL 16", "Guarda os usuários\ne suas permissões")
 }
 
-System_Ext(firebase, "Firebase Authentication", "E-mail e senha\nou conta Google")
+System_Ext(firebase, "Firebase Authentication", "Login com a\nconta Google")
 
-Rel_R(usuario, web, "Informa credenciais", "HTTPS")
+Rel_R(usuario, web, "Entra com a\nconta Google", "HTTPS")
 Rel_R(web, firebase, "Solicita autenticação", "SDK / HTTPS")
 Rel_L(firebase, web, "Devolve o token\nde identidade", "HTTPS")
 Rel_D(web, api, "Requisição com o token\nno cabeçalho Authorization", "REST / HTTPS")
 Rel_R(api, firebase, "Verifica a assinatura\ndo token", "SDK Admin / HTTPS")
-Rel_D(api, db, "Busca o usuário\ne suas permissões", "SQL")
+Rel_D(api, db, "Busca o usuário, criando-o\nno primeiro acesso,\ne suas permissões", "SQL")
 
 SHOW_LEGEND()
 @enduml

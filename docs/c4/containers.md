@@ -22,14 +22,14 @@ title Contêineres — IFVest (C4 Nível 2 · Visão Completa)
 LAYOUT_TOP_DOWN()
 
 Person(estudante, "Estudante", "Resolve questões, simulados\ne envia redações")
-Person(educador, "Educador", "Cria questões, simulados\ne propostas de redação")
-Person(admin, "Administrador", "Gerencia permissões,\nconteúdo e módulos")
+Person(educador, "Educador", "Cadastra questões, simulados\ne propostas de redação")
+Person(admin, "Administrador", "Gerencia permissões,\nmoderação e módulos")
 
 System_Boundary(ifvest, "IFVest — VPS única") {
     Container(caddy, "Proxy Reverso", "Caddy 2", "Único ponto de entrada. Termina o TLS,\nemite o certificado e roteia por caminho")
     Container(web, "Aplicação Web", "React 19 + TypeScript + Vite\nservida por nginx", "Interface do usuário, executada no navegador.\nArquivos estáticos, sem renderização no servidor")
     Container(api, "API", "Python 3.12 + FastAPI", "Regras de negócio, autorização por permissões\ne controle dos módulos ativos")
-    ContainerDb(db, "Banco de Dados", "PostgreSQL 16", "Usuários, permissões, taxonomia, questões,\nsimulados, redações e gamificação")
+    ContainerDb(db, "Banco de Dados", "PostgreSQL 16", "Usuários, permissões, taxonomia, questões,\nsimulados, redações, gamificação e auditoria")
     Container(arquivos, "Armazenamento de Arquivos", "Volume Docker", "Imagens das questões, servidas pela API")
 }
 
@@ -107,18 +107,20 @@ System_Boundary(ifvest, "IFVest") {
     ContainerDb(db, "Banco de Dados", "PostgreSQL 16", "Guarda os usuários\ne suas permissões")
 }
 
-System_Ext(firebase, "Firebase Authentication", "E-mail e senha\nou conta Google")
+System_Ext(firebase, "Firebase Authentication", "Login com a\nconta Google")
 
-Rel_R(usuario, web, "Informa credenciais", "HTTPS")
+Rel_R(usuario, web, "Entra com a\nconta Google", "HTTPS")
 Rel_R(web, firebase, "Solicita autenticação", "SDK / HTTPS")
 Rel_L(firebase, web, "Devolve o token\nde identidade", "HTTPS")
 Rel_D(web, api, "Requisição com o token\nno cabeçalho Authorization", "REST / HTTPS")
 Rel_R(api, firebase, "Verifica a assinatura\ndo token", "SDK Admin / HTTPS")
-Rel_D(api, db, "Busca o usuário\ne suas permissões", "SQL")
+Rel_D(api, db, "Busca o usuário, criando-o\nno primeiro acesso,\ne suas permissões", "SQL")
 
 SHOW_LEGEND()
 @enduml
 ```
+
+No primeiro acesso, a API cria o registro do usuário a partir do e-mail contido no token e atribui as permissões iniciais. Nos acessos seguintes, apenas o carrega, com as permissões que tiver naquele momento.
 
 ---
 
@@ -144,4 +146,4 @@ Detalhes de implantação, backup e segurança em [Arquitetura do Sistema](../ar
 | Contêineres, imagens e rede | `deploy/docker-compose.prod.yml` | set/2026 |
 | Roteamento por caminho e TLS | `deploy/Caddyfile` | set/2026 |
 | Tecnologias de cada contêiner | `requirements.txt`, `package.json` e Dockerfiles | set/2026 |
-| Fluxo de autenticação | `ifvest-backend/src/core/` e `ifvest-frontend/src/core/auth/` | set/2026 |
+| Fluxo de autenticação | `ifvest-backend/src/core/`, `src/api/v1/auth.py` e `ifvest-frontend/src/core/auth/` | set/2026 |

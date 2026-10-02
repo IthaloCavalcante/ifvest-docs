@@ -6,14 +6,14 @@ title Contêineres — IFVest (C4 Nível 2 · Visão Completa)
 LAYOUT_TOP_DOWN()
 
 Person(estudante, "Estudante", "Resolve questões, simulados\ne envia redações")
-Person(educador, "Educador", "Cria questões, simulados\ne propostas de redação")
-Person(admin, "Administrador", "Gerencia permissões,\nconteúdo e módulos")
+Person(educador, "Educador", "Cadastra questões, simulados\ne propostas de redação")
+Person(admin, "Administrador", "Gerencia permissões,\nmoderação e módulos")
 
 System_Boundary(ifvest, "IFVest — VPS única") {
     Container(caddy, "Proxy Reverso", "Caddy 2", "Único ponto de entrada. Termina o TLS,\nemite o certificado e roteia por caminho")
     Container(web, "Aplicação Web", "React 19 + TypeScript + Vite\nservida por nginx", "Interface do usuário, executada no navegador.\nArquivos estáticos, sem renderização no servidor")
     Container(api, "API", "Python 3.12 + FastAPI", "Regras de negócio, autorização por permissões\ne controle dos módulos ativos")
-    ContainerDb(db, "Banco de Dados", "PostgreSQL 16", "Usuários, permissões, taxonomia, questões,\nsimulados, redações e gamificação")
+    ContainerDb(db, "Banco de Dados", "PostgreSQL 16", "Usuários, permissões, taxonomia, questões,\nsimulados, redações, gamificação e auditoria")
     Container(arquivos, "Armazenamento de Arquivos", "Volume Docker", "Imagens das questões, servidas pela API")
 }
 

@@ -8,24 +8,24 @@ LAYOUT_LEFT_RIGHT()
 Container(web, "Aplicação Web", "React", "Envia o token\nem cada requisição")
 
 Container_Boundary(api, "API — FastAPI") {
+    Component(guarda, "Guarda dos Módulos", "feature_guard.py\nfeature_flags_service.py", "Recusa com 503 as chamadas\na módulos desligados,\nrespeitando a hierarquia")
     Component(seguranca, "Segurança", "security.py", "Extrai o token do cabeçalho\ne resolve o usuário atual")
     Component(fb, "Integração Firebase", "firebase.py", "Verifica a assinatura\ndo token de identidade")
-    Component(permissoes, "Permissões", "permissions.py", "Atribui permissões iniciais\npor domínio de e-mail e\nautoriza cada ação")
-    Component(flags, "Feature Flags", "feature_flags_service.py", "Recusa chamadas a módulos\ndesligados, respeitando a\nhierarquia entre eles")
+    Component(permissoes, "Permissões", "permission_catalog.py\npermissions.py", "Confere a permissão\nexigida pela rota")
     Component(rotas, "Camada de Rotas", "FastAPI Routers", "Executa a ação solicitada")
 }
 
 System_Ext(firebase, "Firebase Authentication", "Serviço de identidade")
 ContainerDb(db, "Banco de Dados", "PostgreSQL 16", "Usuários, permissões\ne estado das flags")
 
-Rel_R(web, seguranca, "Requisição com token", "HTTPS")
-Rel_R(seguranca, fb, "Solicita a verificação")
+Rel_R(web, guarda, "1. Requisição com token", "HTTPS")
+Rel_R(guarda, seguranca, "2. Módulo ativo")
+Rel_D(seguranca, fb, "Solicita a verificação")
 Rel_D(fb, firebase, "Valida o token", "SDK Admin")
-Rel_R(seguranca, permissoes, "Usuário identificado")
-Rel_R(permissoes, flags, "Permissão confirmada")
-Rel_R(flags, rotas, "Módulo ativo")
-Rel_D(permissoes, db, "Lê permissões", "SQL")
-Rel_D(flags, db, "Lê o estado das flags", "SQL")
+Rel_R(seguranca, permissoes, "3. Usuário identificado")
+Rel_R(permissoes, rotas, "4. Permissão confirmada")
+Rel_D(guarda, db, "Lê o estado das flags", "SQL")
+Rel_D(seguranca, db, "Carrega o usuário\ne suas permissões", "SQL")
 
 SHOW_LEGEND()
 @enduml
