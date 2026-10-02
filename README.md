@@ -68,20 +68,29 @@ ifvest-docs/
 ├── mkdocs.yml              # configuração do site e menu de navegação
 ├── requirements.txt        # dependências
 ├── tutorial.html           # guia de instalação e execução
+├── .github/workflows/      # publicação automática no GitHub Pages
+├── overrides/              # templates que substituem os do tema (logo da plataforma)
+├── scripts/                # geradores da especificação da API e do modelo de dados
 └── docs/
     ├── index.md
     ├── planejamento.md     # plano, normas e critérios de produção
     ├── descricao-do-sistema.md
     ├── arquitetura.md
+    ├── modelo-de-dados.md  # diagramas gerados por scripts/gerar_modelo_de_dados.py
+    ├── api.md              # exibe openapi.json, gerado por scripts/gerar_openapi.py
     ├── c4/                 # diagramas C4 (contexto, contêineres, componentes)
     ├── requisitos/
     ├── funcionalidades.md
     ├── versoes.md
     ├── subprojetos/        # frentes de trabalho e projetos paralelos
     ├── guias/              # documentação de usuário
-    ├── diagrams/src/       # fontes PlantUML dos diagramas
+    ├── diagrams/src/       # cópias em arquivo dos diagramas PlantUML das páginas C4
+    ├── images/             # favicon
+    ├── javascripts/        # scripts do site
     └── stylesheets/        # estilos personalizados
 ```
+
+Os diagramas C4 são desenhados nos blocos `plantuml` das próprias páginas; os arquivos em `docs/diagrams/src/` são cópias deles, uma por diagrama, e precisam ser atualizados junto.
 
 ---
 
@@ -93,16 +102,13 @@ A documentação é escrita em **Markdown** e mantida em formato *docs-as-code*:
 # 1. Editar os arquivos em docs/ e conferir localmente
 py -m mkdocs serve
 
-# 2. Versionar a alteração
+# 2. Versionar e enviar a alteração
 git add .
 git commit -m "docs: descrição da alteração"
 git push
-
-# 3. Publicar no site
-py -m mkdocs gh-deploy
 ```
 
-O `git push` envia os arquivos-fonte; o `gh-deploy` reconstrói e atualiza o site publicado. **São passos distintos** — commitar não atualiza a URL.
+A publicação é **automática**: a cada push na `main`, o workflow `.github/workflows/deploy.yml` reconstrói o site e atualiza o GitHub Pages em um ou dois minutos. O andamento aparece na aba **Actions** do repositório, onde o botão **Run workflow** também publica sem precisar de commit. Não é preciso rodar `mkdocs gh-deploy` na máquina.
 
 Cada página do site tem um ícone de edição que leva diretamente ao arquivo correspondente neste repositório.
 
