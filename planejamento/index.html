@@ -1,0 +1,2944 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentação oficial da plataforma IFVest — IFSP Campus Jacareí">
+      
+      
+        <meta name="author" content="Ithalo Cavalcante Gomes">
+      
+      
+        <link rel="canonical" href="https://ifvest-project.github.io/ifvest-docs/planejamento/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../descricao-do-sistema/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../images/favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Planejamento da Documentação - IFVest — Documentação</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../stylesheets/logo-ifvest.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#planejamento-da-documentacao" class="md-skip">
+          Ir para o conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href=".." title="IFVest — Documentação" class="md-header__button md-logo" aria-label="IFVest — Documentação" data-md-component="logo">
+      <span class="ifvest-logo" aria-hidden="true"><span class="ifvest-logo__if">IF</span><span class="ifvest-logo__vest">Vest</span></span>
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            IFVest — Documentação
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Planejamento da Documentação
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Mudar para o tema escuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Mudar para o tema escuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Mudar para o tema claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Mudar para o tema claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartilhar" aria-label="Compartilhar" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando a pesquisa
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ifvest-project/ifvest-docs" title="Ir ao repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ifvest-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Início
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Planejamento da Documentação
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../descricao-do-sistema/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  O Sistema
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../requisitos/funcionais/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Requisitos
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../funcionalidades/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Funcionalidades
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../subprojetos/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Subprojetos Ativos
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../guias/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Guias de Uso
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="IFVest — Documentação" class="md-nav__button md-logo" aria-label="IFVest — Documentação" data-md-component="logo">
+      <span class="ifvest-logo" aria-hidden="true"><span class="ifvest-logo__if">IF</span><span class="ifvest-logo__vest">Vest</span></span>
+    </a>
+    IFVest — Documentação
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ifvest-project/ifvest-docs" title="Ir ao repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ifvest-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Início
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Planejamento da Documentação
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Planejamento da Documentação
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#o-que-esta-sendo-documentado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O que está sendo documentado
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#legenda-de-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Legenda de Status
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diagrama-de-dependencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagrama de Dependências
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fases-em-detalhe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fases em Detalhe
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fases em Detalhe">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fase-1-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📘 Fase 1 — Base
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fase-2-conteudo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📙 Fase 2 — Conteúdo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fase-3-detalhamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📒 Fase 3 — Detalhamento
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fase-4-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📗 Fase 4 — Usuário
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o-que-a-mudanca-de-plataforma-afeta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O que a mudança de plataforma afeta
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-a-documentacao-e-produzida" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como a documentação é produzida
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Como a documentação é produzida">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#criterio-de-evidencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Critério de evidência
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#separacao-entre-o-estado-atual-e-o-estado-previsto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Separação entre o estado atual e o estado previsto
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registro-de-divergencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registro de divergências
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#formato-e-publicacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Formato e publicação
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#norma-de-referencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Norma de referência
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumindo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumindo
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    O Sistema
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    O Sistema
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../descricao-do-sistema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Descrição do Sistema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arquitetura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitetura do Sistema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modelo-de-dados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelo de Dados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referência da API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagramas C4
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Diagramas C4
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../c4/contexto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nível 1 — Contexto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../c4/containers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nível 2 — Contêineres
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../c4/componentes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nível 3 — Componentes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requisitos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Requisitos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../requisitos/funcionais/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requisitos Funcionais
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../requisitos/nao-funcionais/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requisitos Não-Funcionais
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Funcionalidades
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Funcionalidades
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../funcionalidades/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Descrição das Funcionalidades
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../versoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registro de Versões
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../subprojetos/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Subprojetos Ativos
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Subprojetos Ativos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../subprojetos/frontend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Eixo 1: Interface e Modernização (Frontend)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../subprojetos/qualidade-e-testes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Eixo 2: Qualidade, Testes e Acessibilidade
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../subprojetos/ia-e-recomendacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Eixo 3: Inteligência Artificial e Recomendação
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../subprojetos/infra-e-seguranca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Eixo 4: Infraestrutura, APIs e Segurança
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Produtos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Produtos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../subprojetos/ifvest-reader/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IFVest Reader
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../guias/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guias de Uso
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guias de Uso
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conta
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Conta
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/conta/acesso/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Acesso e Conta
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/conta/perfil/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Perfil e Seus Dados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../guias/aluno/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guia do Aluno
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guia do Aluno
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/aluno/revisao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Revisão de Conteúdo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/aluno/flashcards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flashcards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/aluno/simulados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Simulados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/aluno/ifquiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IFQuiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../guias/professor/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guia do Professor
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guia do Professor
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/professor/banco-de-questoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Banco de Questões
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/professor/simulados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Simulados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/professor/flashcards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flashcards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/professor/materiais-de-revisao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Materiais de Revisão
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/glossario/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossário
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#o-que-esta-sendo-documentado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O que está sendo documentado
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#legenda-de-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Legenda de Status
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diagrama-de-dependencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagrama de Dependências
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fases-em-detalhe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fases em Detalhe
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fases em Detalhe">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fase-1-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📘 Fase 1 — Base
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fase-2-conteudo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📙 Fase 2 — Conteúdo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fase-3-detalhamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📒 Fase 3 — Detalhamento
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fase-4-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📗 Fase 4 — Usuário
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o-que-a-mudanca-de-plataforma-afeta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O que a mudança de plataforma afeta
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-a-documentacao-e-produzida" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como a documentação é produzida
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Como a documentação é produzida">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#criterio-de-evidencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Critério de evidência
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#separacao-entre-o-estado-atual-e-o-estado-previsto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Separação entre o estado atual e o estado previsto
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registro-de-divergencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registro de divergências
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#formato-e-publicacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Formato e publicação
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#norma-de-referencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Norma de referência
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumindo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumindo
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/ifvest-project/ifvest-docs/edit/main/docs/planejamento.md" title="Editar esta página" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="planejamento-da-documentacao">Planejamento da Documentação<a class="headerlink" href="#planejamento-da-documentacao" title="Link para esta seção">&para;</a></h1>
+<p>Este documento apresenta o mapeamento de toda a documentação a ser produzida para o projeto IFVest, organizando os itens por ordem de produção com base em suas dependências, e registrando as normas e os critérios adotados.</p>
+<p>A ordem não é arbitrária — ela segue o princípio de que <strong>você não consegue documentar algo que ainda não entendeu</strong>. Para escrever como um usuário usa o sistema, você precisa antes saber o que o sistema faz. Para saber o que ele faz, você precisa antes entender como está construído. E assim por diante.</p>
+<div class="admonition danger">
+<p class="admonition-title">O IFVest está sendo substituído por uma nova plataforma</p>
+<p>A partir de setembro de 2026, o IFVest passa a ser <strong>uma plataforma nova</strong>, desenvolvida do zero e referida internamente como <strong>IFVest V3</strong>. Ela substitui a versão anterior no mesmo endereço, com stack, modelo de dados e organização de perfis diferentes.</p>
+<p>Esta documentação passa a descrever <strong>a plataforma nova</strong>. O conteúdo produzido para a versão anterior permanece preservado no histórico do repositório, identificado pela etiqueta <code>legado-v2</code>, e sua trajetória fica registrada no <a href="../versoes/">Registro de Versões</a>.</p>
+<p>O que muda e o que permanece está detalhado em <a href="#o-que-a-mudanca-de-plataforma-afeta">O que a mudança de plataforma afeta</a>.</p>
+</div>
+<hr />
+<h2 id="o-que-esta-sendo-documentado">O que está sendo documentado<a class="headerlink" href="#o-que-esta-sendo-documentado" title="Link para esta seção">&para;</a></h2>
+<p>O <strong>IFVest V3</strong> é uma aplicação educacional de apoio à preparação para o ENEM e vestibulares, com ferramentas de prática para estudantes e de gestão acadêmica para professores.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Frontend</strong></td>
+<td>React e TypeScript, construído com Vite</td>
+</tr>
+<tr>
+<td><strong>Backend</strong></td>
+<td>Python com FastAPI</td>
+</tr>
+<tr>
+<td><strong>Hospedagem</strong></td>
+<td>Servidor próprio (VPS), sob o domínio <code>ifvest.com.br</code></td>
+</tr>
+<tr>
+<td><strong>Banco de dados</strong></td>
+<td>PostgreSQL</td>
+</tr>
+<tr>
+<td><strong>Autenticação</strong></td>
+<td>Firebase</td>
+</tr>
+<tr>
+<td><strong>Infraestrutura local</strong></td>
+<td>Docker Compose</td>
+</tr>
+</tbody>
+</table>
+<p>Duas características do domínio orientam toda a documentação:</p>
+<ul>
+<li><strong>Hierarquia de conteúdo</strong> — todo material e questão obedece à estrutura <strong>Disciplina → Assunto → Tópico</strong>.</li>
+<li><strong>Permissões granulares (RBAC)</strong> — o sistema não se apoia apenas nos cargos de aluno e professor: há uma camada de permissões específicas, atribuídas por administradores, que controlam ações individuais.</li>
+</ul>
+<p>O escopo da primeira versão (MVP) contempla os módulos de <strong>Redação</strong>, <strong>Quiz</strong> e <strong>Simulados</strong>. <strong>Revisão</strong> e <strong>Flashcards</strong> estão previstos para versões seguintes.</p>
+<hr />
+<h2 id="legenda-de-status">Legenda de Status<a class="headerlink" href="#legenda-de-status" title="Link para esta seção">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Ícone</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>⬜ Pendente</td>
+<td>Ainda não iniciado</td>
+</tr>
+<tr>
+<td>🟡 Em andamento</td>
+<td>Em processo de produção</td>
+</tr>
+<tr>
+<td>✅ Concluído</td>
+<td>Disponível na documentação</td>
+</tr>
+</tbody>
+</table>
+<p>Esta legenda indica o <strong>andamento da produção de cada documento</strong>. Dentro dos guias de usuário, os mesmos ícones aparecem com outro significado — o de indicar a situação de cada funcionalidade na plataforma —, conforme a legenda própria de cada guia.</p>
+<hr />
+<h2 id="diagrama-de-dependencias">Diagrama de Dependências<a class="headerlink" href="#diagrama-de-dependencias" title="Link para esta seção">&para;</a></h2>
+<p>O diagrama abaixo mostra as quatro fases da documentação e as dependências entre os itens. As setas indicam que um item depende do anterior para ser produzido.</p>
+<pre class="mermaid"><code>flowchart TD
+    subgraph F1["📘 FASE 1 — Base"]
+        A["✅ Descrição do Sistema"]
+        B["✅ Arquitetura do Sistema"]
+    end
+
+    subgraph F2["📙 FASE 2 — Conteúdo"]
+        C["🟡 Especificação de Requisitos"]
+        D["⬜ Subprojetos e Projetos Paralelos"]
+    end
+
+    subgraph F3["📒 FASE 3 — Detalhamento"]
+        E["⬜ Descrição das Funcionalidades"]
+        F["✅ Referência à API (OpenAPI)"]
+        G["✅ Registro de Versões"]
+    end
+
+    subgraph F4["📗 FASE 4 — Usuário"]
+        J["⬜ Conta e Perfil"]
+        I["⬜ Guias por módulo"]
+        L["🟡 Glossário"]
+    end
+
+    A --&gt; C
+    A --&gt; D
+    A --&gt; E
+    B --&gt; C
+    B --&gt; E
+    B --&gt; F
+    C --&gt; E
+    D --&gt; E
+    E --&gt; J
+    E --&gt; I
+
+    style F1 fill:#dbeafe,stroke:#2563eb,color:#1e3a5f
+    style F2 fill:#fef9c3,stroke:#ca8a04,color:#713f12
+    style F3 fill:#ffedd5,stroke:#ea580c,color:#7c2d12
+    style F4 fill:#dcfce7,stroke:#16a34a,color:#14532d</code></pre>
+<hr />
+<h2 id="fases-em-detalhe">Fases em Detalhe<a class="headerlink" href="#fases-em-detalhe" title="Link para esta seção">&para;</a></h2>
+<h3 id="fase-1-base">📘 Fase 1 — Base<a class="headerlink" href="#fase-1-base" title="Link para esta seção">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">Por que vem primeiro?</p>
+<p>Estes são os documentos fundacionais. Qualquer outro item da documentação depende de ter a visão geral do sistema e sua arquitetura claramente definidas. Sem isso, não é possível especificar requisitos, descrever funcionalidades nem orientar usuários.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Descrição</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Descrição do Sistema</td>
+<td>O que é o IFVest, qual problema resolve, quem usa, quais módulos existem e como o conteúdo e as permissões estão organizados.</td>
+<td>✅ Concluído</td>
+</tr>
+<tr>
+<td>Arquitetura do Sistema</td>
+<td>Como o sistema está organizado: frontend em React, backend em FastAPI, banco PostgreSQL, autenticação Firebase, topologia de produção e implantação. Inclui o modelo de dados, a referência da API e os diagramas C4.</td>
+<td>✅ Concluído</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="fase-2-conteudo">📙 Fase 2 — Conteúdo<a class="headerlink" href="#fase-2-conteudo" title="Link para esta seção">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">Por que vem em segundo?</p>
+<p>Com a base definida, é possível registrar formalmente o que o sistema deve fazer e mapear o que está sendo desenvolvido pelas frentes de trabalho. Esses dois itens alimentam diretamente o detalhamento da fase seguinte.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Descrição</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Especificação de Requisitos</td>
+<td>Consolidação do que o sistema deve fazer (requisitos funcionais) e como deve se comportar (desempenho, acessibilidade, segurança).</td>
+<td>🟡 Em andamento</td>
+</tr>
+<tr>
+<td>Subprojetos e Projetos Paralelos</td>
+<td>Frentes de trabalho do projeto e produtos que se integram ao ecossistema, como o leitor de PDFs educacionais e o extrator de questões por IA.</td>
+<td>⬜ Pendente</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="fase-3-detalhamento">📒 Fase 3 — Detalhamento<a class="headerlink" href="#fase-3-detalhamento" title="Link para esta seção">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">Por que vem em terceiro?</p>
+<p>Com sistema, arquitetura e requisitos documentados, é possível detalhar cada funcionalidade, referenciar a documentação de API e registrar o histórico de mudanças. Estes itens são a ponte entre a estrutura técnica e o uso do sistema.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Descrição</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Descrição das Funcionalidades</td>
+<td>O que cada módulo faz — Redação, Quiz e Simulados na primeira versão; Revisão e Flashcards nas versões seguintes.</td>
+<td>⬜ Pendente</td>
+</tr>
+<tr>
+<td>Referência à API (OpenAPI)</td>
+<td>Especificação OpenAPI gerada a partir do código-fonte, publicada de forma estática e interativa.</td>
+<td>✅ Concluído</td>
+</tr>
+<tr>
+<td>Registro de Versões</td>
+<td>Histórico das mudanças relevantes na plataforma, incluindo a transição da versão anterior para o IFVest V3.</td>
+<td>✅ Concluído</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="fase-4-usuario">📗 Fase 4 — Usuário<a class="headerlink" href="#fase-4-usuario" title="Link para esta seção">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">Por que vem por último?</p>
+<p>A documentação de usuário só pode ser produzida quando as funcionalidades estão descritas e os requisitos consolidados. Só então é possível escrever guias de uso precisos e completos.</p>
+<p>A referência à API <strong>não é pré-requisito</strong> desta fase: ela documenta o sistema para quem desenvolve, enquanto os guias documentam o uso da plataforma para quem estuda e ensina. As duas seguem em paralelo.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Os guias dependem da interface entregue</p>
+<p>O desenho da interface do IFVest V3 é produzido por uma frente dedicada de design. Os guias de usuário só podem ser finalizados quando as telas estiverem implementadas, sob pena de descreverem uma interface que ainda pode mudar.</p>
+<p>Até lá, o material de design serve de base para a <strong>camada de interface</strong> de cada tarefa, sempre identificada como tal e com a fonte citada (ver <a href="#separacao-entre-o-estado-atual-e-o-estado-previsto">Separação entre o estado atual e o estado previsto</a>).</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Descrição</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Conta e Perfil</td>
+<td>Tarefas comuns a todos os perfis: criar conta, entrar, editar dados e excluir a conta. Seção única, referenciada pelos demais guias.</td>
+<td>⬜ Pendente</td>
+</tr>
+<tr>
+<td>Guias por módulo</td>
+<td>Passo a passo das ações de cada módulo, organizadas por objetivo do usuário e com indicação da permissão exigida, quando houver.</td>
+<td>⬜ Pendente</td>
+</tr>
+<tr>
+<td>Glossário</td>
+<td>Termos da plataforma e explicação de como os conteúdos e as permissões estão organizados.</td>
+<td>🟡 Em andamento</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">A estrutura dos guias acompanha o modelo de permissões</p>
+<p>A versão anterior separava os guias por cargo — um para o aluno, outro para o professor. Como o IFVest V3 adota <strong>permissões granulares</strong> sobre os cargos, a organização por perfil deixa de ser suficiente: uma mesma tarefa pode estar disponível a usuários diferentes conforme as permissões que possuem.</p>
+<p>Os guias passam, portanto, a se organizar <strong>por módulo e por tarefa</strong>, indicando em cada uma a permissão exigida. ⬜ <em>A validar com o projeto conforme o modelo de permissões se consolidar.</em></p>
+</div>
+<hr />
+<h2 id="o-que-a-mudanca-de-plataforma-afeta">O que a mudança de plataforma afeta<a class="headerlink" href="#o-que-a-mudanca-de-plataforma-afeta" title="Link para esta seção">&para;</a></h2>
+<p>A substituição da plataforma não descarta a documentação já produzida. O que se mantém é o que descreve o <strong>propósito</strong> do sistema; o que se refaz é o que descreve sua <strong>construção</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Situação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Descrição do Sistema</td>
+<td>Aproveitada em grande parte — mudam os módulos, a hierarquia de conteúdo e a organização de perfis</td>
+</tr>
+<tr>
+<td>Especificação de Requisitos</td>
+<td>Aproveitada em grande parte — entram as permissões granulares e o módulo de Redação</td>
+</tr>
+<tr>
+<td>Diagrama C4 de Contexto</td>
+<td>Aproveitado com ajustes</td>
+</tr>
+<tr>
+<td>Diagramas C4 de Contêineres e Componentes</td>
+<td>Refeitos — descrevem uma estrutura que deixa de existir</td>
+</tr>
+<tr>
+<td>Arquitetura do Sistema</td>
+<td>Refeita — a stack é outra</td>
+</tr>
+<tr>
+<td>Descrição das Funcionalidades</td>
+<td>Refeita — derivada do código da versão anterior</td>
+</tr>
+<tr>
+<td>Guias de Uso</td>
+<td>Refeitos, reaproveitando o material de design da frente de interface</td>
+</tr>
+<tr>
+<td>Registro de Versões</td>
+<td>Preservado e ampliado — a transição passa a fazer parte do histórico</td>
+</tr>
+<tr>
+<td>Glossário</td>
+<td>Aproveitado em parte — a hierarquia de conteúdo mudou de ordem</td>
+</tr>
+<tr>
+<td>Normas, critérios e método</td>
+<td>Integralmente preservados</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Uma condição diferente, e melhor</p>
+<p>A documentação da versão anterior foi produzida <strong>anos depois</strong> do sistema, por leitura de código e de relatórios. A do IFVest V3 é produzida <strong>junto com o desenvolvimento</strong>, com acesso às decisões enquanto são tomadas.</p>
+<p>Isso desloca o principal risco: deixa de ser a reconstrução de conhecimento perdido e passa a ser o acompanhamento de um sistema em construção acelerada. Os critérios registrados abaixo — evidência confirmada, separação de camadas e registro de divergências — respondem a esse risco.</p>
+</div>
+<hr />
+<h2 id="como-a-documentacao-e-produzida">Como a documentação é produzida<a class="headerlink" href="#como-a-documentacao-e-produzida" title="Link para esta seção">&para;</a></h2>
+<p>A ordem das fases responde <em>o que</em> documentar primeiro. Esta seção registra <em>como</em> cada item é produzido — os critérios aplicados de forma uniforme em toda a documentação.</p>
+<h3 id="criterio-de-evidencia">Critério de evidência<a class="headerlink" href="#criterio-de-evidencia" title="Link para esta seção">&para;</a></h3>
+<p><strong>Nada é documentado sem fonte confirmada.</strong> Cada informação registrada tem origem rastreável em uma destas fontes:</p>
+<table>
+<thead>
+<tr>
+<th>Fonte</th>
+<th>Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Código-fonte dos repositórios</td>
+<td>Comportamento implementado: rotas, modelos de dados, validações e regras de acesso</td>
+</tr>
+<tr>
+<td>Documento de onboarding e decisões de projeto</td>
+<td>Escopo, stack, regras de negócio e definições acordadas pela equipe</td>
+</tr>
+<tr>
+<td>Material da frente de design</td>
+<td>Interface prevista de cada módulo</td>
+</tr>
+<tr>
+<td>Especificação OpenAPI</td>
+<td>Contrato da API entre backend e frontend</td>
+</tr>
+<tr>
+<td>Registros de reunião</td>
+<td>Decisões que alteram escopo, atribuições ou funcionamento</td>
+</tr>
+</tbody>
+</table>
+<p>Quando uma informação não pode ser confirmada, ela <strong>não é inferida</strong>: registra-se uma pendência explícita no lugar, indicando o que falta e com quem esclarecer.</p>
+<h3 id="separacao-entre-o-estado-atual-e-o-estado-previsto">Separação entre o estado atual e o estado previsto<a class="headerlink" href="#separacao-entre-o-estado-atual-e-o-estado-previsto" title="Link para esta seção">&para;</a></h3>
+<p>O sistema é documentado enquanto está sendo construído. Por isso, cada informação é classificada em uma de duas camadas:</p>
+<ul>
+<li><strong>Camada estável</strong> — objetivo, pré-requisitos e sequência de passos de cada tarefa. Descreve o que o usuário faz, não a tela em que faz, e por isso sobrevive a mudanças de interface.</li>
+<li><strong>Camada de interface</strong> — telas, botões e caminhos de navegação. É a parte volátil, e por isso aparece sempre identificada como prevista, com a fonte citada e a ressalva de que o design pode mudar.</li>
+</ul>
+<p>Essa separação é o que permite produzir documentação útil antes da entrega das funcionalidades, sem produzir material descartável.</p>
+<h3 id="registro-de-divergencias">Registro de divergências<a class="headerlink" href="#registro-de-divergencias" title="Link para esta seção">&para;</a></h3>
+<p>Quando duas fontes se contradizem — por exemplo, um documento de projeto descrevendo um comportamento e o código implementando outro —, a divergência é <strong>registrada na própria página</strong>, com a indicação de qual fonte foi adotada e por quê. Divergências não são resolvidas silenciosamente.</p>
+<h3 id="formato-e-publicacao">Formato e publicação<a class="headerlink" href="#formato-e-publicacao" title="Link para esta seção">&para;</a></h3>
+<p>A documentação é produzida em formato <strong>docs-as-code</strong>: o conteúdo é escrito em Markdown, versionado em repositório Git e mantido junto ao projeto, o que permite revisar alterações, recuperar versões anteriores e atualizar documentação e software no mesmo fluxo de trabalho.</p>
+<p>A publicação utiliza o <strong>MkDocs</strong> com o tema Material, que converte os arquivos-fonte em um site navegável com busca e sumário. Os diagramas de arquitetura são igualmente descritos em texto, com <strong>PlantUML</strong>, e renderizados na geração do site.</p>
+<hr />
+<h2 id="norma-de-referencia">Norma de referência<a class="headerlink" href="#norma-de-referencia" title="Link para esta seção">&para;</a></h2>
+<p>Esta estrutura foi definida com base na <strong>ISO/IEC/IEEE 15289:2019</strong> — norma internacional que especifica o conteúdo mínimo dos itens de documentação ao longo do ciclo de vida de sistemas de software —, complementada por:</p>
+<ul>
+<li><strong>ISO/IEC/IEEE 12207:2017</strong> — <em>Software life cycle processes</em>. Estabelece a documentação como parte integrante do ciclo de vida do software, e não como produto separado. É a norma cujos processos a 15289 mapeia.</li>
+<li><strong>ISO/IEC/IEEE 26514:2022</strong> — <em>Design and development of information for users</em>. Orienta a estrutura e o conteúdo da documentação de usuário produzida na Fase 4.</li>
+</ul>
+<p>As três normas permitem <strong>adaptação ao contexto do projeto</strong>, desde que a seleção dos itens produzidos e omitidos seja registrada — o que este documento faz.</p>
+<hr />
+<h2 id="resumindo">Resumindo<a class="headerlink" href="#resumindo" title="Link para esta seção">&para;</a></h2>
+<p>O IFVest será considerado documentado quando qualquer pessoa de fora conseguir responder, apenas lendo esta documentação:</p>
+<p><strong>O que é este sistema? Como ele está construído? O que ele faz? O que ele deve fazer? Como eu uso? O que mudou até agora?</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar ao topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Rodapé" >
+        
+          
+          <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Anterior: Início">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Início
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../descricao-do-sistema/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Descrição do Sistema">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Próximo
+              </span>
+              <div class="md-ellipsis">
+                Descrição do Sistema
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      IFVest — Projeto de Extensão · IFSP Campus Jacareí · Tecnologia em Análise e Desenvolvimento de Sistemas
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/ifvest-project/ifvest-docs" target="_blank" rel="noopener" title="Repositório da documentação" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://ifvest.com.br/" target="_blank" rel="noopener" title="Plataforma IFVest" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2m-5.15 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56M14.34 14H9.66c-.1-.66-.16-1.32-.16-2s.06-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2M12 19.96c-.83-1.2-1.5-2.53-1.91-3.96h3.82c-.41 1.43-1.08 2.76-1.91 3.96M8 8H5.08A7.92 7.92 0 0 1 9.4 4.44C8.8 5.55 8.35 6.75 8 8m-2.92 8H8c.35 1.25.8 2.45 1.4 3.56A8 8 0 0 1 5.08 16m-.82-2C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2M12 4.03c.83 1.2 1.5 2.54 1.91 3.97h-3.82c.41-1.43 1.08-2.77 1.91-3.97M18.92 8h-2.95a15.7 15.7 0 0 0-1.38-3.56c1.84.63 3.37 1.9 4.33 3.56M12 2C6.47 2 2 6.5 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.path", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "content.tooltips"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "Mais 1 nesta p\u00e1gina", "search.result.more.other": "Mais # nesta p\u00e1gina", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../javascripts/swagger-instant.js"></script>
+      
+    
+  </body>
+</html>

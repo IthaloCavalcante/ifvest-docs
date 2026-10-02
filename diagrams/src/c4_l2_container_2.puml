@@ -1,0 +1,23 @@
+@startuml C4_Container_IFVest_Roteamento
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+title Contêineres — IFVest (C4 L2 · Roteamento por Caminho)
+
+LAYOUT_LEFT_RIGHT()
+
+Person(usuario, "Usuário", "Qualquer perfil da plataforma")
+
+System_Boundary(ifvest, "IFVest — VPS única") {
+    Container(caddy, "Proxy Reverso", "Caddy 2", "Única porta publicada:\n80 e 443")
+    Container(web, "Aplicação Web", "nginx + build do Vite", "Assume o roteamento das telas\nno próprio navegador")
+    Container(api, "API", "FastAPI", "Endpoints, arquivos estáticos\ne verificação de disponibilidade")
+    ContainerDb(db, "Banco de Dados", "PostgreSQL 16", "Sem porta exposta:\nexiste apenas na rede interna")
+}
+
+Rel_R(usuario, caddy, "ifvest.com.br", "HTTPS")
+Rel_R(caddy, api, "/api/* · /static/* · /imgs/* · /health", "HTTP interno")
+Rel_D(caddy, web, "qualquer outro caminho", "HTTP interno")
+Rel_D(api, db, "Conexão interna", "SQL")
+
+SHOW_LEGEND()
+@enduml

@@ -1,0 +1,55 @@
+/*
+   IFVest — Documentação
+   Logo no cabeçalho
+
+   Réplica do componente LogoIFVEST da plataforma
+   (ifvest-monorepo: ifvest-frontend/src/core/layout/LogoIFVEST.module.css).
+   O HTML está em overrides/partials/logo.html.
+*/
+
+/* Cores da plataforma (ifvest-frontend/src/index.css) */
+:root {
+  --ifvest-logo-verde:    #3C7D47;  /* --secondary-green → "IF"   */
+  --ifvest-logo-vermelho: #CD2027;  /* --primary-red     → "Vest" */
+  --ifvest-logo-fundo:    #F4F4F4;  /* --primary-gray    → pílula */
+  /* O cabeçalho público da plataforma tenta trocar esse fundo por #ffffffdc
+     (.Logo em AppHeader.module.css), mas essa regra vem antes da do
+     componente no CSS final e perde. Na tela, a pílula é sempre #F4F4F4. */
+}
+
+.ifvest-logo {
+  /* Na plataforma a pílula tem 180 × 70 px e o texto, 40 px.
+     Aqui só a altura é definida; largura e fonte saem da mesma proporção,
+     então a logo pode mudar de tamanho sem se deformar. */
+  --ifvest-logo-altura: 1.8rem;  /* mesma altura da caixa de busca */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--ifvest-logo-altura);
+  width: calc(var(--ifvest-logo-altura) * 180 / 70);
+  border-radius: 100px;          /* pontas totalmente arredondadas */
+  background-color: var(--ifvest-logo-fundo);
+
+  /* Inter já é carregada pelo tema (theme.font.text no mkdocs.yml) */
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-size: calc(var(--ifvest-logo-altura) * 40 / 70);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.ifvest-logo__if   { color: var(--ifvest-logo-verde); }
+.ifvest-logo__vest { color: var(--ifvest-logo-vermelho); }
+
+/* Cabeçalho: o tema reserva 1.2rem para a logo, com .4rem de respiro em cima
+   e embaixo. A pílula tem 1.8rem, então o respiro cai para .1rem e o
+   cabeçalho mantém a altura de sempre (2.4rem). */
+.md-header__button.md-logo {
+  padding-top: .1rem;
+  padding-bottom: .1rem;
+}
+
+/* Topo do menu lateral: ali o tema reserva 2.4rem de altura para a logo */
+.md-nav__title .md-logo .ifvest-logo {
+  --ifvest-logo-altura: 2.4rem;
+}

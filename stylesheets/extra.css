@@ -1,0 +1,158 @@
+/* 
+   IFVest — Documentação
+   Estilos personalizados
+*/
+
+/* Tema claro */
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color:        #329646;  /* cabeçalho, abas, item ativo */
+  --md-primary-fg-color--light: #44C15D;
+  --md-primary-fg-color--dark:  #236831;
+  --md-primary-bg-color:        #ffffff;  /* texto sobre o verde */
+
+  --md-accent-fg-color:         #236831;  /* hover de links, sumário ativo */
+  --md-accent-fg-color--transparent: #2368311a;
+
+  --md-typeset-a-color:         #2A7F3B;  /* links no corpo do texto */
+
+  /* Rodapé */
+  --md-footer-bg-color:              #44C15D;  /* faixa anterior/próxima*/
+  --md-footer-bg-color--dark:        #329646;  /* faixa do footer */
+  --md-footer-fg-color:              #ffffff;
+  --md-footer-fg-color--light:       #ffffffb3;
+  --md-footer-fg-color--lighter:     #ffffff80;   
+}
+
+/* Tema escuro */
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color:        #236831;  /* cabeçalho, abas, item ativo */
+  --md-primary-fg-color--light: #329646;  /* verde da marca */
+  --md-primary-fg-color--dark:  #16421F;
+  --md-primary-bg-color:        #ffffff;  /* texto sobre o verde */
+
+  --md-accent-fg-color:         #63CB78;  /* hover de links, sumário ativo */
+  --md-accent-fg-color--transparent: #63CB781a;
+
+  --md-typeset-a-color:         #63CB78;  /* links legíveis no fundo escuro */
+
+  /* Fundo levemente esverdeado em vez do cinza-azulado padrão */
+  --md-default-bg-color:        #1E1928;
+  --md-code-bg-color:           #2D2841;
+
+  /* Rodapé */
+  --md-footer-bg-color:              #329646;  /* faixa anterior/próxima*/
+  --md-footer-bg-color--dark:        #236831;  /* faixa do footer */  
+  --md-footer-fg-color:              #ffffff;
+  --md-footer-fg-color--light:       #ffffffb3;
+  --md-footer-fg-color--lighter:     #ffffff80;
+}
+
+/* Tipografia e leitura */
+
+/* Largura máxima do conteúdo */
+.md-grid {
+  max-width: 68rem;
+}
+
+.md-typeset {
+  font-size: 0.78rem;
+  line-height: 1.7;
+}
+
+/* Títulos com um pouco mais de respiro e peso */
+.md-typeset h1 {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.md-typeset h2 {
+  font-weight: 600;
+  margin-top: 2.2em;
+  padding-top: 0.4em;
+  border-top: 1px solid var(--md-default-fg-color--lightest);
+}
+
+.md-typeset h3 {
+  font-weight: 600;
+  margin-top: 1.6em;
+}
+
+/* Tabelas */
+
+.md-typeset table:not([class]) {
+  font-size: 0.72rem;
+  border: 1px solid var(--md-default-fg-color--lightest);
+}
+
+.md-typeset table:not([class]) th {
+  background-color: var(--md-default-fg-color--lightest);
+  font-weight: 600;
+}
+
+/* Zebra nas linhas, para tabelas longas de tarefas e fontes */
+.md-typeset table:not([class]) tr:nth-child(even) {
+  background-color: var(--md-default-fg-color--lightest);
+}
+
+:root {
+  --md-admonition-icon--pendencia:
+    url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 3h18v18H3V3m2 2v14h14V5H5Z"/></svg>');
+}
+
+.md-typeset .admonition.pendencia,
+.md-typeset details.pendencia {
+  border-color: #8a8a8a;
+}
+
+.md-typeset .pendencia > .admonition-title,
+.md-typeset .pendencia > summary {
+  background-color: #8a8a8a1a;
+}
+
+.md-typeset .pendencia > .admonition-title::before,
+.md-typeset .pendencia > summary::before {
+  background-color: #8a8a8a;
+  -webkit-mask-image: var(--md-admonition-icon--pendencia);
+          mask-image: var(--md-admonition-icon--pendencia);
+}
+
+/* Ajustes finos  */
+
+/* Diagramas PlantUML centralizados e responsivos */
+.md-typeset p > img[src*="plantuml"],
+.md-typeset .plantuml {
+  display: block;
+  margin: 1.5em auto;
+  max-width: 100%;
+}
+
+/* Blocos de código com cantos levemente arredondados */
+.md-typeset pre > code {
+  border-radius: 4px;
+}
+
+/* Rodapé mais discreto */
+.md-footer-meta {
+  font-size: 0.68rem;
+}
+
+/* Marcadores de status (✅ 🟡 🔵 ⬜) sem quebrar entre linhas nas tabelas */
+.md-typeset table td:first-child {
+  white-space: nowrap;
+}
+
+/* ...exceto em tabelas de texto corrido, onde a quebra é desejável */
+.md-typeset table td:first-child:has(a) {
+  white-space: normal;
+}
+
+/* Títulos mais claros no tema escuro */
+[data-md-color-scheme="slate"] .md-typeset h1 {
+  color: hsla(0, 0%, 100%, 0.95);
+}
+
+[data-md-color-scheme="slate"] .md-typeset h2,
+[data-md-color-scheme="slate"] .md-typeset h3,
+[data-md-color-scheme="slate"] .md-typeset h4 {
+  color: hsla(0, 0%, 100%, 0.90);
+} 

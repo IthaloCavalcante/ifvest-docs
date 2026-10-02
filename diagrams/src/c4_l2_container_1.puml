@@ -1,0 +1,37 @@
+@startuml C4_Container_IFVest_Completo
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+title Contêineres — IFVest (C4 Nível 2 · Visão Completa)
+
+LAYOUT_TOP_DOWN()
+
+Person(estudante, "Estudante", "Resolve questões, simulados\ne envia redações")
+Person(educador, "Educador", "Cadastra questões, simulados\ne propostas de redação")
+Person(admin, "Administrador", "Gerencia permissões,\nmoderação e módulos")
+
+System_Boundary(ifvest, "IFVest — VPS única") {
+    Container(caddy, "Proxy Reverso", "Caddy 2", "Único ponto de entrada. Termina o TLS,\nemite o certificado e roteia por caminho")
+    Container(web, "Aplicação Web", "React 19 + TypeScript + Vite\nservida por nginx", "Interface do usuário, executada no navegador.\nArquivos estáticos, sem renderização no servidor")
+    Container(api, "API", "Python 3.12 + FastAPI", "Regras de negócio, autorização por permissões\ne controle dos módulos ativos")
+    ContainerDb(db, "Banco de Dados", "PostgreSQL 16", "Usuários, permissões, taxonomia, questões,\nsimulados, redações, gamificação e auditoria")
+    Container(arquivos, "Armazenamento de Arquivos", "Volume Docker", "Imagens das questões, servidas pela API")
+}
+
+System_Ext(firebase, "Firebase Authentication", "Autentica usuários\ne emite tokens")
+
+Rel_D(estudante, caddy, "Usa a plataforma", "HTTPS")
+Rel_D(educador, caddy, "Cria e gerencia conteúdo", "HTTPS")
+Rel_D(admin, caddy, "Administra a plataforma", "HTTPS")
+
+Rel_D(caddy, web, "Encaminha os demais caminhos", "HTTP interno")
+Rel_D(caddy, api, "Encaminha /api, /static,\n/imgs e /health", "HTTP interno")
+
+Rel_R(web, firebase, "Autentica o usuário", "SDK / HTTPS")
+Rel_D(web, caddy, "Requisições à API,\nmesma origem", "REST / HTTPS")
+
+Rel_D(api, db, "Lê e escreve dados", "SQL assíncrono\n(SQLAlchemy / asyncpg)")
+Rel_R(api, arquivos, "Lê e grava imagens\ndas questões", "Sistema de arquivos")
+Rel_R(api, firebase, "Verifica a assinatura\ndos tokens", "SDK Admin / HTTPS")
+
+SHOW_LEGEND()
+@enduml

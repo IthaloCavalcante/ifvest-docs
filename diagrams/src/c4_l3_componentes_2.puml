@@ -1,0 +1,49 @@
+@startuml C4_Componentes_API_Dominios
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Componentes — API IFVest (C4 L3 · Rotas e Serviços)
+
+LAYOUT_LEFT_RIGHT()
+
+Container_Boundary(api, "API — FastAPI") {
+    Component(r_quiz, "Rotas de Quiz", "quiz.py · 18 rotas", "Partidas, pergunta do dia,\nfiltros, ranking, loja e histórico")
+    Component(r_mock, "Rotas de Simulados", "mocktests.py · 12 rotas", "Montagem, resolução\ne correção de simulados")
+    Component(r_bank, "Rotas do Banco de Questões", "question_bank.py · 5 rotas", "Busca, cadastro, edição\ne denúncia de questões")
+    Component(r_essays, "Rotas de Redação", "essays.py · 11 rotas", "Propostas, redações\ne correções")
+    Component(r_admin, "Rotas de Administração", "admin.py · 3 rotas", "Painel de indicadores\ne moderação das denúncias")
+    Component(r_feat, "Rotas de Flags", "features.py · 3 rotas", "Consulta e alteração\ndas feature flags")
+    Component(r_users, "Rotas de Usuário", "users.py · 6 rotas", "Perfil, lista de usuários\ne permissões")
+    Component(r_auth, "Rotas de Sessão", "auth.py · 2 rotas", "Login e dados\ndo usuário atual")
+
+    Component(s_quiz, "Serviços do Quiz", "quiz_service.py e módulos quiz_*\nstore_catalog.py · daily_streak.py", "Partidas, pontuação, ranking,\nloja e sequência diária")
+    Component(s_mock, "Serviço de Simulados", "mocktests_service.py", "Montagem e correção dos\nsimulados; busca e cadastro de questões")
+    Component(s_edit, "Edição de Questões", "question_editing.py", "Leitura com gabarito\ne edição de questões")
+    Component(s_essays, "Serviço de Redação", "essays_service.py", "Propostas e correção por\ncompetências do ENEM")
+    Component(s_admin, "Serviço de Administração", "admin_service.py", "Indicadores, denúncias\ne registro de auditoria")
+    Component(s_flags, "Serviço de Flags", "feature_flags_service.py", "Estado e hierarquia\ndas flags")
+    Component(s_seed, "Serviços de Carga", "seed_service.py\nunicamp_seed_service.py", "Dados de teste e\ncarga das provas")
+}
+
+ContainerDb(db, "Banco de Dados", "PostgreSQL 16", "Persistência")
+
+Rel_R(r_quiz, s_quiz, "Delega")
+Rel_R(r_mock, s_mock, "Delega")
+Rel_R(r_bank, s_mock, "Busca e cadastro")
+Rel_R(r_bank, s_edit, "Edição")
+Rel_R(r_bank, s_admin, "Denúncias")
+Rel_R(r_essays, s_essays, "Delega")
+Rel_R(r_admin, s_admin, "Delega")
+Rel_R(r_feat, s_flags, "Delega")
+
+Rel_D(s_quiz, db, "Lê e escreve", "SQL")
+Rel_D(s_mock, db, "Lê e escreve", "SQL")
+Rel_D(s_edit, db, "Lê e escreve", "SQL")
+Rel_D(s_essays, db, "Lê e escreve", "SQL")
+Rel_D(s_admin, db, "Lê e escreve", "SQL")
+Rel_D(s_flags, db, "Lê e escreve", "SQL")
+Rel_D(s_seed, db, "Popula", "SQL")
+Rel_D(r_users, db, "Lê e escreve", "SQL")
+Rel_D(r_auth, db, "Busca e cria usuários", "SQL")
+
+SHOW_LEGEND()
+@enduml
